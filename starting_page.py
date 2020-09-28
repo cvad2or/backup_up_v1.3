@@ -34,6 +34,9 @@ user_fmc = ""
 passwd_fmc = ""
 ip_fmc =""
 
+
+###
+
 @socketio.on('from_js')
 def handle_my_custom_event(text, methods=['GET', 'POST']):
     print('received my event: ' + text)
