@@ -1,0 +1,416 @@
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+swc624_21(config)#exit
+swc624_21#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES NVRAM  administratively down down    
+Vlan2                  10.136.1.2      YES manual up                    up      
+Vlan4                  10.136.4.2      YES manual up                    up      
+Vlan5                  unassigned      YES unset  up                    up      
+Vlan6                  10.136.6.2      YES manual up                    up      
+Vlan7                  10.136.7.2      YES manual up                    up      
+Vlan11                 10.136.11.2     YES manual up                    up      
+Vlan12                 10.136.12.2     YES manual up                    up      
+Vlan13                 10.136.13.2     YES manual up                    up      
+Vlan14                 10.136.14.2     YES manual up                    up      
+Vlan16                 10.171.116.2    YES manual up                    up      
+Vlan17                 10.171.117.2    YES manual up                    up      
+Vlan19                 10.136.29.2     YES manual up                    up      
+Vlan22                 10.136.15.2     YES manual up                    up      
+Vlan24                 10.171.24.2     YES manual up                    up      
+Vlan25                 10.171.25.2     YES manual up                    up      
+Vlan31                 10.136.31.2     YES manual up                    up      
+Vlan40                 172.22.7.5      YES NVRAM  administratively down down    
+Vlan50                 10.136.0.67     YES manual up                    up      
+Vlan65                 100.61.5.5      YES manual up                    up      
+Vlan77                 10.171.77.2     YES manual up                    up      
+Vlan80                 10.171.76.3     YES manual up                    up      
+Vlan100                10.136.0.18     YES manual up                    up      
+Vlan103                10.136.0.34     YES manual up                    up      
+Vlan113                10.171.113.2    YES manual up                    up      
+Vlan114                10.136.0.115    YES manual up                    up      
+Vlan115                10.171.115.2    YES manual up                    up      
+Vlan120                10.171.104.2    YES manual up                    up      
+Vlan122                10.171.105.2    YES manual up                    up      
+Vlan130                130.145.0.254   YES manual up                    up      
+Vlan171                10.171.74.2     YES manual up                    up      
+Vlan172                10.171.75.2     YES manual up                    up      
+Vlan200                10.136.8.200    YES manual up                    up      
+Vlan210                10.170.210.17   YES NVRAM  administratively down down    
+Vlan222                172.22.3.2      YES NVRAM  up                    up      
+Vlan251                10.171.81.4     YES NVRAM  administratively down down    
+Vlan254                10.171.69.11    YES NVRAM  administratively down down    
+Vlan258                172.22.6.2      YES NVRAM  administratively down down    
+Vlan260                10.171.73.26    YES NVRAM  up                    up      
+Vlan261                10.10.10.2      YES manual up                    up      
+Vlan278                172.22.80.1     YES NVRAM  up                    up      
+Vlan441                4.4.4.2         YES manual up                    up      
+Vlan666                10.171.108.2    YES manual up                    up      
+Vlan1000               172.22.1.5      YES NVRAM  administratively down down    
+Vlan1001               10.171.66.5     YES NVRAM  administratively down down    
+Vlan1032               10.171.70.4     YES manual up                    up      
+Vlan1061               10.171.12.2     YES manual up                    up      
+Vlan1062               10.171.73.12    YES manual up                    up      
+Vlan1063               10.171.73.20    YES manual up                    up      
+GigabitEthernet0/0     unassigned      YES NVRAM  administratively down down    
+TwentyFiveGigE1/0/1    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/2    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/3    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/4    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/5    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/6    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/7    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/8    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/9    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/10   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/11   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/12   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/13   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/14   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/15   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/16   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/17   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/18   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/19   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/20   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/21   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/22   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/23   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/24   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/25   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/26   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/27   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/28   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/29   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/30   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/31   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/32   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/33   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/34   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/35   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/36   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/37   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/38   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/39   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/40   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/41   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/42   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/43   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/44   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/45   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/46   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/47   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/48   unassigned      YES unset  up                    up      
+HundredGigE1/0/49      unassigned      YES unset  down                  down    
+HundredGigE1/0/50      unassigned      YES unset  down                  down    
+HundredGigE1/0/51      unassigned      YES unset  down                  down    
+HundredGigE1/0/52      unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/1    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/2    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/3    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/4    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/5    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/6    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/7    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/8    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/9    unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/10   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/11   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/12   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/13   unassigned      YES unset  administratively down down    
+TwentyFiveGigE2/0/14   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/15   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/16   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/17   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/18   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/19   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/20   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/21   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/22   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/23   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/24   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/25   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/26   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/27   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/28   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/29   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/30   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/31   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/32   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/33   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/34   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/35   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/36   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/37   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/38   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/39   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/40   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/41   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/42   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/43   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/44   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/45   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/46   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/47   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/48   unassigned      YES unset  up                    up      
+HundredGigE2/0/49      unassigned      YES unset  down                  down    
+HundredGigE2/0/50      unassigned      YES unset  down                  down    
+HundredGigE2/0/51      unassigned      YES unset  down                  down    
+HundredGigE2/0/52      unassigned      YES unset  down                  down    
+Port-channel1          unassigned      YES unset  up                    up      
+Port-channel4          unassigned      YES unset  up                    up      
+Port-channel7          unassigned      YES unset  up                    up      
+Port-channel11         unassigned      YES unset  up                    up      
+Port-channel12         unassigned      YES unset  up                    up      
+Port-channel13         unassigned      YES unset  up                    up      
+Port-channel14         unassigned      YES unset  up                    up      
+Port-channel99         unassigned      YES unset  up                    up      
+swc624_21#show running
+Building configuration...
+
+Current configuration : 78037 bytes
+!
+! Last configuration change at 12:32:53 CHL Fri Aug 28 2020 by ganavalon
+! NVRAM config last updated at 14:35:33 CHL Mon Aug 24 2020 by ganavalon
+!
+version 16.12
+no service pad
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+service compress-config
+service call-home
+no platform punt-keepalive disable-kernel-core
+!
+hostname swc624_21
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 49250
+enable secret 9 $14$LdFt$s0e4gRVXIg8x.E$FKte9Yani9JO0OQgc7Mj1CVXJQghWjHjedIA6J.xRB6
+!
+aaa new-model
+!
+!
+aaa group server tacacs+ TACACS-METLIFE
+ server 10.49.80.11
+ server 10.50.110.11
+ server-private 10.49.80.11 key 7 020A0D550A141B2345421F100B1B1305
+ server-private 10.50.110.11 key 7 141B1B050D163E292D24253C2C1F0618
+ ip tacacs source-interface Vlan80
+!
+aaa authentication login default group TACACS-METLIFE local
+aaa authentication login METSCHEME group TACACS-METLIFE local
+aaa authentication enable default group TACACS-METLIFE enable
+aaa authorization config-commands
+aaa authorization exec default group TACACS-METLIFE local if-authenticated 
+aaa authorization commands 1 default group TACACS-METLIFE if-authenticated 
+aaa authorization commands 15 default group TACACS-METLIFE local if-authenticated 
+aaa accounting exec default start-stop group TACACS-METLIFE
+aaa accounting commands 0 default start-stop group TACACS-METLIFE
+aaa accounting commands 1 default start-stop group TACACS-METLIFE
+aaa accounting commands 15 default start-stop group TACACS-METLIFE
+aaa accounting connection default start-stop group TACACS-METLIFE
+aaa accounting system default start-stop group TACACS-METLIFE
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone CHL -4 0
+clock summer-time CHL recurring 2 Sun Aug 0:00 2 Sun May 0:00
+switch 1 provision c9500-48y4c
+switch 2 provision c9500-48y4c
+boot system bootflash:packages.conf
+boot system bootflash:cat9k_iosxe.16.12.03a.SPA.bin
+stackwise-virtual
+ domain 10
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+  no destination transport-method email
+!
+ip vrf mgmtVrf
+!
+ip vrf prove-MET
+ rd 16874:254
+ route-target export 16874:254
+ route-target import 16874:254
+!
+ip name-server 10.171.70.66 10.170.71.236
+ip domain name metnet.net
+ip dhcp excluded-address 10.136.11.1 10.136.11.50
+ip dhcp excluded-address 10.136.11.230 10.136.11.254
+ip dhcp excluded-address 10.136.4.1 10.136.4.50
+ip dhcp excluded-address 10.136.4.200 10.136.4.254
+ip dhcp excluded-address 10.136.1.230 10.136.1.254
+ip dhcp excluded-address 10.136.15.1 10.136.15.50
+ip dhcp excluded-address 10.136.15.200 10.136.15.254
+ip dhcp excluded-address 192.168.56.1 192.168.56.100
+ip dhcp excluded-address 192.168.56.103 192.168.56.254
+ip dhcp excluded-address 10.136.19.1 10.136.19.2
+ip dhcp excluded-address 10.136.19.65 10.136.19.66
+ip dhcp excluded-address 10.136.19.62 10.136.19.64
+ip dhcp excluded-address 10.136.19.94 10.136.19.96
+ip dhcp excluded-address 10.136.19.30 10.136.19.34
+ip dhcp excluded-address 10.136.19.97 10.136.19.98
+ip dhcp excluded-address 10.136.19.126 10.136.19.130
+ip dhcp excluded-address 10.136.19.158 10.136.19.162
+ip dhcp excluded-address 10.136.19.190 10.136.19.194
+ip dhcp excluded-address 10.136.19.222 10.136.19.226
+ip dhcp excluded-address 10.136.19.253 10.136.19.255
+ip dhcp excluded-address 10.136.19.124
+ip dhcp excluded-address 10.136.4.212
+ip dhcp excluded-address 10.136.1.14
+ip dhcp excluded-address 10.136.1.25
+ip dhcp excluded-address 10.136.1.1 10.136.1.12
+ip dhcp excluded-address 10.136.1.35 10.136.1.50
+ip dhcp excluded-address 10.171.70.1 10.171.70.89
+ip dhcp excluded-address 10.171.70.95 10.171.70.254
+ip dhcp excluded-address 10.171.105.1 10.171.105.10
+ip dhcp excluded-address 10.171.105.230 10.171.105.255
+ip dhcp excluded-address 10.136.4.55 10.136.4.74
+ip dhcp excluded-address 10.136.15.248
+ip dhcp excluded-address 10.136.15.235
+ip dhcp excluded-address 10.136.15.247
+ip dhcp excluded-address 10.136.12.32
+ip dhcp excluded-address 10.136.4.230
+ip dhcp excluded-address 10.136.4.238
+ip dhcp excluded-address 10.136.11.240
+ip dhcp excluded-address 10.171.117.1 10.171.117.3
+ip dhcp excluded-address 10.136.1.249 10.136.1.250
+ip dhcp excluded-address 10.136.4.127
+ip dhcp excluded-address 10.136.1.181
+ip dhcp excluded-address 10.136.1.183
+ip dhcp excluded-address 10.136.1.118
+ip dhcp excluded-address 10.136.11.140
+ip dhcp excluded-address 10.171.12.1 10.171.12.10
+ip dhcp excluded-address 10.136.1.83
+ip dhcp excluded-address 10.136.1.84
+ip dhcp excluded-address 10.136.1.85
+ip dhcp excluded-address 10.136.1.86
+ip dhcp excluded-address 10.136.1.87
+ip dhcp excluded-address 10.171.12.1
+ip dhcp excluded-address 10.171.12.2
+ip dhcp excluded-address 10.171.12.3
+ip dhcp excluded-address 10.136.14.230 10.136.14.254
+ip dhcp excluded-address 10.136.14.1 10.136.14.50
+ip dhcp excluded-address 10.136.1.192 10.136.1.195
+ip dhcp excluded-address 10.136.1.158 10.136.1.159
+!
+ip dhcp pool RANCAGUA
+ network 10.136.19.64 255.255.255.224
+ default-router 10.136.19.65 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool ANTOFAGASTA
+ network 10.136.19.0 255.255.255.224
+ default-router 10.136.19.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool CALAMA
+ network 10.136.19.96 255.255.255.224
+ default-router 10.136.19.97 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool LOS_ANGELES
+ network 10.136.20.0 255.255.255.224
+ default-router 10.136.20.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool SAN_FELIPE
+ network 10.136.19.160 255.255.255.224
+ default-router 10.136.19.161 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PUERTO_MONTT
+ network 10.136.20.32 255.255.255.224
+ default-router 10.136.20.33 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-14_IGALAZ
+ host 10.136.14.172 255.255.255.0
+ client-identifier 0100.2713.5401.cc
+ client-name 14_IGALAZ
+ default-router 10.136.14.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.200 10.136.8.12 
+!
+ip dhcp pool PISO-1_52
+ client-identifier 0100.016c.4d20.55
+ client-name 1-233
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-1_62
+ client-identifier 0100.1641.2c58.de
+ client-name 1-233
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-1_104
+ client-identifier 0100.096b.23a9.55
+ client-name 1-233
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-1_117
+ client-identifier 0100.016c.4d20.c3
+ client-name 1-233
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-4_210
+ host 10.136.4.210 255.255.255.0
+ client-identifier 0100.1e90.9dfa.67
+ client-name 4-210
+ default-router 10.136.4.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool PISO-4_211
+ host 10.136.4.211 255.255.255.0
+ client-identifier 001e.90a3.2ac7
+ client-name 4-211
+ default-router 10.136.4.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool PISO-5
+ network 10.136.31.0 255.255.255.0
+ default-router 10.136.31.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool Piso_5_IMPRESORA
+ host 10.136.31.244 255.255.255.0
+ client-identifier 0100.00aa.c702.e0
+ client-name IMPRESORA
+ default-router 10.136.31.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tools</title>
+      <link rel="icon" href="..//static/img/icon.png">
+      <meta charset='utf-8'>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="../static/css/styles.css">
+      <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+      <script type="application/javascript" src="../static/js/script.js"></script>
+
+        <script type="application/javascript" src="../static/js/main.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <link rel="shortcut icon" href="../static/img/favicon.ico">
+        <link rel="stylesheet" href="../static/css/loader.css">
+    </head>
+    <body id="body">
+	
+
+
+
+<div id='cssmenu'>
+  <ul>
+     <li><a href='/'>Home</a></li>
+     <li class='active'><a href='#'>BACKUP</a>
+        <ul>
+           <li><a href='#' id="Configuracion">Configuration</a>
+              <ul>
+                 <li><a href='../full_backup'>Manual</a></li>
+                 <li><a href='../respaldo_full_programado'>Programmed</a></li>
+              </ul>
+           </li>
+         <li><a href='#' id="respaldo_state">State</a>
+          <ul>
+             <li><a href='../stateBackup'>Manual</a></li>
+             <li><a href='#'>Programmed</a></li>
+          </ul>
+       </li>
+        </ul>
+     </li>
+     <li class='active'><a href='#'>FMC</a>
+      <ul>
+        <li><a href='../fmc_start_page' id="fmc_chage_policy">Change Policy</a>
+        </li>
+      </ul>
+  </ul>
+  </div>
+  <div style="background-image: url('../static/img/ntt_logo.jpeg');"></div>
+
+  <div id="loader" class="center"></div>
+
+    </body>
+
+    <script>
+      window.onload = function() {
+        document.getElementById('loader').style.display = 'none';
+      };
+
+    </script>
+</html>

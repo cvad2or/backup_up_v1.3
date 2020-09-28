@@ -1,0 +1,3178 @@
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+AG06_N7K_1-AGG-1(config)# exit
+
+AG06_N7K_1-AGG-1# show ip interface brief
+IP Interface Status for VRF "default"(1)
+Interface            IP Address      Interface Status
+Vlan11               10.108.0.2      protocol-up/link-up/admin-up       
+Vlan34               10.201.20.49    protocol-up/link-up/admin-up       
+Vlan89               10.201.25.162   protocol-up/link-up/admin-up       
+Vlan99               98.253.1.210    protocol-down/link-down/admin-down 
+Vlan100              108.10.0.168    protocol-up/link-up/admin-up       
+Vlan106              10.1.8.4        protocol-up/link-up/admin-up       
+Vlan108              108.0.1.207     protocol-up/link-up/admin-up       
+Vlan160              10.1.112.6      protocol-up/link-up/admin-up       
+Vlan161              10.1.113.6      protocol-up/link-up/admin-up       
+Vlan305              10.200.9.228    protocol-up/link-up/admin-up       
+Vlan1891             10.201.26.11    protocol-up/link-up/admin-up       
+Lo0                  10.108.3.110    protocol-up/link-up/admin-up       
+Po15                 10.200.20.34    protocol-up/link-up/admin-up       
+Po15.651             10.249.201.2    protocol-up/link-up/admin-up       
+Eth1/20.1717         10.200.20.89    protocol-up/link-up/admin-up       
+Eth2/20.1717         10.200.20.65    protocol-up/link-up/admin-up       
+Eth2/22              10.200.18.217   protocol-down/link-down/admin-down 
+
+AG06_N7K_1-AGG-1# show running
+
+!Command: show running-config
+!Time: Fri Aug 28 11:53:05 2020
+
+version 6.2(14)
+hostname AGG-1
+
+feature vrrp
+feature tacacs+
+cfs eth distribute
+feature scheduler
+feature ospf
+feature bgp
+feature pim
+feature pbr
+feature udld
+feature interface-vlan
+feature netflow
+feature hsrp
+feature lacp
+feature vpc
+feature lldp
+feature bfd
+feature sla sender
+feature sla responder
+
+username faladmin password 5 $1$9BPPNOAZ$WSZNYYPbPgXY.8THi9Puo.  role vdc-admin
+username tufinftc password 5 $5$MKY0KtlC$UPW8npRxpdGfmf1GfYTbbjVvQTi1.9zlmD.XMNITe04  role vdc-admin
+no password strength-check
+
+banner motd ^CCC
+****************************************************************************
+*                    FALABELLA TECNOLOGIA CORPORATIVA                      *
+*                  ===================================                     *
+*                                                                          *
+*                          Corporate Network                               *
+*                   Provided for authorised users only.                    *
+*                                                                          *
+* Access to this computer system is restricted to official use by users    *
+* authorized by Falabella. Systems under Falabella responsibility must     *
+* only be used for conducting business or for purposes authorized by       *
+* Falabella management and Information Security Policies.                  *
+*                                                                          *
+* All activities taking place on this device are monitored and recorded.   *
+*                                                                          *
+****************************************************************************
+
+
+^
+
+ip domain-lookup
+ip name-server 10.108.1.1
+ip host ISE01  10.202.15.125
+ip host ISE02  10.202.15.126
+tacacs-server host ISE01 key 7 "GYG-L@x4uv+Ft3Wi@" timeout 5 
+tacacs-server host ISE02 key 7 "GYG-L@x4uv+Ft3Wi@" timeout 5 
+aaa group server tacacs+ ISE_TACACS 
+    server ISE01 
+    server ISE02 
+    deadtime 10
+    use-vrf management
+    source-interface mgmt0
+errdisable recovery cause link-flap
+errdisable recovery cause udld
+errdisable recovery cause vpc-peerlink
+ip access-list 2100
+  5 permit ip 10.8.74.85/32 any 
+  10 permit ip 10.119.2.103/32 any 
+  15 permit ip 10.2.64.0/18 any 
+  20 permit ip 10.119.3.69/32 any 
+  25 permit ip 10.8.67.184/32 any 
+  30 permit ip 10.8.69.20/32 any 
+  35 permit ip 10.1.2.135/32 any 
+  40 permit ip 10.100.22.5/32 any 
+  45 permit ip 10.100.20.90/32 any 
+  50 permit ip 10.247.2.61/32 any 
+  55 permit ip 10.8.64.108/32 any 
+track 10 ip sla 10 reachability
+track 200 ip sla 200 reachability
+ delay up 60 down 5
+
+track 210 ip sla 210 reachability
+ delay up 60 down 5
+
+track 220 ip sla 220 reachability
+ delay up 60 down 5
+
+bfd slow-timer 30000
+snmp-server user faladmin vdc-admin auth md5 0xb3b4959d56d9e03195d1ecb15bc2822f priv 0xb3b4959d56d9e03195d1ecb15bc2822f localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+snmp-server community ch1kg0 group vdc-operator
+ntp distribute
+ntp server ntp.falabella.cl
+ntp source-interface  mgmt0
+ntp commit 
+aaa authentication login default group ISE_TACACS 
+aaa authorization config-commands default group ISE_TACACS local 
+aaa authorization commands default group ISE_TACACS local 
+aaa authorization config-commands console group ISE_TACACS local 
+aaa authorization commands console group ISE_TACACS local 
+tacacs-server directed-request 
+
+ip route 3.3.3.8/29 108.0.1.58 name Sala_Rosas
+ip route 10.0.12.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.0.12.200/32 108.0.1.69 name Sala_Rosas
+ip route 10.0.32.0/20 108.0.1.69 name Sala_Rosas
+ip route 10.0.64.0/20 108.0.1.69 name Sala_Rosas
+ip route 10.0.80.0/21 108.0.1.69 name Sala_Rosas
+ip route 10.0.80.0/21 172.20.1.124 10
+ip route 10.1.152.0/21 10.108.0.7 name Cluster-FWNokia
+ip route 10.3.0.0/23 10.108.0.7 name Cluster-FWNokia
+ip route 10.3.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 10.10.10.129/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.21.21.248/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.23.18.106/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.23.224.51/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.23.224.53/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.23.224.211/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.50.40.30/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.57.0.0/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.8/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.16/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.24/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.32/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.40/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.48/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.56/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.64/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.72/29 108.0.1.69 name Sala_Rosas
+ip route 10.57.0.80/29 108.0.1.69 name Sala_Rosas
+ip route 10.86.2.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.86.2.176/29 108.0.1.69 name Sala_Rosas
+ip route 10.86.2.184/29 108.0.1.69 name Sala_Rosas
+ip route 10.86.4.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.86.5.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.118.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.118.0.0/22 10.108.0.7 name Cluster-FWNokia
+ip route 10.118.8.0/22 10.108.0.7 name Cluster-FWNokia
+ip route 10.120.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.121.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.122.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.123.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.124.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.128.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.129.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.132.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.133.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.134.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.135.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.136.0.0/16 108.0.1.69 name Sala_Rosas
+ip route 10.136.0.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.136.0.0/29 108.0.1.69 name Sala_Rosas
+ip route 10.136.0.80/29 108.0.1.69 name Sala_Rosas
+ip route 10.136.1.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.136.2.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.136.2.24/29 108.0.1.69 name Sala_Rosas
+ip route 10.136.2.112/29 108.0.1.69 name Sala_Rosas
+ip route 10.136.2.176/29 108.0.1.69 name Sala_Rosas
+ip route 10.136.2.232/29 108.0.1.69 name Sala_Rosas
+ip route 10.136.2.248/29 108.0.1.69 name Sala_Rosas
+ip route 10.136.3.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.137.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.137.247.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 10.138.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.140.18.128/26 108.10.0.144 name Servidores_Rosas
+ip route 10.140.44.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.143.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.144.222.100/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.145.222.100/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.147.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.150.0.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.150.1.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.156.0.0/16 108.0.1.69 name Sala_Rosas
+ip route 10.161.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.162.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.163.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.164.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.170.1.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.4.0/23 108.0.1.58 name Sala_Rosas
+ip route 10.170.9.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.11.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.15.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.51.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.170.100.0/22 108.0.1.58 name Sala_Rosas
+ip route 10.170.109.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.129.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.131.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.133.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.135.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.137.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.139.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.141.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.143.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.145.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.159.0/28 108.0.1.58 name Sala_Rosas
+ip route 10.170.159.16/28 108.0.1.58 name Sala_Rosas
+ip route 10.170.159.32/28 108.0.1.58 name Sala_Rosas
+ip route 10.170.159.48/28 108.0.1.58 name Sala_Rosas
+ip route 10.170.159.64/28 108.0.1.58 name Sala_Rosas
+ip route 10.170.159.80/28 108.0.1.58 name Sala_Rosas
+ip route 10.170.159.96/28 108.0.1.58 name Sala_Rosas
+ip route 10.170.159.112/28 108.0.1.58 name Sala_Rosas
+ip route 10.170.215.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.170.253.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.172.0.0/16 108.0.1.69 name Sala_Rosas
+ip route 10.173.77.74/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.173.77.75/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.173.253.69/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.175.32.0/20 108.0.1.69 name Sala_Rosas
+ip route 10.184.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.185.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.186.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.187.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 10.193.248.130/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.197.212.196/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.4.96/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.4.104/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.4.112/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.6.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.200.6.232/29 10.200.9.226
+ip route 10.200.8.48/28 108.0.1.58 name Sala_Rosas
+ip route 10.200.8.80/29 108.0.1.69 name Sala_Rosas
+ip route 10.200.8.112/29 108.0.1.69 name Sala_Rosas
+ip route 10.200.8.208/29 108.0.1.69
+ip route 10.200.10.88/29 108.0.1.69 name Sala_Rosas
+ip route 10.200.10.216/29 108.0.1.69 name Sala_Rosas
+ip route 10.200.11.216/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.12.80/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.15.240/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.17.16/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.17.64/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.17.209/32 108.0.1.58 name Sala_Rosas
+ip route 10.200.28.240/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.29.74/32 10.108.0.7
+ip route 10.200.252.0/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.4/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.8/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.12/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.16/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.20/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.24/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.28/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.32/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.36/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.40/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.44/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.48/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.56/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.60/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.228/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.232/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.236/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.253/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.252.254/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.253.64/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.253.96/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.253.104/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.253.112/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.253.200/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.200.253.208/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.4.96/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.4.104/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.4.112/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.6.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.201.6.136/29 108.0.1.69 name Sala_Rosas
+ip route 10.201.6.144/29 108.0.1.69
+ip route 10.201.8.112/29 108.0.1.69 name Sala_Rosas
+ip route 10.201.8.248/29 108.0.1.69 name Sala_Rosas
+ip route 10.201.10.104/29 108.0.1.69 name Sala_Rosas
+ip route 10.201.10.120/29 108.0.1.69 name Sala_Rosas
+ip route 10.201.10.216/29 108.0.1.69 name Sala_Rosas
+ip route 10.201.15.240/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.17.16/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.17.64/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.28.240/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.0/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.4/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.8/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.12/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.16/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.20/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.24/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.28/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.34/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.38/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.40/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.44/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.48/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.52/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.228/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.232/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.236/30 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.253/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.252.254/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.253.24/29 10.108.0.7 name Cluster-FWNokia
+ip route 10.201.253.98/32 10.108.0.7 name Cluster-FWNokia
+ip route 10.218.27.128/25 108.0.1.69
+ip route 10.218.63.24/29 108.0.1.69
+ip route 10.231.83.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.233.0.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.233.6.0/27 108.0.1.69 name Sala_Rosas
+ip route 10.233.6.32/27 108.0.1.69 name Sala_Rosas
+ip route 10.233.6.64/26 108.0.1.69 name Sala_Rosas
+ip route 10.233.6.160/28 108.0.1.69 name Sala_Rosas
+ip route 10.233.6.176/28 108.0.1.69 name Sala_Rosas
+ip route 10.233.6.208/28 108.0.1.69 name Sala_Rosas
+ip route 10.233.7.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.233.17.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.18.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.19.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.20.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.21.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.22.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.23.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.24.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.25.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.26.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.27.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.28.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.233.29.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.0.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.243.6.160/28 108.0.1.69 name Sala_Rosas
+ip route 10.243.6.176/28 108.0.1.69 name Sala_Rosas
+ip route 10.243.6.208/28 108.0.1.69 name Sala_Rosas
+ip route 10.243.17.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.18.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.19.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.20.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.21.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.22.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.23.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.24.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.25.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.26.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.27.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.28.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.243.29.0/24 108.0.1.69 name Redes_NSX_Sala_Rosas
+ip route 10.245.80.0/24 108.0.1.58 name Sala_Rosas
+ip route 10.249.172.0/24 108.0.1.69 name Sala_Rosas
+ip route 10.249.174.0/23 108.0.1.69 name Sala_Rosas
+ip route 11.11.11.0/26 108.10.0.144 name Servidores_Rosas
+ip route 21.0.0.0/8 10.108.0.7 name Cluster-FWNokia
+ip route 22.0.0.0/8 10.108.0.7 name Cluster-FWNokia
+ip route 64.94.14.0/27 108.0.1.37 name Sala_Rosas
+ip route 70.10.10.0/24 108.0.1.58 name Sala_Rosas
+ip route 70.10.12.0/24 108.0.1.58 name Sala_Rosas
+ip route 70.10.13.0/24 108.0.1.37 name Sala_Rosas
+ip route 70.20.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 70.20.1.10/32 108.0.1.5
+ip route 70.20.1.13/32 108.0.1.4
+ip route 70.20.1.15/32 108.0.1.15
+ip route 70.20.1.17/32 108.0.1.7
+ip route 70.20.1.18/32 108.0.1.18
+ip route 70.20.1.19/32 108.0.1.38
+ip route 70.20.1.22/32 108.0.1.126
+ip route 70.20.1.23/32 108.0.1.127
+ip route 70.20.1.24/32 108.0.1.128
+ip route 70.20.1.26/32 108.0.1.35
+ip route 70.20.1.29/32 108.0.1.113
+ip route 70.20.1.30/32 108.0.1.156
+ip route 70.20.1.32/32 108.0.1.47
+ip route 70.20.1.33/32 108.0.1.179
+ip route 70.20.1.35/32 108.0.1.66
+ip route 70.20.1.36/32 108.0.1.36
+ip route 70.20.1.39/32 108.0.1.26
+ip route 70.20.1.52/32 108.0.1.60
+ip route 70.20.1.58/32 108.0.1.172
+ip route 70.20.1.59/32 108.0.1.157
+ip route 70.20.1.61/32 108.0.1.210
+ip route 70.20.1.65/32 108.0.1.108
+ip route 70.20.1.86/32 108.0.1.190
+ip route 70.20.1.93/32 108.0.1.58
+ip route 70.20.1.98/32 108.0.1.58
+ip route 70.20.2.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 70.50.1.0/24 108.0.1.69 name Sala_Rosas
+ip route 70.50.1.60/32 108.0.1.58 name Sala_Rosas
+ip route 70.50.1.150/32 108.0.1.58 name Sala_Rosas
+ip route 72.1.1.21/32 108.0.1.5
+ip route 72.1.1.24/32 108.0.1.138
+ip route 72.1.1.36/32 108.0.1.15
+ip route 72.1.1.42/32 108.0.1.204
+ip route 72.1.1.44/32 108.0.1.69
+ip route 72.1.1.46/32 108.0.1.36
+ip route 72.1.1.47/32 108.0.1.18
+ip route 72.1.1.50/32 108.0.1.117
+ip route 72.1.1.55/32 108.0.1.58
+ip route 72.1.1.57/32 108.0.1.190
+ip route 74.217.45.0/28 108.0.1.37 name Sala_Rosas
+ip route 77.0.15.0/24 108.0.1.12 name Sala_Rosas
+ip route 77.0.16.0/24 108.0.1.12 name Sala_Rosas
+ip route 77.0.21.64/26 10.108.0.7 name Cluster-FWNokia
+ip route 77.2.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 77.3.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 77.4.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 77.6.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 77.6.1.3/32 10.108.0.7 name Cluster-FWNokia
+ip route 77.6.1.4/32 10.108.0.7 name Cluster-FWNokia
+ip route 77.7.1.0/29 10.108.0.7 name Cluster-FWNokia
+ip route 78.2.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 78.5.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 80.10.10.0/24 108.0.1.58 name Sala_Rosas
+ip route 97.0.1.200/32 10.200.18.201
+ip route 98.200.6.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 98.200.18.48/29 10.108.0.7 name Cluster-FWNokia
+ip route 98.200.26.40/29 10.108.0.7 name Cluster-FWNokia
+ip route 98.200.28.0/26 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.50.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.51.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.52.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.53.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.54.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.55.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.56.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.57.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.58.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.59.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.60.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.61.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.62.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.63.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.64.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.65.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.66.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.74.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.84.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 108.0.99.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 111.10.0.0/16 108.0.1.69 name Sala_Rosas
+ip route 111.10.3.192/26 108.0.1.69 name Sala_Rosas
+ip route 111.10.4.192/26 108.0.1.69
+ip route 111.10.12.64/26 108.0.1.69 name Sala_Rosas
+ip route 111.10.20.192/26 108.0.1.69 name Sala_Rosas
+ip route 115.0.0.0/8 10.108.0.7 name Cluster-FWNokia
+ip route 118.10.10.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 119.1.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 119.2.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 119.2.1.4/32 10.108.0.7 name Cluster-FWNokia
+ip route 120.0.0.0/8 10.108.0.7 name Cluster-FWNokia
+ip route 137.135.130.51/32 10.108.0.7 name Cluster-FWNokia
+ip route 146.82.89.174/32 108.0.1.37 name Sala_Rosas
+ip route 151.184.52.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 151.193.160.91/32 108.0.1.37 name Sala_Rosas
+ip route 161.238.39.171/32 108.0.1.69 name SEBRA_FM
+ip route 161.238.207.129/32 108.0.1.69 name SEBRA_Bolsa
+ip route 163.250.239.27/32 108.0.1.69 name Sala_Rosas
+ip route 163.250.239.100/32 108.0.1.69 name Redbanc_RBI
+ip route 163.250.249.9/32 108.0.1.69 name Sala_Rosas
+ip route 163.250.250.0/24 108.0.1.69 name Sala_Rosas
+ip route 164.110.0.0/16 108.0.1.69 name Sala_Rosas
+ip route 167.28.39.113/32 108.0.1.69 name Banco_Estado_RBI
+ip route 167.28.39.232/32 108.0.1.69 name BcoEstado_RBI_Az7BancoCMR
+ip route 168.231.1.17/32 108.0.1.69 name Sala_Rosas
+ip route 168.231.1.27/32 108.0.1.69 name Sala_Rosas
+ip route 172.6.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.15.209.154/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.16.16.236/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.40.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.16.67.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.16.82.192/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.84.134/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.16.91.82/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.16.91.184/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.117.148/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.133.212/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.139.186/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.16.139.214/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.16.152.216/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.176.120/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.215.80/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.220.58/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.16.225.140/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.237.220/30 108.0.1.69 name Sala_Rosas
+ip route 172.16.250.129/32 108.0.1.69 name Sala_Rosas
+ip route 172.16.250.130/32 108.0.1.69 name Sala_Rosas
+ip route 172.16.250.132/32 108.0.1.69 name Sala_Rosas
+ip route 172.16.250.135/32 108.0.1.69 name Sala_Rosas
+ip route 172.16.250.136/32 108.0.1.69 name Sala_Rosas
+ip route 172.16.250.137/32 108.0.1.69 name Sala_Rosas
+ip route 172.16.250.138/32 108.0.1.69 name Sala_Rosas
+ip route 172.16.254.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.17.67.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.17.128.218/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.18.0.0/16 108.0.1.69 name Sala_Rosas
+ip route 172.19.1.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.19.25.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.19.101.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.19.200.13/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.20.0.0/16 108.0.1.69 name Sala_Rosas
+ip route 172.20.1.124/32 10.200.9.226
+ip route 172.20.5.125/32 108.0.1.69 name TEST-CITRIX-VDI
+ip route 172.20.5.206/32 108.0.1.69 name TEST-CITRIX-VDI
+ip route 172.20.5.231/32 108.0.1.69 name TEST-CITRIX-VDI
+ip route 172.20.5.232/32 108.0.1.69 name TEST-CITRIX-VDI
+ip route 172.20.26.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.32.112/30 10.108.0.7 name Cluster-FWNokia
+ip route 172.20.32.116/30 10.108.0.7 name Cluster-FWNokia
+ip route 172.20.36.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.45.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.46.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.60.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.65.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.70.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.78.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.80.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.82.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.84.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.92.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.95.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.96.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.110.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.115.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.119.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.123.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.128.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.20.254.0/24 108.0.1.58 name Sala_Rosas
+ip route 172.21.4.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.10.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.21.17.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.20.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.22.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.24.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.34.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.44.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.46.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.50.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.58.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.64.0/23 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.64.192/26 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.72.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.76.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.80.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.84.10/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.88.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.90.71/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.96.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.108.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.137.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.139.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.144.7/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.144.8/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.158.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.160.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.163.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.170.11/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.182.68/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.190.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.21.251.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.22.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 172.22.1.22/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.23.0.0/16 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.1.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.1.41/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.1.45/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.1.99/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.4.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.8.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.9.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.10.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.100.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.104.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.106.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.108.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.113.0/25 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.114.0/25 10.108.0.7 name Cluster-FWNokia
+ip route 172.24.240.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.25.32.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.25.120.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.25.121.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 172.31.15.92/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.18.104/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.18.108/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.24.196/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.30.60/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.31.176/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.34.28/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.39.128/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.39.132/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.40.132/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.54.156/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.54.160/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.54.192/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.66.16/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.71.64/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.71.88/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.77.28/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.100.72/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.133.22/32 10.108.0.7 name Cluster-FWNokia
+ip route 172.31.137.200/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.137.204/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.148.100/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.148.104/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.195.60/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.199.192/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.216.212/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.217.124/30 108.0.1.69 name Sala_Rosas
+ip route 172.31.240.40/30 108.0.1.69 name Sala_Rosas
+ip route 172.35.0.4/30 10.108.0.7 name Cluster-FWNokia
+ip route 172.50.1.0/24 108.0.1.69 name Sala_Rosas
+ip route 172.202.15.96/27 108.0.1.69 name Sala_Rosas
+ip route 181.65.164.200/32 108.0.1.58 name Sala_Rosas
+ip route 181.65.173.8/32 108.0.1.58 name Sala_Rosas
+ip route 187.128.2.30/32 10.108.0.7 name Cluster-FWNokia
+ip route 187.128.14.50/32 10.108.0.7 name Cluster-FWNokia
+ip route 187.128.15.82/32 10.108.0.7 name Cluster-FWNokia
+ip route 187.128.15.86/32 10.108.0.7 name Cluster-FWNokia
+ip route 187.128.37.170/32 10.108.0.7 name Cluster-FWNokia
+ip route 187.128.40.108/30 10.108.0.7 name Cluster-FWNokia
+ip route 189.109.18.206/32 10.108.0.7 name Cluster-FWNokia
+ip route 190.81.33.200/32 108.0.1.58 name Sala_Rosas
+ip route 190.81.36.70/32 108.0.1.58 name Sala_Rosas
+ip route 190.81.36.226/32 108.0.1.58 name Sala_Rosas
+ip route 190.81.37.70/32 108.0.1.58 name Sala_Rosas
+ip route 190.102.150.8/32 108.0.1.58 name Sala_Rosas
+ip route 190.102.150.200/32 108.0.1.58 name Sala_Rosas
+ip route 192.54.112.0/24 108.0.1.69 name Sala_Rosas
+ip route 192.168.2.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 192.168.21.21/32 10.108.0.7 name Cluster-FWNokia
+ip route 192.168.99.0/24 108.0.1.69 name Sala_Rosas
+ip route 192.168.100.48/32 10.108.0.7 name Cluster-FWNokia
+ip route 192.168.151.0/24 108.0.1.69 name Sala_Rosas
+ip route 192.168.162.0/24 108.0.1.69 name Sala_Rosas
+ip route 192.168.250.0/24 10.108.0.7 name Cluster-FWNokia
+ip route 192.169.225.0/24 108.0.1.69 name Sala_Rosas
+ip route 198.22.250.0/24 108.0.1.69 name Sala_Rosas
+ip route 198.22.250.139/32 108.0.1.69 name Sala_Rosas
+ip route 198.22.251.0/24 108.0.1.69 name Sala_Rosas
+ip route 200.9.196.0/24 108.0.1.69 name Sala_Rosas
+ip route 200.9.197.0/24 108.0.1.69 name Sala_Rosas
+ip route 200.10.8.144/32 108.0.1.69 name Sala_Rosas
+ip route 200.10.10.0/24 10.200.11.170 name Transbank_EnlaceCMR
+ip route 200.10.10.144/32 108.0.1.69 name Sala_Rosas
+ip route 200.10.10.145/32 108.0.1.69 name Sala_Rosas
+ip route 200.10.10.155/32 10.200.11.170 name Transbank_EnlaceCMR
+ip route 200.10.10.168/32 108.0.1.69 name Sala_Rosas
+ip route 200.10.10.169/32 108.0.1.69 name Sala_Rosas
+ip route 200.10.10.170/32 108.0.1.69 name Sala_Rosas
+ip route 200.10.10.171/32 108.0.1.69 name Sala_Rosas
+ip route 200.10.167.10/32 108.0.1.58 name Sala_Rosas
+ip route 200.10.167.13/32 108.0.1.58 name Sala_Rosas
+ip route 200.10.167.18/32 108.0.1.109
+ip route 200.10.167.31/32 108.0.1.200
+ip route 200.10.167.33/32 108.0.1.65
+ip route 200.10.167.34/32 108.0.1.187
+ip route 200.10.167.35/32 108.0.1.186
+ip route 200.10.167.36/32 108.0.1.35
+ip route 200.10.167.37/32 108.0.1.156
+ip route 200.10.167.49/32 108.0.1.222
+ip route 200.10.167.163/32 108.0.1.58 name Sala_Rosas
+ip route 200.10.167.200/32 108.0.1.58 name Sala_Rosas
+ip route 200.10.169.2/32 108.0.1.5
+ip route 200.10.169.3/32 108.0.1.6
+ip route 200.10.169.5/32 108.0.1.157
+ip route 200.10.169.6/32 108.0.1.58
+ip route 200.10.169.10/32 108.0.1.36
+ip route 200.10.169.12/32 108.0.1.138
+ip route 200.10.169.13/32 108.0.1.15
+ip route 200.10.169.25/32 108.0.1.231
+ip route 200.10.169.28/32 108.0.1.158
+ip route 200.10.169.29/32 108.0.1.243
+ip route 200.10.169.33/32 108.0.1.136
+ip route 200.10.169.51/32 108.0.1.171
+ip route 200.10.169.54/32 108.0.1.181
+ip route 200.10.169.59/32 108.0.1.58
+ip route 200.10.169.192/26 108.0.1.69 name Sala_Rosas
+ip route 200.10.171.2/32 108.0.1.58 name Sala_Rosas
+ip route 200.10.171.5/32 108.0.1.58 name Sala_Rosas
+ip route 200.32.81.195/32 108.0.1.58 name Sala_Rosas
+ip route 200.37.153.226/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.37.153.229/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.37.153.231/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.37.153.232/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.37.153.241/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.37.153.242/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.37.153.253/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.37.153.254/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.49.219.104/32 108.0.1.37 name Sala_Rosas
+ip route 200.51.86.112/30 10.108.0.7 name Cluster-FWNokia
+ip route 200.51.86.114/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.51.86.116/30 10.108.0.7 name Cluster-FWNokia
+ip route 200.51.86.118/32 10.108.0.7 name Cluster-FWNokia
+ip route 200.51.86.120/30 10.108.0.7 name Cluster-FWNokia
+ip route 200.51.86.124/30 10.108.0.7 name Cluster-FWNokia
+ip route 200.55.193.209/32 108.0.1.37 name Sala_Rosas
+ip route 200.72.134.128/27 108.0.1.37 name Sala_Rosas
+ip route 200.72.164.70/32 108.0.1.37 name Sala_Rosas
+ip route 200.72.164.78/32 108.0.1.37 name Sala_Rosas
+ip route 200.74.132.214/32 108.0.1.58 name Sala_Rosas
+ip route 200.123.137.145/32 108.0.1.58 name Sala_Rosas
+ip route 200.123.137.147/32 108.0.1.58 name Sala_Rosas
+ip route 205.227.136.95/32 108.0.1.37 name Sala_Rosas
+ip route 206.49.219.104/32 108.0.1.37 name Sala_Rosas
+ip route 210.5.29.241/32 10.108.0.7 name Cluster-FWNokia
+ip route 216.52.244.96/27 108.0.1.37 name Sala_Rosas
+ip route 216.133.238.176/28 108.0.1.37 name Sala_Rosas
+ip route 216.251.126.0/24 108.0.1.37 name Sala_Rosas
+ip pim ssm range 232.0.0.0/8
+vlan 1,5,10-11,34,70,77,89-96,98-102,104,106-108,110,112,118,130,134,137,140-141,145,160-161,180-181,201-203,255,305,334-336,338,401-402,451,500-501,600,615-616,621,651,721,780-782,830-831,1041,1047-1050,1052,1113,1123,1168-1169,1199,1631-1634,1636-1650,1655,1657,1668-1676,1680-1681,1684-1690,1717,1732,1734,1744,1801-1802,1805-1807,1814-1815,1822-1838,1855-1858,1863,1890-1891,2098,2238-2239,2402-2403,2502-2503
+vlan 2602-2603,2702-2703,3402-3403,3406-3407,3502-3503,3542
+flow exporter SolarWinds
+  destination 10.245.41.139
+  transport udp 9996
+  source port-channel15
+  version 9
+flow record SolarWinds
+  match ipv4 source address
+  match ipv4 destination address
+  match ip protocol
+  match transport source-port
+  match transport destination-port
+  collect counter bytes
+  collect counter packets
+sampler SolarWinds
+  mode 1 out-of 1000
+flow monitor SolarWindsFTC
+  record SolarWinds
+  exporter SolarWinds
+vlan 5
+  name Balanceo_DNS
+vlan 10
+  name NewDmz170
+vlan 11
+  name FwPaises_Cluster
+vlan 34
+  name Link-L3-AGG
+vlan 70
+  name FwWebRosas_DmzInternet
+vlan 77
+  name Proveedores_3
+vlan 89
+  name Itx-Border-FW
+vlan 90
+  name FwWebRosas_Asm2
+vlan 91
+  name LTM_2
+vlan 92
+  name FwWebRosas_DesaAsm
+vlan 93
+  name FwWebRosas_Asm3
+vlan 94
+  name LTM_3
+vlan 95
+  name WMOS_ServidoresApp
+vlan 96
+  name WMOS_ServidoresWeb
+vlan 98
+  name ser_balanceados
+vlan 99
+  name Serv_balanceados2
+vlan 100
+  name Servidores_Rosas
+vlan 101
+  name Servidores_LoEspejo
+vlan 102
+  name Servidores_Cientec
+vlan 104
+  name New-Servidores
+vlan 106
+  name Local_servers_Cientec
+vlan 107
+  name Balanceadores-Nortel
+vlan 108
+  name Sala_Rosas
+vlan 110
+  name Local_servers_Rosas
+vlan 112
+  name GTD_Servers
+vlan 118
+  name Citrix_servers_cientec
+vlan 130
+  name Servidores_DAG
+vlan 134
+  name DMZ_Web
+vlan 137
+  name DMZ_PCI
+vlan 140
+  name FwWebRosas_DmzSAP
+vlan 141
+  name Wireless_Controller
+vlan 145
+  name Adm_Virt_Center_145
+vlan 160
+  name A7_BF_PE
+vlan 161
+  name A7_CMR-CL
+vlan 180
+  name FwPaises_HA1-B
+vlan 181
+  name FwPaises_HA2-B
+vlan 201
+  name WLC_HA
+vlan 202
+  name Serv_Extendida
+vlan 203
+  name Proveedores_Externos2
+vlan 255
+  name FwWebRosas_Externa
+vlan 305
+  name FW_VPN_BANCO
+vlan 334
+  name PDI_GTD
+vlan 335
+  name BKP_GTD
+vlan 336
+  name PDI2_GTD
+vlan 338
+  name VIP_Balanceo_INT_GTD
+vlan 401
+  name FwPaises_HA1
+vlan 402
+  name FwPaises_HA2
+vlan 451
+  name Servidores_Sodimac
+vlan 500
+  name VIP_Balalanceadas
+vlan 501
+  name FwAutenticacion_IbankPeruApp
+vlan 600
+  name Stress-open2
+vlan 615
+  name BAL_INT_GTD
+vlan 616
+  name DMZ_DESA_GTD
+vlan 621
+  name Consolas_Gtd
+vlan 721
+  name FwProveedores_Internet
+vlan 780
+  name BalIntCI_vlanExt
+vlan 781
+  name BalIntCI_vlanInt
+vlan 782
+  name VLAN_Desa_Cientec_2
+vlan 830
+  name DCI-VLAN-TEST
+vlan 831
+  name DCI-VLAN-toFromCDLV
+vlan 1041
+  name Synapsis
+vlan 1047
+  name Synapsis_BalanceoVip
+vlan 1048
+  name Synapsis_BalanceoSrv
+vlan 1049
+  name Synapsis_Desa_Serv
+vlan 1050
+  name Synapsis_Desa_Serv2
+vlan 1052
+  name Synapsis_Mgmt
+vlan 1113
+  name Capa-Fron-A7
+vlan 1123
+  name Test_Vlan
+vlan 1168
+  name tn-BF-PE-DMZWeb
+vlan 1169
+  name tn-BF-PE-Produccion
+vlan 1199
+  name L3-vFW-A7
+vlan 1631
+  name FwWebRosas_DmzF5
+vlan 1632
+  name FwWebRosas_Asm
+vlan 1633
+  name InternetMovistar
+vlan 1634
+  name FwPaises_EnlaceInt
+vlan 1636
+  name Proveedores_Externos
+vlan 1637
+  name FwAutenticacion_IbankPeruWeb
+vlan 1638
+  name FwDmzDesa_Visa
+vlan 1639
+  name FwDmzDesa_Cloudera
+vlan 1640
+  name FwInternet_Baldrich
+vlan 1641
+  name FwInternet_DmzVpnCitrix
+vlan 1642
+  name FwInternet_DmzAntivirus
+vlan 1643
+  name Uso_Futuro6_MRosas
+vlan 1644
+  name Uso_Futuro4_MRosas
+vlan 1645
+  name Uso_Futuro5_MRosas
+vlan 1646
+  name Sftp_Malasia
+vlan 1647
+  name DMZ_ATALLA
+vlan 1648
+  name FwInternet_LAN_Interna
+vlan 1649
+  name Uso_Futuro2_MRosas
+vlan 1650
+  name Uso_Futuro3_MRosas
+vlan 1655
+  name WLC_HA_San-Bernardo
+vlan 1657
+  name Ex2010_ASM
+vlan 1668
+  name DCC-ASM-B2B
+vlan 1669
+  name DCC-ASM-B2C_1
+vlan 1670
+  name DCC-ASM-B2C_2
+vlan 1671
+  name DCC-ASM-Falabella.com
+vlan 1672
+  name DCC-ASM-PCI
+vlan 1673
+  name DCC-ASM-QA
+vlan 1674
+  name DCC-ASM-Sodimac
+vlan 1675
+  name DCC-ASM-Test
+vlan 1676
+  name DCC-ASM-Test2
+vlan 1680
+  name DCC-ASM-interna-Test2
+vlan 1681
+  name DCC-ASM-interna-Sodimac
+vlan 1684
+  name InternetGTD
+vlan 1685
+  name DCC-ASM-interna-B2B
+vlan 1686
+  name DCC-ASM-interna-B2C
+vlan 1687
+  name DCC-ASM-interna-Falabella.com
+vlan 1688
+  name DCC-ASM-interna-PCI
+vlan 1689
+  name DCC-ASM-interna-QA
+vlan 1690
+  name DCC-ASM-interna-Test
+vlan 1732
+  name tn-Adessa-DMZWeb
+vlan 1734
+  name tn-Adessa-Produccion
+vlan 1744
+  name tn-Production-DMZWeb
+vlan 1801
+  name LTMRosas
+vlan 1802
+  name DESA-LTMRosas
+vlan 1805
+  name Red-QA-Test-BF
+vlan 1806
+  name Untrust_vFwSB01Prod_DCC
+vlan 1807
+  name vFwFalabellaMovil_DCC
+vlan 1814
+  name Untrust_vFW_WebRosas
+vlan 1815
+  name DmzEntel_vFwFalabellaMovil_DCC
+vlan 1822
+  name Respaldos_Rosas
+vlan 1823
+  name VIP_ASM_Interna_PCI_01
+vlan 1824
+  name VIP_ASM_Interna_PCI_02
+vlan 1825
+  name VIP_ASM_Interna_PCI_03
+vlan 1826
+  name VIP_ASM_Interna_PCI_04
+vlan 1827
+  name VIP_ASM_Interna_PCI_05
+vlan 1828
+  name VIP_ASM_Interna_PCI_06
+vlan 1829
+  name VIP_ASM_Interna_PCI_07
+vlan 1830
+  name VIP_ASM_Interna_PCI_08
+vlan 1831
+  name VIP_ASM_PCI_01
+vlan 1832
+  name VIP_ASM_PCI_02
+vlan 1833
+  name VIP_ASM_PCI_03
+vlan 1834
+  name VIP_ASM_PCI_04
+vlan 1835
+  name VIP_ASM_PCI_05
+vlan 1836
+  name VIP_ASM_PCI_06
+vlan 1837
+  name VIP_ASM_PCI_07
+vlan 1838
+  name VIP_ASM_PCI_08
+vlan 1855
+  name HA_Ex1_Cluster_Paises
+vlan 1856
+  name HA_Ex2_Cluster_Paises
+vlan 1857
+  name HA_In1_Cluster_Paises
+vlan 1858
+  name HA_In2_Cluster_Paises
+vlan 1863
+  name DMZ_Web_Nutanix_SAP
+vlan 1890
+  name Test-Enlace-Sodimac
+vlan 1891
+  name FwProxy_LAN
+vlan 2098
+  name NetApp_2098
+vlan 2238
+  name Aplicacion-CL-DCC
+vlan 2239
+  name BaseDeDatos-CL-DCC
+vlan 2402
+  name tn-Falabella-DMZWeb
+vlan 2403
+  name tn-Falabella-Produccion
+vlan 2502
+  name tn-Tottus-DMZWeb
+vlan 2503
+  name tn-Tottus-Produccion
+vlan 2602
+  name tn-Sodimac-DMZWeb
+vlan 2603
+  name tn-Sodimac-Produccion
+vlan 2702
+  name tn-CMR-DMZWeb
+vlan 2703
+  name tn-CMR-Produccion
+vlan 3402
+  name tn-FIF-DMZWeb
+vlan 3403
+  name tn-FIF-Produccion
+vlan 3406
+  name Tn-FIF-DMZWeb-PCO
+vlan 3407
+  name Tn-FIF-Produccion-PCI
+vlan 3502
+  name tn-Laboratorio-DMZWeb
+vlan 3503
+  name tn-Laboratorio-Produccion
+vlan 3542
+  name vMotion_Nutanix_Mini_Cientec
+
+spanning-tree vlan 1-829,831-3967 priority 4096
+spanning-tree vlan 830 priority 8192
+spanning-tree vlan 10-11,34,70,77,89-94,98-100,104,106,108,110,112,134,137,140-141,160-161,180-181,201-203,255,305,334-336,338,401-402,451,500-501,615-616,621,721,782,1631-1634,1636-1650,1655,1668-1676,1680-1681,1685-1690,1744,1800-1802,1823-1838,3542 hello-time 1
+ip prefix-list Cluster-FWNokia seq 5 permit 10.3.0.0/23 
+ip prefix-list Cluster-FWNokia seq 10 permit 10.3.1.0/24 
+ip prefix-list Cluster-FWNokia seq 15 permit 10.10.10.129/32 
+ip prefix-list Cluster-FWNokia seq 20 permit 10.21.21.248/29 
+ip prefix-list Cluster-FWNokia seq 25 permit 10.23.18.106/32 
+ip prefix-list Cluster-FWNokia seq 30 permit 10.23.224.51/32 
+ip prefix-list Cluster-FWNokia seq 35 permit 10.23.224.53/32 
+ip prefix-list Cluster-FWNokia seq 40 permit 10.23.224.211/32 
+ip prefix-list Cluster-FWNokia seq 45 permit 10.50.40.30/32 
+ip prefix-list Cluster-FWNokia seq 50 permit 10.118.0.0/16 
+ip prefix-list Cluster-FWNokia seq 55 permit 10.118.0.0/22 
+ip prefix-list Cluster-FWNokia seq 60 permit 10.118.8.0/22 
+ip prefix-list Cluster-FWNokia seq 65 permit 10.120.0.0/16 
+ip prefix-list Cluster-FWNokia seq 70 permit 10.121.0.0/16 
+ip prefix-list Cluster-FWNokia seq 75 permit 10.122.0.0/16 
+ip prefix-list Cluster-FWNokia seq 80 permit 10.123.0.0/16 
+ip prefix-list Cluster-FWNokia seq 85 permit 10.124.0.0/16 
+ip prefix-list Cluster-FWNokia seq 90 permit 10.128.0.0/16 
+ip prefix-list Cluster-FWNokia seq 95 permit 10.129.0.0/16 
+ip prefix-list Cluster-FWNokia seq 100 permit 10.132.0.0/16 
+ip prefix-list Cluster-FWNokia seq 105 permit 10.133.0.0/16 
+ip prefix-list Cluster-FWNokia seq 110 permit 10.134.0.0/16 
+ip prefix-list Cluster-FWNokia seq 115 permit 10.138.0.0/16 
+ip prefix-list Cluster-FWNokia seq 120 permit 10.144.222.100/30 
+ip prefix-list Cluster-FWNokia seq 125 permit 10.145.222.100/30 
+ip prefix-list Cluster-FWNokia seq 130 permit 10.161.0.0/16 
+ip prefix-list Cluster-FWNokia seq 135 permit 10.162.0.0/16 
+ip prefix-list Cluster-FWNokia seq 140 permit 10.163.0.0/16 
+ip prefix-list Cluster-FWNokia seq 145 permit 10.164.0.0/16 
+ip prefix-list Cluster-FWNokia seq 150 permit 10.173.253.69/32 
+ip prefix-list Cluster-FWNokia seq 155 permit 10.184.0.0/16 
+ip prefix-list Cluster-FWNokia seq 160 permit 10.185.0.0/16 
+ip prefix-list Cluster-FWNokia seq 165 permit 10.186.0.0/16 
+ip prefix-list Cluster-FWNokia seq 170 permit 10.187.0.0/16 
+ip prefix-list Cluster-FWNokia seq 175 permit 10.193.248.130/32 
+ip prefix-list Cluster-FWNokia seq 180 permit 10.197.212.196/30 
+ip prefix-list Cluster-FWNokia seq 185 permit 10.200.4.96/29 
+ip prefix-list Cluster-FWNokia seq 190 permit 10.200.4.104/29 
+ip prefix-list Cluster-FWNokia seq 195 permit 10.200.4.112/29 
+ip prefix-list Cluster-FWNokia seq 200 permit 10.200.11.216/29 
+ip prefix-list Cluster-FWNokia seq 205 permit 10.200.12.80/29 
+ip prefix-list Cluster-FWNokia seq 210 permit 10.200.15.240/29 
+ip prefix-list Cluster-FWNokia seq 215 permit 10.200.17.16/29 
+ip prefix-list Cluster-FWNokia seq 220 permit 10.200.17.64/29 
+ip prefix-list Cluster-FWNokia seq 225 permit 10.200.28.240/29 
+ip prefix-list Cluster-FWNokia seq 230 permit 10.200.252.0/30 
+ip prefix-list Cluster-FWNokia seq 235 permit 10.200.252.4/30 
+ip prefix-list Cluster-FWNokia seq 240 permit 10.200.252.8/30 
+ip prefix-list Cluster-FWNokia seq 245 permit 10.200.252.12/30 
+ip prefix-list Cluster-FWNokia seq 250 permit 10.200.252.16/30 
+ip prefix-list Cluster-FWNokia seq 255 permit 10.200.252.20/30 
+ip prefix-list Cluster-FWNokia seq 260 permit 10.200.252.24/30 
+ip prefix-list Cluster-FWNokia seq 265 permit 10.200.252.28/30 
+ip prefix-list Cluster-FWNokia seq 270 permit 10.200.252.32/30 
+ip prefix-list Cluster-FWNokia seq 275 permit 10.200.252.36/30 
+ip prefix-list Cluster-FWNokia seq 280 permit 10.200.252.40/30 
+ip prefix-list Cluster-FWNokia seq 285 permit 10.200.252.44/30 
+ip prefix-list Cluster-FWNokia seq 290 permit 10.200.253.96/29 
+ip prefix-list Cluster-FWNokia seq 295 permit 10.200.253.200/29 
+ip prefix-list Cluster-FWNokia seq 300 permit 10.200.253.208/29 
+ip prefix-list Cluster-FWNokia seq 305 permit 10.201.4.96/29 
+ip prefix-list Cluster-FWNokia seq 310 permit 10.201.4.104/29 
+ip prefix-list Cluster-FWNokia seq 315 permit 10.201.4.112/29 
+ip prefix-list Cluster-FWNokia seq 320 permit 10.201.15.240/29 
+ip prefix-list Cluster-FWNokia seq 325 permit 10.201.17.16/29 
+ip prefix-list Cluster-FWNokia seq 330 permit 10.201.17.64/29 
+ip prefix-list Cluster-FWNokia seq 335 permit 10.201.28.240/29 
+ip prefix-list Cluster-FWNokia seq 340 permit 10.201.252.0/30 
+ip prefix-list Cluster-FWNokia seq 345 permit 10.201.252.4/30 
+ip prefix-list Cluster-FWNokia seq 350 permit 10.201.252.8/30 
+ip prefix-list Cluster-FWNokia seq 355 permit 10.201.252.12/30 
+ip prefix-list Cluster-FWNokia seq 360 permit 10.201.252.16/30 
+ip prefix-list Cluster-FWNokia seq 365 permit 10.201.252.20/30 
+ip prefix-list Cluster-FWNokia seq 370 permit 10.201.252.24/30 
+ip prefix-list Cluster-FWNokia seq 375 permit 10.201.252.28/30 
+ip prefix-list Cluster-FWNokia seq 380 permit 10.201.252.34/32 
+ip prefix-list Cluster-FWNokia seq 385 permit 10.201.252.38/32 
+ip prefix-list Cluster-FWNokia seq 390 permit 10.201.252.40/30 
+ip prefix-list Cluster-FWNokia seq 395 permit 10.201.252.44/30 
+ip prefix-list Cluster-FWNokia seq 400 permit 10.201.252.48/30 
+ip prefix-list Cluster-FWNokia seq 405 permit 10.201.252.52/30 
+ip prefix-list Cluster-FWNokia seq 410 permit 10.201.253.98/32 
+ip prefix-list Cluster-FWNokia seq 415 permit 21.0.0.0/8 
+ip prefix-list Cluster-FWNokia seq 420 permit 22.0.0.0/8 
+ip prefix-list Cluster-FWNokia seq 425 permit 70.20.1.0/24 
+ip prefix-list Cluster-FWNokia seq 430 permit 70.20.2.0/24 
+ip prefix-list Cluster-FWNokia seq 435 permit 77.0.21.64/26 
+ip prefix-list Cluster-FWNokia seq 440 permit 77.2.1.0/24 
+ip prefix-list Cluster-FWNokia seq 445 permit 77.3.1.0/24 
+ip prefix-list Cluster-FWNokia seq 450 permit 77.4.1.0/24 
+ip prefix-list Cluster-FWNokia seq 455 permit 77.6.1.0/24 
+ip prefix-list Cluster-FWNokia seq 460 permit 77.6.1.3/32 
+ip prefix-list Cluster-FWNokia seq 465 permit 77.6.1.4/32 
+ip prefix-list Cluster-FWNokia seq 470 permit 77.7.1.0/29 
+ip prefix-list Cluster-FWNokia seq 475 permit 78.2.1.0/24 
+ip prefix-list Cluster-FWNokia seq 480 permit 78.5.1.0/24 
+ip prefix-list Cluster-FWNokia seq 485 permit 98.200.6.0/24 
+ip prefix-list Cluster-FWNokia seq 490 permit 98.200.18.48/29 
+ip prefix-list Cluster-FWNokia seq 495 permit 98.200.26.40/29 
+ip prefix-list Cluster-FWNokia seq 500 permit 98.200.28.0/26 
+ip prefix-list Cluster-FWNokia seq 505 permit 108.0.50.0/24 
+ip prefix-list Cluster-FWNokia seq 510 permit 108.0.51.0/24 
+ip prefix-list Cluster-FWNokia seq 515 permit 108.0.52.0/24 
+ip prefix-list Cluster-FWNokia seq 520 permit 108.0.53.0/24 
+ip prefix-list Cluster-FWNokia seq 525 permit 108.0.54.0/24 
+ip prefix-list Cluster-FWNokia seq 530 permit 108.0.55.0/24 
+ip prefix-list Cluster-FWNokia seq 535 permit 108.0.56.0/24 
+ip prefix-list Cluster-FWNokia seq 540 permit 108.0.57.0/24 
+ip prefix-list Cluster-FWNokia seq 545 permit 108.0.58.0/24 
+ip prefix-list Cluster-FWNokia seq 550 permit 108.0.59.0/24 
+ip prefix-list Cluster-FWNokia seq 555 permit 108.0.60.0/24 
+ip prefix-list Cluster-FWNokia seq 560 permit 108.0.61.0/24 
+ip prefix-list Cluster-FWNokia seq 565 permit 108.0.62.0/24 
+ip prefix-list Cluster-FWNokia seq 570 permit 108.0.63.0/24 
+ip prefix-list Cluster-FWNokia seq 575 permit 108.0.64.0/24 
+ip prefix-list Cluster-FWNokia seq 580 permit 108.0.65.0/24 
+ip prefix-list Cluster-FWNokia seq 585 permit 108.0.66.0/24 
+ip prefix-list Cluster-FWNokia seq 590 permit 108.0.74.0/24 
+ip prefix-list Cluster-FWNokia seq 595 permit 108.0.84.0/24 
+ip prefix-list Cluster-FWNokia seq 600 permit 108.0.99.0/24 
+ip prefix-list Cluster-FWNokia seq 605 permit 115.0.0.0/8 
+ip prefix-list Cluster-FWNokia seq 610 permit 118.10.10.0/24 
+ip prefix-list Cluster-FWNokia seq 615 permit 119.1.1.0/24 
+ip prefix-list Cluster-FWNokia seq 620 permit 119.2.1.0/24 
+ip prefix-list Cluster-FWNokia seq 625 permit 119.2.1.4/32 
+ip prefix-list Cluster-FWNokia seq 630 permit 120.0.0.0/8 
+ip prefix-list Cluster-FWNokia seq 635 permit 137.135.130.51/32 
+ip prefix-list Cluster-FWNokia seq 640 permit 151.184.52.0/24 
+ip prefix-list Cluster-FWNokia seq 645 permit 172.6.1.0/24 
+ip prefix-list Cluster-FWNokia seq 650 permit 172.15.209.154/32 
+ip prefix-list Cluster-FWNokia seq 655 permit 172.16.40.0/24 
+ip prefix-list Cluster-FWNokia seq 660 permit 172.16.67.0/24 
+ip prefix-list Cluster-FWNokia seq 665 permit 172.16.84.134/32 
+ip prefix-list Cluster-FWNokia seq 670 permit 172.16.91.82/32 
+ip prefix-list Cluster-FWNokia seq 675 permit 172.16.139.186/32 
+ip prefix-list Cluster-FWNokia seq 680 permit 172.16.139.214/32 
+ip prefix-list Cluster-FWNokia seq 685 permit 172.16.220.58/32 
+ip prefix-list Cluster-FWNokia seq 690 permit 172.16.254.0/24 
+ip prefix-list Cluster-FWNokia seq 695 permit 172.17.67.0/24 
+ip prefix-list Cluster-FWNokia seq 700 permit 172.17.128.218/32 
+ip prefix-list Cluster-FWNokia seq 705 permit 172.19.200.13/32 
+ip prefix-list Cluster-FWNokia seq 710 permit 172.20.32.112/30 
+ip prefix-list Cluster-FWNokia seq 715 permit 172.20.32.116/30 
+ip prefix-list Cluster-FWNokia seq 720 permit 172.21.4.0/24 
+ip prefix-list Cluster-FWNokia seq 725 permit 172.21.17.0/24 
+ip prefix-list Cluster-FWNokia seq 730 permit 172.21.20.0/24 
+ip prefix-list Cluster-FWNokia seq 735 permit 172.21.22.0/24 
+ip prefix-list Cluster-FWNokia seq 740 permit 172.21.24.0/24 
+ip prefix-list Cluster-FWNokia seq 745 permit 172.21.34.0/24 
+ip prefix-list Cluster-FWNokia seq 750 permit 172.21.44.0/24 
+ip prefix-list Cluster-FWNokia seq 755 permit 172.21.46.0/24 
+ip prefix-list Cluster-FWNokia seq 760 permit 172.21.50.0/24 
+ip prefix-list Cluster-FWNokia seq 765 permit 172.21.58.0/24 
+ip prefix-list Cluster-FWNokia seq 770 permit 172.21.64.0/23 
+ip prefix-list Cluster-FWNokia seq 775 permit 172.21.64.192/26 
+ip prefix-list Cluster-FWNokia seq 780 permit 172.21.72.0/24 
+ip prefix-list Cluster-FWNokia seq 785 permit 172.21.76.0/24 
+ip prefix-list Cluster-FWNokia seq 790 permit 172.21.80.0/24 
+ip prefix-list Cluster-FWNokia seq 795 permit 172.21.84.10/32 
+ip prefix-list Cluster-FWNokia seq 800 permit 172.21.88.0/24 
+ip prefix-list Cluster-FWNokia seq 805 permit 172.21.96.0/24 
+ip prefix-list Cluster-FWNokia seq 810 permit 172.21.108.0/24 
+ip prefix-list Cluster-FWNokia seq 815 permit 172.21.137.0/24 
+ip prefix-list Cluster-FWNokia seq 820 permit 172.21.139.0/24 
+ip prefix-list Cluster-FWNokia seq 825 permit 172.21.144.7/32 
+ip prefix-list Cluster-FWNokia seq 830 permit 172.21.144.8/32 
+ip prefix-list Cluster-FWNokia seq 835 permit 172.21.158.0/24 
+ip prefix-list Cluster-FWNokia seq 840 permit 172.21.160.0/24 
+ip prefix-list Cluster-FWNokia seq 845 permit 172.21.170.11/32 
+ip prefix-list Cluster-FWNokia seq 850 permit 172.21.190.0/24 
+ip prefix-list Cluster-FWNokia seq 855 permit 172.22.0.0/16 
+ip prefix-list Cluster-FWNokia seq 860 permit 172.22.1.22/32 
+ip prefix-list Cluster-FWNokia seq 865 permit 172.23.0.0/16 
+ip prefix-list Cluster-FWNokia seq 870 permit 172.24.1.41/32 
+ip prefix-list Cluster-FWNokia seq 875 permit 172.24.4.0/24 
+ip prefix-list Cluster-FWNokia seq 880 permit 172.24.8.0/24 
+ip prefix-list Cluster-FWNokia seq 885 permit 172.24.9.0/24 
+ip prefix-list Cluster-FWNokia seq 890 permit 172.24.10.0/24 
+ip prefix-list Cluster-FWNokia seq 895 permit 172.24.100.0/24 
+ip prefix-list Cluster-FWNokia seq 900 permit 172.24.240.0/24 
+ip prefix-list Cluster-FWNokia seq 905 permit 172.25.32.0/24 
+ip prefix-list Cluster-FWNokia seq 910 permit 172.25.120.0/24 
+ip prefix-list Cluster-FWNokia seq 915 permit 172.25.121.0/24 
+ip prefix-list Cluster-FWNokia seq 920 permit 172.31.133.22/32 
+ip prefix-list Cluster-FWNokia seq 925 permit 187.128.2.30/32 
+ip prefix-list Cluster-FWNokia seq 930 permit 187.128.14.50/32 
+ip prefix-list Cluster-FWNokia seq 935 permit 187.128.15.82/32 
+ip prefix-list Cluster-FWNokia seq 940 permit 187.128.15.86/32 
+ip prefix-list Cluster-FWNokia seq 945 permit 187.128.37.170/32 
+ip prefix-list Cluster-FWNokia seq 950 permit 187.128.40.108/30 
+ip prefix-list Cluster-FWNokia seq 955 permit 189.109.18.206/32 
+ip prefix-list Cluster-FWNokia seq 960 permit 192.168.2.0/24 
+ip prefix-list Cluster-FWNokia seq 965 permit 192.168.21.21/32 
+ip prefix-list Cluster-FWNokia seq 970 permit 192.168.100.48/32 
+ip prefix-list Cluster-FWNokia seq 975 permit 192.168.250.0/24 
+ip prefix-list Cluster-FWNokia seq 980 permit 200.37.153.226/32 
+ip prefix-list Cluster-FWNokia seq 985 permit 200.37.153.229/32 
+ip prefix-list Cluster-FWNokia seq 990 permit 200.37.153.231/32 
+ip prefix-list Cluster-FWNokia seq 995 permit 200.37.153.232/32 
+ip prefix-list Cluster-FWNokia seq 1000 permit 200.37.153.241/32 
+ip prefix-list Cluster-FWNokia seq 1005 permit 200.37.153.242/32 
+ip prefix-list Cluster-FWNokia seq 1010 permit 200.37.153.253/32 
+ip prefix-list Cluster-FWNokia seq 1015 permit 200.37.153.254/32 
+ip prefix-list Cluster-FWNokia seq 1020 permit 200.51.86.112/30 
+ip prefix-list Cluster-FWNokia seq 1025 permit 200.51.86.114/32 
+ip prefix-list Cluster-FWNokia seq 1030 permit 200.51.86.116/30 
+ip prefix-list Cluster-FWNokia seq 1035 permit 200.51.86.118/32 
+ip prefix-list Cluster-FWNokia seq 1040 permit 200.51.86.120/30 
+ip prefix-list Cluster-FWNokia seq 1045 permit 200.51.86.124/30 
+ip prefix-list Cluster-FWNokia seq 1050 permit 210.5.29.241/32 
+ip prefix-list Cluster-FWNokia seq 1055 permit 10.200.252.56/30 
+ip prefix-list Cluster-FWNokia seq 1060 permit 10.200.252.60/30 
+ip prefix-list Cluster-FWNokia seq 1065 permit 172.35.0.4/30 
+ip prefix-list Cluster-FWNokia seq 1070 permit 10.137.0.0/16 
+ip prefix-list Cluster-FWNokia seq 1075 permit 10.137.247.0/24 
+ip prefix-list Cluster-FWNokia seq 1080 permit 10.147.0.0/16 
+ip prefix-list Cluster-FWNokia seq 1085 permit 10.200.252.254/32 
+ip prefix-list Cluster-FWNokia seq 1090 permit 10.200.253.64/29 
+ip prefix-list Cluster-FWNokia seq 1095 permit 10.201.252.254/32 
+ip prefix-list Cluster-FWNokia seq 1100 permit 172.24.1.99/32 
+ip prefix-list Cluster-FWNokia seq 1105 permit 10.173.77.74/32 
+ip prefix-list Cluster-FWNokia seq 1110 permit 10.173.77.75/32 
+ip prefix-list Cluster-FWNokia seq 1115 permit 10.201.253.24/29 
+ip prefix-list Cluster-FWNokia seq 1120 permit 10.200.252.253/32 
+ip prefix-list Cluster-FWNokia seq 1125 permit 10.201.252.253/32 
+ip prefix-list Cluster-FWNokia seq 1130 permit 10.135.0.0/16 
+ip prefix-list Cluster-FWNokia seq 1135 permit 10.200.252.48/30 
+ip prefix-list Cluster-FWNokia seq 1140 permit 172.24.113.0/25 
+ip prefix-list Cluster-FWNokia seq 1145 permit 172.24.114.0/25 
+ip prefix-list Cluster-FWNokia seq 1150 permit 172.24.104.0/24 
+ip prefix-list Cluster-FWNokia seq 1155 permit 172.24.108.0/24 
+ip prefix-list Cluster-FWNokia seq 1160 permit 10.1.152.0/21 
+ip prefix-list Cluster-FWNokia seq 1165 permit 10.200.253.112/29 
+ip prefix-list Cluster-FWNokia seq 1170 permit 10.200.253.104/29 
+ip prefix-list Cluster-FWNokia seq 1175 permit 172.24.106.0/24 
+ip prefix-list Cluster-FWNokia seq 1180 permit 172.21.90.71/32 
+ip prefix-list Cluster-FWNokia seq 1185 permit 172.24.1.45/32 
+ip prefix-list Cluster-FWNokia seq 1190 permit 10.200.29.74/32 
+ip prefix-list Cluster-FWNokia seq 1195 permit 10.200.252.228/30 
+ip prefix-list Cluster-FWNokia seq 1200 permit 10.200.252.232/30 
+ip prefix-list Cluster-FWNokia seq 1205 permit 10.200.252.236/30 
+ip prefix-list Cluster-FWNokia seq 1210 permit 10.201.252.228/30 
+ip prefix-list Cluster-FWNokia seq 1215 permit 10.201.252.232/30 
+ip prefix-list Cluster-FWNokia seq 1220 permit 10.201.252.236/30 
+ip prefix-list Cluster-FWNokia seq 1225 permit 172.21.163.0/24 
+ip prefix-list Cluster-FWNokia seq 1230 permit 172.24.1.0/24 
+ip prefix-list Cluster-FWNokia seq 1240 permit 10.143.0.0/16 
+ip prefix-list Cluster-FWNokia seq 1245 permit 172.21.182.68/32 
+ip prefix-list OSPF100-to-OSPF10 seq 10 permit 10.0.0.0/8 
+ip prefix-list OSPF100-to-OSPF10 seq 15 permit 100.1.1.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 20 permit 101.0.0.0/8 le 32 
+ip prefix-list OSPF100-to-OSPF10 seq 25 permit 102.0.0.0/8 le 32 
+ip prefix-list OSPF100-to-OSPF10 seq 30 permit 108.0.2.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 35 permit 108.0.22.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 40 permit 108.0.29.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 45 permit 108.0.44.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 50 permit 108.0.57.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 55 permit 108.10.0.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 60 permit 108.20.1.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 65 permit 108.30.1.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 70 permit 108.40.0.0/16 
+ip prefix-list OSPF100-to-OSPF10 seq 75 permit 115.0.0.0/8 
+ip prefix-list OSPF100-to-OSPF10 seq 80 permit 120.0.0.0/8 
+ip prefix-list OSPF100-to-OSPF10 seq 85 permit 139.53.52.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 90 permit 139.54.133.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 95 permit 139.55.50.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 100 permit 150.200.0.0/16 le 32 
+ip prefix-list OSPF100-to-OSPF10 seq 105 permit 21.0.0.0/8 
+ip prefix-list OSPF100-to-OSPF10 seq 110 permit 22.0.0.0/8 
+ip prefix-list OSPF100-to-OSPF10 seq 115 permit 5.2.0.0/16 
+ip prefix-list OSPF100-to-OSPF10 seq 120 permit 5.4.0.0/16 
+ip prefix-list OSPF100-to-OSPF10 seq 125 permit 5.5.0.0/16 
+ip prefix-list OSPF100-to-OSPF10 seq 130 permit 5.6.0.0/16 
+ip prefix-list OSPF100-to-OSPF10 seq 135 permit 77.0.10.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 140 permit 77.0.11.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 145 permit 77.0.15.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 150 permit 77.0.16.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 155 permit 77.0.17.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 160 permit 77.0.18.32/27 
+ip prefix-list OSPF100-to-OSPF10 seq 165 permit 77.0.18.64/27 
+ip prefix-list OSPF100-to-OSPF10 seq 170 permit 77.0.19.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 175 permit 77.0.20.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 180 permit 97.1.1.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 185 permit 98.100.1.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 190 permit 98.100.2.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 195 permit 98.100.3.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 200 permit 98.100.4.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 205 permit 98.100.6.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 210 permit 98.253.1.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 215 permit 98.254.1.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 220 permit 98.254.254.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 225 permit 98.254.5.0/24 
+ip prefix-list OSPF100-to-OSPF10 seq 230 permit 108.0.1.0/24 
+ip prefix-list Sala_Rosas seq 5 permit 3.3.3.8/29 
+ip prefix-list Sala_Rosas seq 10 permit 5.1.40.0/24 
+ip prefix-list Sala_Rosas seq 15 permit 5.2.0.0/16 
+ip prefix-list Sala_Rosas seq 20 permit 7.213.24.0/24 
+ip prefix-list Sala_Rosas seq 25 permit 10.0.12.0/24 
+ip prefix-list Sala_Rosas seq 30 permit 10.0.12.200/32 
+ip prefix-list Sala_Rosas seq 35 permit 10.17.1.33/32 
+ip prefix-list Sala_Rosas seq 40 permit 10.21.0.0/16 
+ip prefix-list Sala_Rosas seq 45 permit 10.57.0.0/29 
+ip prefix-list Sala_Rosas seq 50 permit 10.85.6.192/26 
+ip prefix-list Sala_Rosas seq 55 permit 10.86.2.0/24 
+ip prefix-list Sala_Rosas seq 60 permit 10.86.2.176/29 
+ip prefix-list Sala_Rosas seq 65 permit 10.86.2.184/29 
+ip prefix-list Sala_Rosas seq 70 permit 10.86.4.0/24 
+ip prefix-list Sala_Rosas seq 75 permit 10.86.5.0/24 
+ip prefix-list Sala_Rosas seq 80 permit 10.108.110.0/24 
+ip prefix-list Sala_Rosas seq 85 permit 10.136.0.0/16 
+ip prefix-list Sala_Rosas seq 90 permit 10.136.0.0/24 
+ip prefix-list Sala_Rosas seq 95 permit 10.136.0.0/29 
+ip prefix-list Sala_Rosas seq 100 permit 10.136.0.80/29 
+ip prefix-list Sala_Rosas seq 105 permit 10.136.1.0/24 
+ip prefix-list Sala_Rosas seq 110 permit 10.136.2.0/24 
+ip prefix-list Sala_Rosas seq 115 permit 10.136.2.24/29 
+ip prefix-list Sala_Rosas seq 120 permit 10.136.2.112/29 
+ip prefix-list Sala_Rosas seq 125 permit 10.136.2.176/29 
+ip prefix-list Sala_Rosas seq 130 permit 10.136.2.232/29 
+ip prefix-list Sala_Rosas seq 135 permit 10.136.2.248/29 
+ip prefix-list Sala_Rosas seq 140 permit 10.136.3.0/24 
+ip prefix-list Sala_Rosas seq 145 permit 10.150.0.0/24 
+ip prefix-list Sala_Rosas seq 150 permit 10.150.1.0/24 
+ip prefix-list Sala_Rosas seq 155 permit 10.156.0.0/16 
+ip prefix-list Sala_Rosas seq 160 permit 10.170.1.0/24 
+ip prefix-list Sala_Rosas seq 165 permit 10.170.4.0/23 
+ip prefix-list Sala_Rosas seq 170 permit 10.170.9.0/24 
+ip prefix-list Sala_Rosas seq 175 permit 10.170.11.0/24 
+ip prefix-list Sala_Rosas seq 180 permit 10.170.15.0/24 
+ip prefix-list Sala_Rosas seq 185 permit 10.170.51.0/24 
+ip prefix-list Sala_Rosas seq 190 permit 10.170.100.0/22 
+ip prefix-list Sala_Rosas seq 195 permit 10.170.109.0/24 
+ip prefix-list Sala_Rosas seq 200 permit 10.170.129.0/24 
+ip prefix-list Sala_Rosas seq 205 permit 10.170.131.0/24 
+ip prefix-list Sala_Rosas seq 210 permit 10.170.133.0/24 
+ip prefix-list Sala_Rosas seq 215 permit 10.170.135.0/24 
+ip prefix-list Sala_Rosas seq 220 permit 10.170.137.0/24 
+ip prefix-list Sala_Rosas seq 225 permit 10.170.139.0/24 
+ip prefix-list Sala_Rosas seq 230 permit 10.170.141.0/24 
+ip prefix-list Sala_Rosas seq 235 permit 10.170.143.0/24 
+ip prefix-list Sala_Rosas seq 240 permit 10.170.145.0/24 
+ip prefix-list Sala_Rosas seq 245 permit 10.170.159.0/28 
+ip prefix-list Sala_Rosas seq 250 permit 10.170.159.16/28 
+ip prefix-list Sala_Rosas seq 255 permit 10.170.159.32/28 
+ip prefix-list Sala_Rosas seq 260 permit 10.170.159.48/28 
+ip prefix-list Sala_Rosas seq 265 permit 10.170.159.64/28 
+ip prefix-list Sala_Rosas seq 270 permit 10.170.159.80/28 
+ip prefix-list Sala_Rosas seq 275 permit 10.170.159.96/28 
+ip prefix-list Sala_Rosas seq 280 permit 10.170.159.112/28 
+ip prefix-list Sala_Rosas seq 285 permit 10.170.215.0/24 
+ip prefix-list Sala_Rosas seq 290 permit 10.170.253.0/24 
+ip prefix-list Sala_Rosas seq 295 permit 10.172.0.0/16 
+ip prefix-list Sala_Rosas seq 300 permit 10.196.251.0/26 
+ip prefix-list Sala_Rosas seq 305 permit 10.197.36.0/22 
+ip prefix-list Sala_Rosas seq 310 permit 10.197.40.0/24 
+ip prefix-list Sala_Rosas seq 315 permit 10.198.42.0/24 
+ip prefix-list Sala_Rosas seq 320 permit 10.199.42.0/24 
+ip prefix-list Sala_Rosas seq 325 permit 10.200.6.0/24 
+ip prefix-list Sala_Rosas seq 330 permit 10.200.8.48/28 
+ip prefix-list Sala_Rosas seq 335 permit 10.200.8.80/29 
+ip prefix-list Sala_Rosas seq 340 permit 10.200.8.112/29 
+ip prefix-list Sala_Rosas seq 345 permit 10.200.10.88/29 
+ip prefix-list Sala_Rosas seq 350 permit 10.200.10.216/29 
+ip prefix-list Sala_Rosas seq 355 permit 10.200.17.209/32 
+ip prefix-list Sala_Rosas seq 360 permit 10.201.6.0/24 
+ip prefix-list Sala_Rosas seq 365 permit 10.201.6.136/29 
+ip prefix-list Sala_Rosas seq 370 permit 10.201.8.112/29 
+ip prefix-list Sala_Rosas seq 375 permit 10.201.8.248/29 
+ip prefix-list Sala_Rosas seq 380 permit 10.201.10.104/29 
+ip prefix-list Sala_Rosas seq 385 permit 10.201.10.120/29 
+ip prefix-list Sala_Rosas seq 390 permit 10.201.10.216/29 
+ip prefix-list Sala_Rosas seq 395 permit 10.213.1.0/24 
+ip prefix-list Sala_Rosas seq 400 permit 10.213.2.0/29 
+ip prefix-list Sala_Rosas seq 405 permit 10.221.59.25/32 
+ip prefix-list Sala_Rosas seq 410 permit 10.221.59.26/32 
+ip prefix-list Sala_Rosas seq 415 permit 10.231.83.0/24 
+ip prefix-list Sala_Rosas seq 420 permit 10.240.0.0/16 
+ip prefix-list Sala_Rosas seq 425 permit 10.240.250.0/24 
+ip prefix-list Sala_Rosas seq 430 permit 10.240.251.0/24 
+ip prefix-list Sala_Rosas seq 435 permit 10.249.172.0/24 
+ip prefix-list Sala_Rosas seq 440 permit 10.249.174.0/23 
+ip prefix-list Sala_Rosas seq 445 permit 10.251.4.0/24 
+ip prefix-list Sala_Rosas seq 450 permit 10.255.235.4/32 
+ip prefix-list Sala_Rosas seq 455 permit 10.255.235.34/32 
+ip prefix-list Sala_Rosas seq 460 permit 11.1.10.0/24 
+ip prefix-list Sala_Rosas seq 465 permit 11.1.20.0/24 
+ip prefix-list Sala_Rosas seq 470 permit 20.20.20.0/24 
+ip prefix-list Sala_Rosas seq 475 permit 57.8.81.0/24 
+ip prefix-list Sala_Rosas seq 480 permit 57.48.0.56/29 
+ip prefix-list Sala_Rosas seq 485 permit 57.48.2.0/24 
+ip prefix-list Sala_Rosas seq 490 permit 64.94.14.0/27 
+ip prefix-list Sala_Rosas seq 495 permit 70.10.10.0/24 
+ip prefix-list Sala_Rosas seq 500 permit 70.10.11.0/24 
+ip prefix-list Sala_Rosas seq 505 permit 70.10.12.0/24 
+ip prefix-list Sala_Rosas seq 510 permit 70.10.13.0/24 
+ip prefix-list Sala_Rosas seq 515 permit 70.20.4.0/24 
+ip prefix-list Sala_Rosas seq 520 permit 70.30.30.0/24 
+ip prefix-list Sala_Rosas seq 525 permit 70.31.31.0/24 
+ip prefix-list Sala_Rosas seq 530 permit 70.50.1.0/24 
+ip prefix-list Sala_Rosas seq 535 permit 70.50.1.60/32 
+ip prefix-list Sala_Rosas seq 540 permit 70.50.1.150/32 
+ip prefix-list Sala_Rosas seq 545 permit 74.217.45.0/28 
+ip prefix-list Sala_Rosas seq 550 permit 77.0.15.0/24 
+ip prefix-list Sala_Rosas seq 555 permit 77.0.16.0/24 
+ip prefix-list Sala_Rosas seq 560 permit 80.10.10.0/24 
+ip prefix-list Sala_Rosas seq 565 permit 96.1.1.72/29 
+ip prefix-list Sala_Rosas seq 570 permit 97.0.4.0/24 
+ip prefix-list Sala_Rosas seq 575 permit 97.1.1.0/24 
+ip prefix-list Sala_Rosas seq 580 permit 98.254.1.10/32 
+ip prefix-list Sala_Rosas seq 585 permit 98.254.1.11/32 
+ip prefix-list Sala_Rosas seq 590 permit 98.254.1.35/32 
+ip prefix-list Sala_Rosas seq 595 permit 98.254.1.36/32 
+ip prefix-list Sala_Rosas seq 600 permit 98.254.1.116/32 
+ip prefix-list Sala_Rosas seq 605 permit 98.254.1.117/32 
+ip prefix-list Sala_Rosas seq 610 permit 98.254.1.175/32 
+ip prefix-list Sala_Rosas seq 615 permit 98.254.1.177/32 
+ip prefix-list Sala_Rosas seq 620 permit 100.100.100.0/24 
+ip prefix-list Sala_Rosas seq 625 permit 101.210.30.0/24 
+ip prefix-list Sala_Rosas seq 630 permit 108.0.22.0/24 
+ip prefix-list Sala_Rosas seq 635 permit 110.99.0.0/16 
+ip prefix-list Sala_Rosas seq 640 permit 110.155.0.0/16 
+ip prefix-list Sala_Rosas seq 645 permit 110.224.0.0/16 
+ip prefix-list Sala_Rosas seq 650 permit 110.253.0.0/16 
+ip prefix-list Sala_Rosas seq 655 permit 111.10.0.0/16 
+ip prefix-list Sala_Rosas seq 660 permit 111.10.12.64/26 
+ip prefix-list Sala_Rosas seq 665 permit 111.10.20.192/26 
+ip prefix-list Sala_Rosas seq 670 permit 146.82.89.174/32 
+ip prefix-list Sala_Rosas seq 675 permit 150.200.230.0/24 
+ip prefix-list Sala_Rosas seq 680 permit 150.200.231.0/24 
+ip prefix-list Sala_Rosas seq 685 permit 150.200.244.0/24 
+ip prefix-list Sala_Rosas seq 690 permit 150.200.245.0/24 
+ip prefix-list Sala_Rosas seq 695 permit 151.193.160.91/32 
+ip prefix-list Sala_Rosas seq 700 permit 163.250.250.0/24 
+ip prefix-list Sala_Rosas seq 705 permit 164.110.0.0/16 
+ip prefix-list Sala_Rosas seq 710 permit 168.231.1.17/32 
+ip prefix-list Sala_Rosas seq 715 permit 168.231.1.27/32 
+ip prefix-list Sala_Rosas seq 720 permit 172.16.1.0/24 
+ip prefix-list Sala_Rosas seq 725 permit 172.16.16.236/30 
+ip prefix-list Sala_Rosas seq 730 permit 172.16.82.192/30 
+ip prefix-list Sala_Rosas seq 735 permit 172.16.91.184/30 
+ip prefix-list Sala_Rosas seq 740 permit 172.16.117.148/30 
+ip prefix-list Sala_Rosas seq 745 permit 172.16.133.212/30 
+ip prefix-list Sala_Rosas seq 750 permit 172.16.152.216/30 
+ip prefix-list Sala_Rosas seq 755 permit 172.16.176.120/30 
+ip prefix-list Sala_Rosas seq 760 permit 172.16.215.80/30 
+ip prefix-list Sala_Rosas seq 765 permit 172.16.225.140/30 
+ip prefix-list Sala_Rosas seq 770 permit 172.16.237.220/30 
+ip prefix-list Sala_Rosas seq 775 permit 172.16.250.129/32 
+ip prefix-list Sala_Rosas seq 780 permit 172.16.250.130/32 
+ip prefix-list Sala_Rosas seq 785 permit 172.16.250.132/32 
+ip prefix-list Sala_Rosas seq 790 permit 172.16.250.135/32 
+ip prefix-list Sala_Rosas seq 795 permit 172.16.250.136/32 
+ip prefix-list Sala_Rosas seq 800 permit 172.16.250.137/32 
+ip prefix-list Sala_Rosas seq 805 permit 172.16.250.138/32 
+ip prefix-list Sala_Rosas seq 810 permit 172.18.0.0/16 
+ip prefix-list Sala_Rosas seq 815 permit 172.19.1.0/24 
+ip prefix-list Sala_Rosas seq 820 permit 172.19.25.0/24 
+ip prefix-list Sala_Rosas seq 825 permit 172.19.101.0/24 
+ip prefix-list Sala_Rosas seq 830 permit 172.20.0.0/16 
+ip prefix-list Sala_Rosas seq 835 permit 172.20.26.0/24 
+ip prefix-list Sala_Rosas seq 840 permit 172.20.36.0/24 
+ip prefix-list Sala_Rosas seq 845 permit 172.20.39.250/32 
+ip prefix-list Sala_Rosas seq 850 permit 172.20.45.0/24 
+ip prefix-list Sala_Rosas seq 855 permit 172.20.46.0/24 
+ip prefix-list Sala_Rosas seq 860 permit 172.20.60.0/24 
+ip prefix-list Sala_Rosas seq 865 permit 172.20.65.0/24 
+ip prefix-list Sala_Rosas seq 870 permit 172.20.70.0/24 
+ip prefix-list Sala_Rosas seq 875 permit 172.20.78.0/24 
+ip prefix-list Sala_Rosas seq 880 permit 172.20.80.0/24 
+ip prefix-list Sala_Rosas seq 885 permit 172.20.82.0/24 
+ip prefix-list Sala_Rosas seq 890 permit 172.20.84.0/24 
+ip prefix-list Sala_Rosas seq 895 permit 172.20.92.0/24 
+ip prefix-list Sala_Rosas seq 900 permit 172.20.95.0/24 
+ip prefix-list Sala_Rosas seq 905 permit 172.20.96.0/24 
+ip prefix-list Sala_Rosas seq 910 permit 172.20.103.192/29 
+ip prefix-list Sala_Rosas seq 915 permit 172.20.110.0/24 
+ip prefix-list Sala_Rosas seq 920 permit 172.20.115.0/24 
+ip prefix-list Sala_Rosas seq 925 permit 172.20.119.0/24 
+ip prefix-list Sala_Rosas seq 930 permit 172.20.123.0/24 
+ip prefix-list Sala_Rosas seq 935 permit 172.20.128.0/24 
+ip prefix-list Sala_Rosas seq 940 permit 172.20.254.0/24 
+ip prefix-list Sala_Rosas seq 945 permit 172.21.10.0/24 
+ip prefix-list Sala_Rosas seq 950 permit 172.21.251.0/24 
+ip prefix-list Sala_Rosas seq 955 permit 172.22.1.3/32 
+ip prefix-list Sala_Rosas seq 960 permit 172.22.1.10/32 
+ip prefix-list Sala_Rosas seq 965 permit 172.22.1.11/32 
+ip prefix-list Sala_Rosas seq 970 permit 172.22.1.18/32 
+ip prefix-list Sala_Rosas seq 975 permit 172.22.1.19/32 
+ip prefix-list Sala_Rosas seq 980 permit 172.22.1.21/32 
+ip prefix-list Sala_Rosas seq 985 permit 172.22.1.28/32 
+ip prefix-list Sala_Rosas seq 990 permit 172.22.1.30/32 
+ip prefix-list Sala_Rosas seq 995 permit 172.22.1.34/32 
+ip prefix-list Sala_Rosas seq 1000 permit 172.31.15.92/30 
+ip prefix-list Sala_Rosas seq 1005 permit 172.31.18.104/30 
+ip prefix-list Sala_Rosas seq 1010 permit 172.31.18.108/30 
+ip prefix-list Sala_Rosas seq 1015 permit 172.31.24.196/30 
+ip prefix-list Sala_Rosas seq 1020 permit 172.31.30.60/30 
+ip prefix-list Sala_Rosas seq 1025 permit 172.31.31.176/30 
+ip prefix-list Sala_Rosas seq 1030 permit 172.31.34.28/30 
+ip prefix-list Sala_Rosas seq 1035 permit 172.31.39.128/30 
+ip prefix-list Sala_Rosas seq 1040 permit 172.31.39.132/30 
+ip prefix-list Sala_Rosas seq 1045 permit 172.31.40.132/30 
+ip prefix-list Sala_Rosas seq 1050 permit 172.31.54.156/30 
+ip prefix-list Sala_Rosas seq 1055 permit 172.31.54.160/30 
+ip prefix-list Sala_Rosas seq 1060 permit 172.31.54.192/30 
+ip prefix-list Sala_Rosas seq 1065 permit 172.31.66.16/30 
+ip prefix-list Sala_Rosas seq 1070 permit 172.31.71.64/30 
+ip prefix-list Sala_Rosas seq 1075 permit 172.31.71.88/30 
+ip prefix-list Sala_Rosas seq 1080 permit 172.31.77.28/30 
+ip prefix-list Sala_Rosas seq 1085 permit 172.31.100.72/30 
+ip prefix-list Sala_Rosas seq 1090 permit 172.31.137.200/30 
+ip prefix-list Sala_Rosas seq 1095 permit 172.31.137.204/30 
+ip prefix-list Sala_Rosas seq 1100 permit 172.31.148.100/30 
+ip prefix-list Sala_Rosas seq 1105 permit 172.31.148.104/30 
+ip prefix-list Sala_Rosas seq 1110 permit 172.31.195.60/30 
+ip prefix-list Sala_Rosas seq 1115 permit 172.31.199.192/30 
+ip prefix-list Sala_Rosas seq 1120 permit 172.31.216.212/30 
+ip prefix-list Sala_Rosas seq 1125 permit 172.31.217.124/30 
+ip prefix-list Sala_Rosas seq 1130 permit 172.31.240.40/30 
+ip prefix-list Sala_Rosas seq 1135 permit 172.50.1.0/24 
+ip prefix-list Sala_Rosas seq 1140 permit 172.250.1.0/24 
+ip prefix-list Sala_Rosas seq 1145 permit 181.65.164.200/32 
+ip prefix-list Sala_Rosas seq 1150 permit 181.65.173.8/32 
+ip prefix-list Sala_Rosas seq 1155 permit 190.81.33.200/32 
+ip prefix-list Sala_Rosas seq 1160 permit 190.81.36.70/32 
+ip prefix-list Sala_Rosas seq 1165 permit 190.81.36.226/32 
+ip prefix-list Sala_Rosas seq 1170 permit 190.81.37.70/32 
+ip prefix-list Sala_Rosas seq 1175 permit 190.102.150.8/32 
+ip prefix-list Sala_Rosas seq 1180 permit 190.102.150.200/32 
+ip prefix-list Sala_Rosas seq 1185 permit 192.54.112.0/24 
+ip prefix-list Sala_Rosas seq 1190 permit 192.168.34.0/24 
+ip prefix-list Sala_Rosas seq 1195 permit 192.168.99.0/24 
+ip prefix-list Sala_Rosas seq 1200 permit 192.168.151.0/24 
+ip prefix-list Sala_Rosas seq 1205 permit 192.168.162.0/24 
+ip prefix-list Sala_Rosas seq 1210 permit 192.168.240.0/24 
+ip prefix-list Sala_Rosas seq 1215 permit 192.168.251.0/24 
+ip prefix-list Sala_Rosas seq 1220 permit 192.169.225.0/24 
+ip prefix-list Sala_Rosas seq 1225 permit 198.22.250.0/24 
+ip prefix-list Sala_Rosas seq 1230 permit 198.22.250.139/32 
+ip prefix-list Sala_Rosas seq 1235 permit 198.22.251.0/24 
+ip prefix-list Sala_Rosas seq 1240 permit 200.9.196.0/24 
+ip prefix-list Sala_Rosas seq 1245 permit 200.9.197.0/24 
+ip prefix-list Sala_Rosas seq 1250 permit 200.10.8.144/32 
+ip prefix-list Sala_Rosas seq 1255 permit 200.10.167.10/32 
+ip prefix-list Sala_Rosas seq 1260 permit 200.10.167.13/32 
+ip prefix-list Sala_Rosas seq 1265 permit 200.10.167.163/32 
+ip prefix-list Sala_Rosas seq 1270 permit 200.10.167.200/32 
+ip prefix-list Sala_Rosas seq 1275 permit 200.10.169.192/26 
+ip prefix-list Sala_Rosas seq 1280 permit 200.10.171.2/32 
+ip prefix-list Sala_Rosas seq 1285 permit 200.10.171.5/32 
+ip prefix-list Sala_Rosas seq 1290 permit 200.32.81.195/32 
+ip prefix-list Sala_Rosas seq 1295 permit 200.49.219.104/32 
+ip prefix-list Sala_Rosas seq 1300 permit 200.55.193.209/32 
+ip prefix-list Sala_Rosas seq 1305 permit 200.72.134.128/27 
+ip prefix-list Sala_Rosas seq 1310 permit 200.72.164.70/32 
+ip prefix-list Sala_Rosas seq 1315 permit 200.72.164.78/32 
+ip prefix-list Sala_Rosas seq 1320 permit 200.74.132.214/32 
+ip prefix-list Sala_Rosas seq 1325 permit 200.113.140.45/32 
+ip prefix-list Sala_Rosas seq 1330 permit 200.123.137.145/32 
+ip prefix-list Sala_Rosas seq 1335 permit 200.123.137.147/32 
+ip prefix-list Sala_Rosas seq 1340 permit 205.227.136.95/32 
+ip prefix-list Sala_Rosas seq 1345 permit 206.49.219.104/32 
+ip prefix-list Sala_Rosas seq 1350 permit 216.52.244.96/27 
+ip prefix-list Sala_Rosas seq 1355 permit 216.133.238.176/28 
+ip prefix-list Sala_Rosas seq 1360 permit 216.251.126.0/24 
+ip prefix-list Sala_Rosas seq 1375 permit 10.57.0.8/29 
+ip prefix-list Sala_Rosas seq 1380 permit 10.57.0.16/29 
+ip prefix-list Sala_Rosas seq 1385 permit 10.57.0.24/29 
+ip prefix-list Sala_Rosas seq 1390 permit 10.57.0.32/29 
+ip prefix-list Sala_Rosas seq 1395 permit 10.57.0.40/29 
+ip prefix-list Sala_Rosas seq 1400 permit 10.57.0.48/29 
+ip prefix-list Sala_Rosas seq 1405 permit 10.57.0.56/29 
+ip prefix-list Sala_Rosas seq 1410 permit 10.57.0.64/29 
+ip prefix-list Sala_Rosas seq 1415 permit 10.57.0.72/29 
+ip prefix-list Sala_Rosas seq 1420 permit 10.57.0.80/29 
+ip prefix-list Sala_Rosas seq 1425 permit 10.175.32.0/20 
+ip prefix-list Sala_Rosas seq 1430 permit 10.233.0.0/24 
+ip prefix-list Sala_Rosas seq 1435 permit 10.233.6.0/27 
+ip prefix-list Sala_Rosas seq 1440 permit 10.233.6.32/27 
+ip prefix-list Sala_Rosas seq 1445 permit 10.233.6.64/26 
+ip prefix-list Sala_Rosas seq 1450 permit 10.233.6.160/28 
+ip prefix-list Sala_Rosas seq 1455 permit 10.233.6.176/28 
+ip prefix-list Sala_Rosas seq 1460 permit 10.233.6.208/28 
+ip prefix-list Sala_Rosas seq 1465 permit 10.243.0.0/24 
+ip prefix-list Sala_Rosas seq 1470 permit 10.243.6.160/28 
+ip prefix-list Sala_Rosas seq 1475 permit 10.243.6.176/28 
+ip prefix-list Sala_Rosas seq 1480 permit 10.243.6.208/28 
+ip prefix-list Sala_Rosas seq 1485 permit 10.245.80.0/24 
+ip prefix-list Sala_Rosas seq 1490 permit 111.10.3.192/26 
+ip prefix-list Sala_Rosas seq 1495 permit 163.250.239.27/32 
+ip prefix-list Sala_Rosas seq 1500 permit 172.202.15.96/27 
+ip prefix-list Sala_Rosas seq 1505 permit 200.10.10.144/32 
+ip prefix-list Sala_Rosas seq 1510 permit 200.10.10.145/32 
+ip prefix-list Sala_Rosas seq 1515 permit 10.140.44.0/24 
+ip prefix-list Sala_Rosas seq 1520 permit 206.48.149.57/32 
+ip prefix-list Sala_Rosas seq 1525 permit 10.0.80.0/21 
+ip prefix-list Sala_Rosas seq 1535 permit 10.233.7.0/24 
+ip prefix-list Sala_Rosas seq 1540 permit 10.218.63.24/29 
+ip prefix-list Sala_Rosas seq 1545 permit 10.218.27.128/25 
+ip prefix-list Sala_Rosas seq 1555 permit 10.233.14.0/24 
+ip prefix-list Sala_Rosas seq 1560 permit 10.233.15.0/24 
+ip prefix-list Sala_Rosas seq 1565 permit 10.233.16.0/24 
+ip prefix-list Sala_Rosas seq 1570 permit 10.233.17.0/24 
+ip prefix-list Sala_Rosas seq 1575 permit 10.233.18.0/24 
+ip prefix-list Sala_Rosas seq 1580 permit 10.233.19.0/24 
+ip prefix-list Sala_Rosas seq 1585 permit 10.233.20.0/24 
+ip prefix-list Sala_Rosas seq 1590 permit 10.233.21.0/24 
+ip prefix-list Sala_Rosas seq 1595 permit 10.233.22.0/24 
+ip prefix-list Sala_Rosas seq 1600 permit 10.233.23.0/24 
+ip prefix-list Sala_Rosas seq 1605 permit 10.233.24.0/24 
+ip prefix-list Sala_Rosas seq 1610 permit 10.233.25.0/24 
+ip prefix-list Sala_Rosas seq 1615 permit 10.233.26.0/24 
+ip prefix-list Sala_Rosas seq 1620 permit 10.233.27.0/24 
+ip prefix-list Sala_Rosas seq 1625 permit 10.233.28.0/24 
+ip prefix-list Sala_Rosas seq 1630 permit 10.233.29.0/24 
+ip prefix-list Sala_Rosas seq 1635 permit 10.243.14.0/24 
+ip prefix-list Sala_Rosas seq 1640 permit 10.243.15.0/24 
+ip prefix-list Sala_Rosas seq 1645 permit 10.243.16.0/24 
+ip prefix-list Sala_Rosas seq 1650 permit 10.243.17.0/24 
+ip prefix-list Sala_Rosas seq 1655 permit 10.243.18.0/24 
+ip prefix-list Sala_Rosas seq 1660 permit 10.243.19.0/24 
+ip prefix-list Sala_Rosas seq 1665 permit 10.243.20.0/24 
+ip prefix-list Sala_Rosas seq 1670 permit 10.243.21.0/24 
+ip prefix-list Sala_Rosas seq 1675 permit 10.243.22.0/24 
+ip prefix-list Sala_Rosas seq 1680 permit 10.243.23.0/24 
+ip prefix-list Sala_Rosas seq 1685 permit 10.243.24.0/24 
+ip prefix-list Sala_Rosas seq 1690 permit 10.243.25.0/24 
+ip prefix-list Sala_Rosas seq 1695 permit 10.243.26.0/24 
+ip prefix-list Sala_Rosas seq 1700 permit 10.243.27.0/24 
+ip prefix-list Sala_Rosas seq 1705 permit 10.243.28.0/24 
+ip prefix-list Sala_Rosas seq 1710 permit 10.243.29.0/24 
+ip prefix-list Sala_Rosas seq 1715 permit 10.0.32.0/20 
+ip prefix-list Sala_Rosas seq 1720 permit 10.0.64.0/20 
+ip prefix-list Servidores_Rosas seq 5 permit 10.0.92.20/32 
+ip prefix-list Servidores_Rosas seq 10 permit 10.140.18.128/26 
+ip prefix-list Servidores_Rosas seq 15 permit 11.11.11.0/26 
+ip prefix-list Servidores_Rosas seq 20 permit 77.0.10.0/24 
+ip prefix-list Servidores_Rosas seq 25 permit 77.0.11.0/24 
+ip prefix-list Servidores_Rosas seq 30 permit 77.0.17.0/24 
+ip prefix-list Servidores_Rosas seq 35 permit 98.254.5.0/24 
+ip prefix-list Static-to-OSPF10 seq 10 permit 110.0.0.0/8 
+ip prefix-list Static-to-OSPF10 seq 15 permit 164.110.4.156/32 
+ip prefix-list Static-to-OSPF10 seq 20 permit 172.16.0.0/12 
+ip prefix-list Static-to-OSPF10 seq 25 permit 192.168.0.0/16 
+ip prefix-list Static-to-OSPF10 seq 30 permit 5.1.0.0/16 
+ip prefix-list Static-to-OSPF10 seq 35 permit 5.3.0.60/32 
+ip prefix-list Static-to-OSPF10 seq 40 permit 70.20.1.100/32 
+ip prefix-list Static-to-OSPF10 seq 45 permit 70.20.1.101/32 
+ip prefix-list Static-to-OSPF10 seq 50 permit 70.20.1.102/32 
+ip prefix-list Static-to-OSPF10 seq 55 permit 70.20.1.104/32 
+ip prefix-list Static-to-OSPF10 seq 60 permit 70.20.1.105/32 
+ip prefix-list Static-to-OSPF10 seq 65 permit 70.20.1.107/32 
+ip prefix-list Static-to-OSPF10 seq 70 permit 70.20.1.109/32 
+ip prefix-list Static-to-OSPF10 seq 75 permit 70.20.1.111/32 
+ip prefix-list Static-to-OSPF10 seq 80 permit 70.20.1.112/32 
+ip prefix-list Static-to-OSPF10 seq 85 permit 70.20.1.113/32 
+ip prefix-list Static-to-OSPF10 seq 90 permit 70.20.1.114/32 
+ip prefix-list Static-to-OSPF10 seq 95 permit 70.20.1.115/32 
+ip prefix-list Static-to-OSPF10 seq 100 permit 70.20.1.118/32 
+ip prefix-list Static-to-OSPF10 seq 105 permit 70.20.1.119/32 
+ip prefix-list Static-to-OSPF10 seq 110 permit 70.20.1.123/32 
+ip prefix-list Static-to-OSPF10 seq 115 permit 70.20.1.124/32 
+ip prefix-list Static-to-OSPF10 seq 120 permit 70.20.1.125/32 
+ip prefix-list Static-to-OSPF10 seq 125 permit 70.20.1.126/32 
+ip prefix-list Static-to-OSPF10 seq 130 permit 70.20.1.128/32 
+ip prefix-list Static-to-OSPF10 seq 135 permit 70.20.1.14/32 
+ip prefix-list Static-to-OSPF10 seq 140 permit 70.20.1.31/32 
+ip prefix-list Static-to-OSPF10 seq 145 permit 70.20.1.37/32 
+ip prefix-list Static-to-OSPF10 seq 150 permit 70.20.1.38/32 
+ip prefix-list Static-to-OSPF10 seq 155 permit 70.20.1.41/32 
+ip prefix-list Static-to-OSPF10 seq 160 permit 70.20.1.42/32 
+ip prefix-list Static-to-OSPF10 seq 165 permit 70.20.1.43/32 
+ip prefix-list Static-to-OSPF10 seq 170 permit 70.20.1.44/32 
+ip prefix-list Static-to-OSPF10 seq 175 permit 70.20.1.5/32 
+ip prefix-list Static-to-OSPF10 seq 180 permit 70.20.1.68/32 
+ip prefix-list Static-to-OSPF10 seq 185 permit 70.20.1.69/32 
+ip prefix-list Static-to-OSPF10 seq 190 permit 70.20.1.71/32 
+ip prefix-list Static-to-OSPF10 seq 195 permit 70.20.1.72/32 
+ip prefix-list Static-to-OSPF10 seq 200 permit 70.20.1.73/32 
+ip prefix-list Static-to-OSPF10 seq 205 permit 70.20.1.74/32 
+ip prefix-list Static-to-OSPF10 seq 210 permit 70.20.1.75/32 
+ip prefix-list Static-to-OSPF10 seq 215 permit 70.20.1.76/32 
+ip prefix-list Static-to-OSPF10 seq 220 permit 70.20.1.77/32 
+ip prefix-list Static-to-OSPF10 seq 225 permit 70.20.1.80/32 
+ip prefix-list Static-to-OSPF10 seq 230 permit 70.20.1.82/32 
+ip prefix-list Static-to-OSPF10 seq 235 permit 70.20.1.84/32 
+ip prefix-list Static-to-OSPF10 seq 240 permit 70.20.1.85/32 
+ip prefix-list Static-to-OSPF10 seq 245 permit 70.20.1.87/32 
+ip prefix-list Static-to-OSPF10 seq 250 permit 70.20.1.88/32 
+ip prefix-list Static-to-OSPF10 seq 255 permit 70.20.1.89/32 
+ip prefix-list Static-to-OSPF10 seq 260 permit 70.20.1.90/32 
+ip prefix-list Static-to-OSPF10 seq 265 permit 70.20.1.91/32 
+ip prefix-list Static-to-OSPF10 seq 270 permit 70.20.1.92/32 
+ip prefix-list Static-to-OSPF10 seq 275 permit 70.20.1.95/32 
+ip prefix-list Static-to-OSPF10 seq 280 permit 70.20.1.96/32 
+ip prefix-list Static-to-OSPF10 seq 285 permit 70.20.1.99/32 
+ip prefix-list Static-to-OSPF10 seq 290 permit 72.1.1.18/32 
+ip prefix-list Static-to-OSPF10 seq 295 permit 72.1.1.19/32 
+ip prefix-list Static-to-OSPF10 seq 300 permit 72.1.1.23/32 
+ip prefix-list Static-to-OSPF10 seq 305 permit 72.1.1.25/32 
+ip prefix-list Static-to-OSPF10 seq 310 permit 72.1.1.28/32 
+ip prefix-list Static-to-OSPF10 seq 315 permit 72.1.1.29/32 
+ip prefix-list Static-to-OSPF10 seq 320 permit 72.1.1.30/32 
+ip prefix-list Static-to-OSPF10 seq 325 permit 72.1.1.31/32 
+ip prefix-list Static-to-OSPF10 seq 330 permit 72.1.1.32/32 
+ip prefix-list Static-to-OSPF10 seq 335 permit 72.1.1.41/32 
+ip prefix-list Static-to-OSPF10 seq 340 permit 72.1.1.52/32 
+ip prefix-list Static-to-OSPF10 seq 345 permit 72.1.1.53/32 
+ip prefix-list Static-to-OSPF10 seq 350 permit 72.1.1.54/32 
+ip prefix-list Static-to-OSPF10 seq 355 permit 72.1.1.58/32 
+ip prefix-list Static-to-OSPF10 seq 360 permit 72.1.1.59/32 
+ip prefix-list Static-to-OSPF10 seq 365 permit 72.1.1.60/32 
+ip prefix-list Static-to-OSPF10 seq 370 permit 72.1.1.61/32 
+ip prefix-list Static-to-OSPF10 seq 375 permit 72.1.1.62/32 
+ip prefix-list Static-to-OSPF10 seq 380 permit 72.1.1.68/32 
+ip prefix-list Static-to-OSPF10 seq 385 permit 72.1.1.72/32 
+ip prefix-list Static-to-OSPF10 seq 390 permit 72.1.1.76/32 
+ip prefix-list Static-to-OSPF10 seq 395 permit 72.1.1.77/32 
+ip prefix-list Static-to-OSPF10 seq 400 permit 72.1.1.78/32 
+ip prefix-list Static-to-OSPF10 seq 405 permit 72.1.1.79/32 
+ip prefix-list Static-to-OSPF10 seq 410 permit 72.1.1.80/32 
+ip prefix-list Static-to-OSPF10 seq 415 permit 72.1.1.81/32 
+ip prefix-list Static-to-OSPF10 seq 420 permit 72.1.1.82/32 
+ip prefix-list Static-to-OSPF10 seq 425 permit 72.1.1.83/32 
+ip prefix-list Static-to-OSPF10 seq 430 permit 72.1.1.84/32 
+ip prefix-list Static-to-OSPF10 seq 435 permit 77.0.21.10/32 
+ip prefix-list Static-to-OSPF10 seq 440 permit 97.0.0.163/32 
+ip prefix-list Static-to-OSPF10 seq 445 permit 97.0.0.165/32 
+ip prefix-list Static-to-OSPF10 seq 450 permit 97.0.1.200/32 
+ip prefix-list Static-to-OSPF10 seq 455 permit 97.0.2.26/32 
+ip prefix-list Static-to-OSPF10 seq 460 permit 98.254.3.0/24 
+ip prefix-list Static-to-OSPF10 seq 465 permit 98.254.4.0/24 
+ip prefix-list Static-to-OSPF10 seq 470 permit 192.168.32.0/24 
+ip prefix-list Static-to-OSPF10 seq 475 permit 192.168.99.0/24 
+ip prefix-list Static-to-OSPF10 seq 480 permit 200.10.167.18/32 
+ip prefix-list Static-to-OSPF10 seq 485 permit 200.10.167.31/32 
+ip prefix-list Static-to-OSPF10 seq 490 permit 200.10.167.33/32 
+ip prefix-list Static-to-OSPF10 seq 495 permit 200.10.167.34/32 
+ip prefix-list Static-to-OSPF10 seq 500 permit 200.10.167.35/32 
+ip prefix-list Static-to-OSPF10 seq 505 permit 200.10.167.36/32 
+ip prefix-list Static-to-OSPF10 seq 510 permit 200.10.167.37/32 
+ip prefix-list Static-to-OSPF10 seq 515 permit 200.10.167.49/32 
+ip prefix-list Static-to-OSPF10 seq 520 permit 200.10.169.10/32 
+ip prefix-list Static-to-OSPF10 seq 525 permit 200.10.169.12/32 
+ip prefix-list Static-to-OSPF10 seq 530 permit 200.10.169.13/32 
+ip prefix-list Static-to-OSPF10 seq 535 permit 200.10.169.2/32 
+ip prefix-list Static-to-OSPF10 seq 540 permit 200.10.169.25/32 
+ip prefix-list Static-to-OSPF10 seq 545 permit 200.10.169.28/32 
+ip prefix-list Static-to-OSPF10 seq 550 permit 200.10.169.29/32 
+ip prefix-list Static-to-OSPF10 seq 555 permit 200.10.169.3/32 
+ip prefix-list Static-to-OSPF10 seq 560 permit 200.10.169.32/32 
+ip prefix-list Static-to-OSPF10 seq 565 permit 200.10.169.33/32 
+ip prefix-list Static-to-OSPF10 seq 570 permit 200.10.169.34/32 
+ip prefix-list Static-to-OSPF10 seq 575 permit 200.10.169.5/32 
+ip prefix-list Static-to-OSPF10 seq 580 permit 200.10.169.51/32 
+ip prefix-list Static-to-OSPF10 seq 585 permit 200.10.169.54/32 
+ip prefix-list Static-to-OSPF10 seq 590 permit 200.10.169.59/32 
+ip prefix-list Static-to-OSPF10 seq 595 permit 200.10.169.6/32 
+ip prefix-list Static-to-OSPF10 seq 600 permit 200.10.169.63/32 
+ip prefix-list Static-to-OSPF10 seq 605 permit 57.8.81.113/32 
+ip prefix-list Static-to-OSPF10 seq 610 permit 57.8.81.13/32 
+ip prefix-list Static-to-OSPF10 seq 615 permit 70.10.10.0/24 
+ip prefix-list Static-to-OSPF10 seq 620 permit 70.10.11.0/24 
+ip prefix-list Static-to-OSPF10 seq 625 permit 70.20.1.10/32 
+ip prefix-list Static-to-OSPF10 seq 630 permit 70.20.1.11/32 
+ip prefix-list Static-to-OSPF10 seq 635 permit 70.20.1.116/32 
+ip prefix-list Static-to-OSPF10 seq 640 permit 70.20.1.12/32 
+ip prefix-list Static-to-OSPF10 seq 645 permit 70.20.1.122/32 
+ip prefix-list Static-to-OSPF10 seq 650 permit 70.20.1.13/32 
+ip prefix-list Static-to-OSPF10 seq 655 permit 70.20.1.140/32 
+ip prefix-list Static-to-OSPF10 seq 660 permit 70.20.1.15/32 
+ip prefix-list Static-to-OSPF10 seq 665 permit 70.20.1.17/32 
+ip prefix-list Static-to-OSPF10 seq 670 permit 70.20.1.18/32 
+ip prefix-list Static-to-OSPF10 seq 675 permit 70.20.1.19/32 
+ip prefix-list Static-to-OSPF10 seq 680 permit 70.20.1.20/32 
+ip prefix-list Static-to-OSPF10 seq 685 permit 70.20.1.21/32 
+ip prefix-list Static-to-OSPF10 seq 690 permit 70.20.1.22/32 
+ip prefix-list Static-to-OSPF10 seq 695 permit 70.20.1.23/32 
+ip prefix-list Static-to-OSPF10 seq 700 permit 70.20.1.24/32 
+ip prefix-list Static-to-OSPF10 seq 705 permit 70.20.1.25/32 
+ip prefix-list Static-to-OSPF10 seq 710 permit 70.20.1.26/32 
+ip prefix-list Static-to-OSPF10 seq 715 permit 70.20.1.28/32 
+ip prefix-list Static-to-OSPF10 seq 720 permit 70.20.1.29/32 
+ip prefix-list Static-to-OSPF10 seq 725 permit 70.20.1.30/32 
+ip prefix-list Static-to-OSPF10 seq 730 permit 70.20.1.32/32 
+ip prefix-list Static-to-OSPF10 seq 735 permit 70.20.1.33/32 
+ip prefix-list Static-to-OSPF10 seq 740 permit 70.20.1.34/32 
+ip prefix-list Static-to-OSPF10 seq 745 permit 70.20.1.35/32 
+ip prefix-list Static-to-OSPF10 seq 750 permit 70.20.1.36/32 
+ip prefix-list Static-to-OSPF10 seq 755 permit 70.20.1.39/32 
+ip prefix-list Static-to-OSPF10 seq 760 permit 70.20.1.40/32 
+ip prefix-list Static-to-OSPF10 seq 765 permit 70.20.1.47/32 
+ip prefix-list Static-to-OSPF10 seq 770 permit 70.20.1.48/32 
+ip prefix-list Static-to-OSPF10 seq 775 permit 70.20.1.49/32 
+ip prefix-list Static-to-OSPF10 seq 780 permit 70.20.1.52/32 
+ip prefix-list Static-to-OSPF10 seq 785 permit 70.20.1.58/32 
+ip prefix-list Static-to-OSPF10 seq 790 permit 70.20.1.59/32 
+ip prefix-list Static-to-OSPF10 seq 795 permit 70.20.1.60/32 
+ip prefix-list Static-to-OSPF10 seq 800 permit 70.20.1.61/32 
+ip prefix-list Static-to-OSPF10 seq 805 permit 70.20.1.62/32 
+ip prefix-list Static-to-OSPF10 seq 810 permit 70.20.1.63/32 
+ip prefix-list Static-to-OSPF10 seq 815 permit 70.20.1.64/32 
+ip prefix-list Static-to-OSPF10 seq 820 permit 70.20.1.65/32 
+ip prefix-list Static-to-OSPF10 seq 825 permit 70.20.1.66/32 
+ip prefix-list Static-to-OSPF10 seq 830 permit 70.20.1.67/32 
+ip prefix-list Static-to-OSPF10 seq 835 permit 70.20.1.86/32 
+ip prefix-list Static-to-OSPF10 seq 840 permit 70.20.1.93/32 
+ip prefix-list Static-to-OSPF10 seq 845 permit 70.20.1.94/32 
+ip prefix-list Static-to-OSPF10 seq 850 permit 70.20.1.98/32 
+ip prefix-list Static-to-OSPF10 seq 855 permit 70.30.30.0/24 
+ip prefix-list Static-to-OSPF10 seq 860 permit 70.50.1.0/24 
+ip prefix-list Static-to-OSPF10 seq 865 permit 72.1.1.21/32 
+ip prefix-list Static-to-OSPF10 seq 870 permit 72.1.1.22/32 
+ip prefix-list Static-to-OSPF10 seq 875 permit 72.1.1.24/32 
+ip prefix-list Static-to-OSPF10 seq 880 permit 72.1.1.26/32 
+ip prefix-list Static-to-OSPF10 seq 885 permit 72.1.1.27/32 
+ip prefix-list Static-to-OSPF10 seq 890 permit 72.1.1.33/32 
+ip prefix-list Static-to-OSPF10 seq 895 permit 72.1.1.34/32 
+ip prefix-list Static-to-OSPF10 seq 900 permit 72.1.1.36/32 
+ip prefix-list Static-to-OSPF10 seq 905 permit 72.1.1.37/32 
+ip prefix-list Static-to-OSPF10 seq 910 permit 72.1.1.39/32 
+ip prefix-list Static-to-OSPF10 seq 915 permit 72.1.1.40/32 
+ip prefix-list Static-to-OSPF10 seq 920 permit 72.1.1.42/32 
+ip prefix-list Static-to-OSPF10 seq 925 permit 72.1.1.44/32 
+ip prefix-list Static-to-OSPF10 seq 930 permit 72.1.1.45/32 
+ip prefix-list Static-to-OSPF10 seq 935 permit 72.1.1.46/32 
+ip prefix-list Static-to-OSPF10 seq 940 permit 72.1.1.47/32 
+ip prefix-list Static-to-OSPF10 seq 945 permit 72.1.1.48/32 
+ip prefix-list Static-to-OSPF10 seq 950 permit 72.1.1.50/32 
+ip prefix-list Static-to-OSPF10 seq 955 permit 72.1.1.51/32 
+ip prefix-list Static-to-OSPF10 seq 960 permit 72.1.1.55/32 
+ip prefix-list Static-to-OSPF10 seq 965 permit 72.1.1.57/32 
+ip prefix-list Static-to-OSPF10 seq 970 permit 72.1.1.64/32 
+ip prefix-list Static-to-OSPF10 seq 975 permit 72.1.1.65/32 
+ip prefix-list Static-to-OSPF10 seq 980 permit 72.1.1.66/32 
+ip prefix-list Static-to-OSPF10 seq 985 permit 72.1.1.69/32 
+ip prefix-list Static-to-OSPF10 seq 990 permit 72.1.1.85/32 
+ip prefix-list Static-to-OSPF10 seq 994 permit 97.0.0.0/24 
+ip prefix-list Static-to-OSPF10 seq 1000 permit 10.0.0.0/8 
+ip prefix-list Static-to-OSPF10 seq 1005 permit 98.254.254.0/24 
+ip prefix-list Static-to-OSPF10 seq 1010 permit 21.0.0.0/8 
+ip prefix-list Static-to-OSPF10 seq 1015 permit 22.0.0.0/8 
+ip prefix-list Static-to-OSPF10 seq 1020 permit 150.200.231.0/24 
+ip prefix-list Static-to-OSPF10 seq 1670 permit 98.200.25.96/29 
+ip prefix-list Static-to-OSPF100 seq 10 permit 10.10.10.2/32 
+ip prefix-list Static-to-OSPF100 seq 15 permit 10.10.10.3/32 
+ip prefix-list Static-to-OSPF100 seq 20 permit 10.100.1.34/32 
+ip prefix-list Static-to-OSPF100 seq 25 permit 10.100.2.0/24 
+ip prefix-list Static-to-OSPF100 seq 30 permit 10.142.0.0/28 
+ip prefix-list Static-to-OSPF100 seq 35 permit 10.98.28.64/27 
+ip prefix-list Static-to-OSPF100 seq 50 permit 10.170.0.80/29 
+ip prefix-list Static-to-OSPF100 seq 55 permit 10.170.21.0/24 
+ip prefix-list Static-to-OSPF100 seq 60 permit 10.200.1.32/29 
+ip prefix-list Static-to-OSPF100 seq 70 permit 10.200.1.80/29 
+ip prefix-list Static-to-OSPF100 seq 75 permit 10.200.1.88/29 
+ip prefix-list Static-to-OSPF100 seq 80 permit 10.200.254.0/26 
+ip prefix-list Static-to-OSPF100 seq 85 permit 10.32.60.81/32 
+ip prefix-list Static-to-OSPF100 seq 90 permit 110.110.110.10/32 
+ip prefix-list Static-to-OSPF100 seq 95 permit 115.124.106.115/32 
+ip prefix-list Static-to-OSPF100 seq 100 permit 128.1.128.1/32 
+ip prefix-list Static-to-OSPF100 seq 105 permit 130.100.100.41/32 
+ip prefix-list Static-to-OSPF100 seq 110 permit 130.130.2.133/32 
+ip prefix-list Static-to-OSPF100 seq 115 permit 130.130.2.134/32 
+ip prefix-list Static-to-OSPF100 seq 120 permit 130.130.2.169/32 
+ip prefix-list Static-to-OSPF100 seq 125 permit 130.130.2.60/32 
+ip prefix-list Static-to-OSPF100 seq 130 permit 130.130.2.61/32 
+ip prefix-list Static-to-OSPF100 seq 135 permit 130.130.2.62/32 
+ip prefix-list Static-to-OSPF100 seq 140 permit 150.0.0.71/32 
+ip prefix-list Static-to-OSPF100 seq 145 permit 150.0.0.72/32 
+ip prefix-list Static-to-OSPF100 seq 150 permit 150.0.0.73/32 
+ip prefix-list Static-to-OSPF100 seq 155 permit 150.0.0.74/32 
+ip prefix-list Static-to-OSPF100 seq 160 permit 150.0.0.75/32 
+ip prefix-list Static-to-OSPF100 seq 165 permit 150.0.0.76/32 
+ip prefix-list Static-to-OSPF100 seq 170 permit 150.0.0.77/32 
+ip prefix-list Static-to-OSPF100 seq 175 permit 150.0.0.78/32 
+ip prefix-list Static-to-OSPF100 seq 180 permit 150.10.1.155/32 
+ip prefix-list Static-to-OSPF100 seq 185 permit 150.10.1.161/32 
+ip prefix-list Static-to-OSPF100 seq 190 permit 150.10.1.75/32 
+ip prefix-list Static-to-OSPF100 seq 195 permit 150.10.10.0/24 
+ip prefix-list Static-to-OSPF100 seq 200 permit 151.193.141.254/32 
+ip prefix-list Static-to-OSPF100 seq 205 permit 158.30.204.58/32 
+ip prefix-list Static-to-OSPF100 seq 210 permit 158.30.204.59/32 
+ip prefix-list Static-to-OSPF100 seq 215 permit 158.30.206.253/32 
+ip prefix-list Static-to-OSPF100 seq 220 permit 165.183.97.0/24 
+ip prefix-list Static-to-OSPF100 seq 225 permit 165.183.98.0/24 
+ip prefix-list Static-to-OSPF100 seq 230 permit 172.10.1.0/24 
+ip prefix-list Static-to-OSPF100 seq 235 permit 172.16.10.96/32 
+ip prefix-list Static-to-OSPF100 seq 240 permit 172.16.30.11/32 
+ip prefix-list Static-to-OSPF100 seq 250 permit 172.16.54.137/32 
+ip prefix-list Static-to-OSPF100 seq 255 permit 172.16.54.177/32 
+ip prefix-list Static-to-OSPF100 seq 260 permit 172.16.54.178/32 
+ip prefix-list Static-to-OSPF100 seq 265 permit 172.16.68.8/32 
+ip prefix-list Static-to-OSPF100 seq 270 permit 172.16.68.96/32 
+ip prefix-list Static-to-OSPF100 seq 275 permit 172.16.69.2/32 
+ip prefix-list Static-to-OSPF100 seq 280 permit 172.28.3.11/32 
+ip prefix-list Static-to-OSPF100 seq 285 permit 172.28.3.12/32 
+ip prefix-list Static-to-OSPF100 seq 290 permit 172.28.3.65/32 
+ip prefix-list Static-to-OSPF100 seq 295 permit 172.56.68.0/24 
+ip prefix-list Static-to-OSPF100 seq 300 permit 192.168.1.37/32 
+ip prefix-list Static-to-OSPF100 seq 310 permit 192.168.13.13/32 
+ip prefix-list Static-to-OSPF100 seq 315 permit 192.168.21.31/32 
+ip prefix-list Static-to-OSPF100 seq 320 permit 192.168.21.40/32 
+ip prefix-list Static-to-OSPF100 seq 325 permit 192.168.222.0/24 
+ip prefix-list Static-to-OSPF100 seq 330 permit 192.168.224.0/24 
+ip prefix-list Static-to-OSPF100 seq 335 permit 192.168.246.150/32 
+ip prefix-list Static-to-OSPF100 seq 340 permit 192.168.80.0/24 
+ip prefix-list Static-to-OSPF100 seq 345 permit 192.168.81.0/24 
+ip prefix-list Static-to-OSPF100 seq 350 permit 195.27.162.0/23 
+ip prefix-list Static-to-OSPF100 seq 360 permit 200.0.156.43/32 
+ip prefix-list Static-to-OSPF100 seq 370 permit 200.0.156.150/32 
+ip prefix-list Static-to-OSPF100 seq 385 permit 200.0.156.44/32 
+ip prefix-list Static-to-OSPF100 seq 400 permit 200.10.11.10/32 
+ip prefix-list Static-to-OSPF100 seq 405 permit 200.10.12.29/32 
+ip prefix-list Static-to-OSPF100 seq 410 permit 200.10.14.103/32 
+ip prefix-list Static-to-OSPF100 seq 415 permit 200.10.14.11/32 
+ip prefix-list Static-to-OSPF100 seq 420 permit 200.10.14.17/32 
+ip prefix-list Static-to-OSPF100 seq 425 permit 200.10.14.21/32 
+ip prefix-list Static-to-OSPF100 seq 430 permit 192.168.1.0/24 
+ip prefix-list Static-to-OSPF100 seq 455 permit 200.168.101.10/32 
+ip prefix-list Static-to-OSPF100 seq 460 permit 200.168.101.14/32 
+ip prefix-list Static-to-OSPF100 seq 465 permit 200.168.101.23/32 
+ip prefix-list Static-to-OSPF100 seq 470 permit 200.21.133.157/32 
+ip prefix-list Static-to-OSPF100 seq 475 permit 200.27.133.128/27 
+ip prefix-list Static-to-OSPF100 seq 480 permit 200.27.133.137/32 
+ip prefix-list Static-to-OSPF100 seq 485 permit 200.27.133.144/32 
+ip prefix-list Static-to-OSPF100 seq 490 permit 200.27.133.151/32 
+ip prefix-list Static-to-OSPF100 seq 495 permit 200.27.133.152/32 
+ip prefix-list Static-to-OSPF100 seq 500 permit 200.27.133.153/32 
+ip prefix-list Static-to-OSPF100 seq 505 permit 200.27.133.154/32 
+ip prefix-list Static-to-OSPF100 seq 510 permit 200.27.133.155/32 
+ip prefix-list Static-to-OSPF100 seq 515 permit 200.27.133.156/32 
+ip prefix-list Static-to-OSPF100 seq 520 permit 200.27.133.157/32 
+ip prefix-list Static-to-OSPF100 seq 525 permit 200.27.133.158/32 
+ip prefix-list Static-to-OSPF100 seq 530 permit 200.27.165.220/32 
+ip prefix-list Static-to-OSPF100 seq 535 permit 200.27.174.17/32 
+ip prefix-list Static-to-OSPF100 seq 540 permit 200.27.174.200/32 
+ip prefix-list Static-to-OSPF100 seq 545 permit 200.27.174.41/32 
+ip prefix-list Static-to-OSPF100 seq 550 permit 200.27.174.50/32 
+ip prefix-list Static-to-OSPF100 seq 555 permit 200.27.174.6/32 
+ip prefix-list Static-to-OSPF100 seq 560 permit 200.27.174.70/32 
+ip prefix-list Static-to-OSPF100 seq 565 permit 200.27.31.18/32 
+ip prefix-list Static-to-OSPF100 seq 570 permit 200.27.49.138/32 
+ip prefix-list Static-to-OSPF100 seq 575 permit 200.27.49.215/32 
+ip prefix-list Static-to-OSPF100 seq 580 permit 200.27.49.216/32 
+ip prefix-list Static-to-OSPF100 seq 585 permit 200.27.49.225/32 
+ip prefix-list Static-to-OSPF100 seq 590 permit 200.27.49.226/32 
+ip prefix-list Static-to-OSPF100 seq 595 permit 200.27.49.61/32 
+ip prefix-list Static-to-OSPF100 seq 600 permit 200.27.49.65/32 
+ip prefix-list Static-to-OSPF100 seq 605 permit 200.27.49.66/32 
+ip prefix-list Static-to-OSPF100 seq 610 permit 200.27.49.84/32 
+ip prefix-list Static-to-OSPF100 seq 615 permit 200.29.129.193/32 
+ip prefix-list Static-to-OSPF100 seq 620 permit 200.29.129.209/32 
+ip prefix-list Static-to-OSPF100 seq 625 permit 200.29.129.210/32 
+ip prefix-list Static-to-OSPF100 seq 630 permit 200.51.172.49/32 
+ip prefix-list Static-to-OSPF100 seq 635 permit 200.51.172.50/32 
+ip prefix-list Static-to-OSPF100 seq 640 permit 200.51.172.51/32 
+ip prefix-list Static-to-OSPF100 seq 645 permit 200.51.172.52/32 
+ip prefix-list Static-to-OSPF100 seq 650 permit 200.71.222.101/32 
+ip prefix-list Static-to-OSPF100 seq 655 permit 200.71.222.105/32 
+ip prefix-list Static-to-OSPF100 seq 660 permit 200.71.222.115/32 
+ip prefix-list Static-to-OSPF100 seq 665 permit 200.71.222.118/32 
+ip prefix-list Static-to-OSPF100 seq 670 permit 200.71.222.119/32 
+ip prefix-list Static-to-OSPF100 seq 675 permit 200.71.222.128/32 
+ip prefix-list Static-to-OSPF100 seq 680 permit 200.71.222.17/32 
+ip prefix-list Static-to-OSPF100 seq 685 permit 200.71.222.21/32 
+ip prefix-list Static-to-OSPF100 seq 690 permit 200.71.222.22/32 
+ip prefix-list Static-to-OSPF100 seq 695 permit 200.71.222.23/32 
+ip prefix-list Static-to-OSPF100 seq 700 permit 200.71.222.234/32 
+ip prefix-list Static-to-OSPF100 seq 705 permit 200.71.222.235/32 
+ip prefix-list Static-to-OSPF100 seq 710 permit 200.71.222.236/32 
+ip prefix-list Static-to-OSPF100 seq 715 permit 200.71.222.242/32 
+ip prefix-list Static-to-OSPF100 seq 720 permit 200.71.222.28/32 
+ip prefix-list Static-to-OSPF100 seq 725 permit 200.71.222.42/32 
+ip prefix-list Static-to-OSPF100 seq 730 permit 200.71.222.44/32 
+ip prefix-list Static-to-OSPF100 seq 735 permit 200.71.222.48/32 
+ip prefix-list Static-to-OSPF100 seq 740 permit 200.71.222.49/32 
+ip prefix-list Static-to-OSPF100 seq 745 permit 200.71.222.56/32 
+ip prefix-list Static-to-OSPF100 seq 750 permit 200.71.222.86/32 
+ip prefix-list Static-to-OSPF100 seq 755 permit 200.71.222.87/32 
+ip prefix-list Static-to-OSPF100 seq 760 permit 200.71.222.96/32 
+ip prefix-list Static-to-OSPF100 seq 765 permit 200.9.228.0/28 
+ip prefix-list Static-to-OSPF100 seq 770 permit 200.9.228.10/32 
+ip prefix-list Static-to-OSPF100 seq 775 permit 200.9.228.11/32 
+ip prefix-list Static-to-OSPF100 seq 780 permit 200.9.228.12/32 
+ip prefix-list Static-to-OSPF100 seq 785 permit 200.9.228.13/32 
+ip prefix-list Static-to-OSPF100 seq 790 permit 200.9.228.138/32 
+ip prefix-list Static-to-OSPF100 seq 795 permit 200.9.228.14/32 
+ip prefix-list Static-to-OSPF100 seq 800 permit 200.9.228.140/32 
+ip prefix-list Static-to-OSPF100 seq 805 permit 200.9.228.142/32 
+ip prefix-list Static-to-OSPF100 seq 810 permit 200.9.228.143/32 
+ip prefix-list Static-to-OSPF100 seq 815 permit 200.9.228.27/32 
+ip prefix-list Static-to-OSPF100 seq 820 permit 200.91.1.62/32 
+ip prefix-list Static-to-OSPF100 seq 825 permit 206.48.149.166/32 
+ip prefix-list Static-to-OSPF100 seq 830 permit 206.48.149.57/32 
+ip prefix-list Static-to-OSPF100 seq 835 permit 206.48.149.8/32 
+ip prefix-list Static-to-OSPF100 seq 840 permit 206.48.86.40/32 
+ip prefix-list Static-to-OSPF100 seq 845 permit 206.48.86.51/32 
+ip prefix-list Static-to-OSPF100 seq 850 permit 206.48.86.52/32 
+ip prefix-list Static-to-OSPF100 seq 855 permit 64.76.154.149/32 
+ip prefix-list Static-to-OSPF100 seq 860 permit 64.86.240.148/32 
+ip prefix-list Static-to-OSPF100 seq 865 permit 71.1.1.0/24 
+ip prefix-list Static-to-OSPF100 seq 870 permit 73.1.1.0/24 
+ip prefix-list Static-to-OSPF100 seq 875 permit 73.1.254.17/32 
+ip prefix-list Static-to-OSPF100 seq 880 permit 73.1.254.18/32 
+ip prefix-list Static-to-OSPF100 seq 885 permit 73.1.254.19/32 
+ip prefix-list Static-to-OSPF100 seq 890 permit 73.1.254.3/32 
+ip prefix-list Static-to-OSPF100 seq 895 permit 73.1.254.4/32 
+ip prefix-list Static-to-OSPF100 seq 900 permit 73.1.254.5/32 
+ip prefix-list Static-to-OSPF100 seq 905 permit 73.1.254.6/32 
+ip prefix-list Static-to-OSPF100 seq 910 permit 77.0.12.0/24 
+ip prefix-list Static-to-OSPF100 seq 915 permit 77.0.21.192/26 
+ip prefix-list Static-to-OSPF100 seq 930 permit 90.0.8.20/32 
+ip prefix-list Static-to-OSPF100 seq 935 permit 90.0.8.21/32 
+ip prefix-list Static-to-OSPF100 seq 940 permit 90.0.8.24/32 
+ip prefix-list Static-to-OSPF100 seq 945 permit 90.0.8.31/32 
+ip prefix-list Static-to-OSPF100 seq 950 permit 90.0.8.34/32 
+ip prefix-list Static-to-OSPF100 seq 955 permit 90.0.8.35/32 
+ip prefix-list Static-to-OSPF100 seq 960 permit 90.0.8.37/32 
+ip prefix-list Static-to-OSPF100 seq 965 permit 90.0.8.45/32 
+ip prefix-list Static-to-OSPF100 seq 970 permit 90.0.8.51/32 
+ip prefix-list Static-to-OSPF100 seq 975 permit 90.1.1.0/24 
+ip prefix-list Static-to-OSPF100 seq 980 permit 92.220.11.11/32 
+ip prefix-list Static-to-OSPF100 seq 985 permit 92.220.11.12/32 
+ip prefix-list Static-to-OSPF100 seq 990 permit 92.220.11.15/32 
+ip prefix-list Static-to-OSPF100 seq 995 permit 92.220.13.0/24 
+ip prefix-list Static-to-OSPF100 seq 1000 permit 98.0.0.24/30 
+ip prefix-list Static-to-OSPF100 seq 1005 permit 98.150.1.0/29 
+ip prefix-list Static-to-OSPF100 seq 1010 permit 98.150.2.0/24 
+ip prefix-list Static-to-OSPF100 seq 1015 permit 98.200.14.0/29 
+ip prefix-list Static-to-OSPF100 seq 1020 permit 98.200.23.0/24 
+ip prefix-list Static-to-OSPF100 seq 1025 permit 192.168.13.0/24 
+ip prefix-list Static-to-OSPF100 seq 1030 permit 200.10.167.0/24 
+ip prefix-list Static-to-OSPF100 seq 1035 permit 200.10.168.0/26 
+ip prefix-list Static-to-OSPF100 seq 1040 permit 200.10.169.0/26 
+ip prefix-list Static-to-OSPF100 seq 1045 permit 200.10.169.64/26 
+ip prefix-list Static-to-OSPF100 seq 1050 permit 200.10.9.100/32 
+ip prefix-list Static-to-OSPF100 seq 1055 permit 200.10.9.101/32 
+ip prefix-list Static-to-OSPF100 seq 1060 permit 5.9.135.204/32 
+ip prefix-list Static-to-OSPF100 seq 1080 permit 10.48.93.194/32 
+ip prefix-list Static-to-OSPF100 seq 1085 permit 10.145.0.0/22 
+ip prefix-list Static-to-OSPF100 seq 1090 permit 10.0.104.0/25 
+ip prefix-list Static-to-OSPF100 seq 1095 permit 10.0.104.128/25 
+ip prefix-list Static-to-OSPF100 seq 1105 permit 172.20.169.128/26 
+ip prefix-list Static-to-OSPF100 seq 1110 permit 172.20.169.64/26 
+ip prefix-list Static-to-OSPF100 seq 1135 permit 98.200.26.73/32 
+ip prefix-list Static-to-OSPF100 seq 1150 permit 98.200.0.8/29 
+ip prefix-list Static-to-OSPF100 seq 1160 permit 98.200.16.120/29 
+ip prefix-list Static-to-OSPF100 seq 1165 permit 98.200.14.64/29 
+ip prefix-list Static-to-OSPF100 seq 1170 permit 98.200.17.64/29 
+ip prefix-list Static-to-OSPF100 seq 1175 permit 98.200.14.24/29 
+ip prefix-list Static-to-OSPF100 seq 1180 permit 98.200.22.0/24 
+ip prefix-list Static-to-OSPF100 seq 1185 permit 98.200.18.224/29 
+ip prefix-list Static-to-OSPF100 seq 1190 permit 10.10.100.76/32 
+ip prefix-list Static-to-OSPF100 seq 1195 permit 10.10.100.86/32 
+ip prefix-list Static-to-OSPF100 seq 1200 permit 10.10.100.68/32 
+ip prefix-list Static-to-OSPF100 seq 1205 permit 10.146.0.144/32 
+ip prefix-list Static-to-OSPF100 seq 1215 permit 98.200.14.48/29 
+ip prefix-list Static-to-OSPF100 seq 1220 permit 98.200.26.88/29 
+ip prefix-list Static-to-OSPF100 seq 1225 permit 98.200.16.248/29 
+ip prefix-list Static-to-OSPF100 seq 1230 permit 98.200.16.8/29 
+ip prefix-list Static-to-OSPF100 seq 1240 permit 98.200.24.128/27 
+ip prefix-list Static-to-OSPF100 seq 1245 permit 98.200.17.112/29 
+ip prefix-list Static-to-OSPF100 seq 1250 permit 98.200.16.16/29 
+ip prefix-list Static-to-OSPF100 seq 1255 permit 98.200.17.8/29 
+ip prefix-list Static-to-OSPF100 seq 1270 permit 98.200.18.168/29 
+ip prefix-list Static-to-OSPF100 seq 1275 permit 98.200.16.200/29 
+ip prefix-list Static-to-OSPF100 seq 1290 permit 98.200.16.88/29 
+ip prefix-list Static-to-OSPF100 seq 1295 permit 98.200.17.104/29 
+ip prefix-list Static-to-OSPF100 seq 1305 permit 98.200.19.8/29 
+ip prefix-list Static-to-OSPF100 seq 1310 permit 98.200.24.160/29 
+ip prefix-list Static-to-OSPF100 seq 1315 permit 192.168.5.0/24 
+ip prefix-list Static-to-OSPF100 seq 1320 permit 98.200.16.232/29 
+ip prefix-list Static-to-OSPF100 seq 1325 permit 98.200.18.200/29 
+ip prefix-list Static-to-OSPF100 seq 1340 permit 98.200.18.128/29 
+ip prefix-list Static-to-OSPF100 seq 1345 permit 98.200.24.200/29 
+ip prefix-list Static-to-OSPF100 seq 1350 permit 98.200.14.56/29 
+ip prefix-list Static-to-OSPF100 seq 1355 permit 98.200.18.24/29 
+ip prefix-list Static-to-OSPF100 seq 1360 permit 98.200.14.89/32 
+ip prefix-list Static-to-OSPF100 seq 1365 permit 98.200.18.72/29 
+ip prefix-list Static-to-OSPF100 seq 1370 permit 98.200.24.176/29 
+ip prefix-list Static-to-OSPF100 seq 1375 permit 98.200.16.24/29 
+ip prefix-list Static-to-OSPF100 seq 1380 permit 98.200.17.88/29 
+ip prefix-list Static-to-OSPF100 seq 1385 permit 98.200.14.168/29 
+ip prefix-list Static-to-OSPF100 seq 1390 permit 98.200.18.160/29 
+ip prefix-list Static-to-OSPF100 seq 1395 permit 98.200.14.8/29 
+ip prefix-list Static-to-OSPF100 seq 1400 permit 192.168.100.61/32 
+ip prefix-list Static-to-OSPF100 seq 1405 permit 192.168.100.64/32 
+ip prefix-list Static-to-OSPF100 seq 1410 permit 192.168.100.102/32 
+ip prefix-list Static-to-OSPF100 seq 1415 permit 192.168.100.111/32 
+ip prefix-list Static-to-OSPF100 seq 1420 permit 192.168.100.113/32 
+ip prefix-list Static-to-OSPF100 seq 1425 permit 98.200.25.112/29 
+ip prefix-list Static-to-OSPF100 seq 1430 permit 98.200.25.160/29 
+ip prefix-list Static-to-OSPF100 seq 1450 permit 98.200.8.10/32 
+ip prefix-list Static-to-OSPF100 seq 1455 permit 98.200.8.11/32 
+ip prefix-list Static-to-OSPF100 seq 1456 permit 98.220.13.11/32 
+ip prefix-list Static-to-OSPF100 seq 1457 permit 98.220.13.12/32 
+ip prefix-list Static-to-OSPF100 seq 1460 permit 98.220.13.15/32 
+ip prefix-list Static-to-OSPF100 seq 1465 permit 98.200.25.232/29 
+ip prefix-list Static-to-OSPF100 seq 1470 permit 192.127.224.19/32 
+ip prefix-list Static-to-OSPF100 seq 1475 permit 192.127.224.22/32 
+ip prefix-list Static-to-OSPF100 seq 1480 permit 192.127.229.32/32 
+ip prefix-list Static-to-OSPF100 seq 1485 permit 98.200.14.208/29 
+ip prefix-list Static-to-OSPF100 seq 1495 permit 98.200.16.72/29 
+ip prefix-list Static-to-OSPF100 seq 1500 permit 98.200.26.96/29 
+ip prefix-list Static-to-OSPF100 seq 1505 permit 98.200.14.120/29 
+ip prefix-list Static-to-OSPF100 seq 1510 permit 98.200.14.16/29 
+ip prefix-list Static-to-OSPF100 seq 1520 permit 98.200.14.184/29 
+ip prefix-list Static-to-OSPF100 seq 1525 permit 98.200.14.32/29 
+ip prefix-list Static-to-OSPF100 seq 1526 permit 98.200.14.41/32 
+ip prefix-list Static-to-OSPF100 seq 1530 permit 98.200.14.72/29 
+ip prefix-list Static-to-OSPF100 seq 1535 permit 98.200.15.0/26 
+ip prefix-list Static-to-OSPF100 seq 1540 permit 98.200.15.64/26 
+ip prefix-list Static-to-OSPF100 seq 1545 permit 98.200.16.136/29 
+ip prefix-list Static-to-OSPF100 seq 1555 permit 98.200.16.176/29 
+ip prefix-list Static-to-OSPF100 seq 1565 permit 98.200.17.120/29 
+ip prefix-list Static-to-OSPF100 seq 1570 permit 98.200.17.192/26 
+ip prefix-list Static-to-OSPF100 seq 1575 permit 98.200.17.48/29 
+ip prefix-list Static-to-OSPF100 seq 1580 permit 98.200.17.96/29 
+ip prefix-list Static-to-OSPF100 seq 1585 permit 98.200.18.152/29 
+ip prefix-list Static-to-OSPF100 seq 1590 permit 98.200.18.16/29 
+ip prefix-list Static-to-OSPF100 seq 1595 permit 98.200.18.176/29 
+ip prefix-list Static-to-OSPF100 seq 1600 permit 98.200.18.184/29 
+ip prefix-list Static-to-OSPF100 seq 1605 permit 98.200.18.232/29 
+ip prefix-list Static-to-OSPF100 seq 1610 permit 98.200.18.248/29 
+ip prefix-list Static-to-OSPF100 seq 1615 permit 98.200.18.57/32 
+ip prefix-list Static-to-OSPF100 seq 1620 permit 98.200.25.0/29 
+ip prefix-list Static-to-OSPF100 seq 1630 permit 98.200.25.136/29 
+ip prefix-list Static-to-OSPF100 seq 1635 permit 98.200.25.152/29 
+ip prefix-list Static-to-OSPF100 seq 1640 permit 98.200.25.216/29 
+ip prefix-list Static-to-OSPF100 seq 1645 permit 98.200.25.72/29 
+ip prefix-list Static-to-OSPF100 seq 1655 permit 98.200.26.48/29 
+ip prefix-list Static-to-OSPF100 seq 1665 permit 98.200.24.192/29 
+ip prefix-list Static-to-OSPF100 seq 1680 permit 5.9.28.252/32 
+ip prefix-list Static-to-OSPF100 seq 1685 permit 5.145.168.219/32 
+ip prefix-list Static-to-OSPF100 seq 1690 permit 98.200.26.240/29 
+ip prefix-list Static-to-OSPF100 seq 1695 permit 98.200.26.248/29 
+ip prefix-list Static-to-OSPF100 seq 1700 permit 98.200.0.40/29 
+ip prefix-list Static-to-OSPF100 seq 1705 permit 10.137.0.0/24 
+ip prefix-list Static-to-OSPF100 seq 1710 permit 10.98.2.0/27 
+ip prefix-list Static-to-OSPF100 seq 1715 permit 10.98.4.0/25 
+ip prefix-list Static-to-OSPF100 seq 1725 permit 10.170.41.0/24 
+ip prefix-list Static-to-OSPF100 seq 1735 permit 10.138.0.0/16 
+ip prefix-list Static-to-OSPF100 seq 1740 permit 104.146.0.0/19 
+ip prefix-list Static-to-OSPF100 seq 1745 permit 104.146.128.0/17 
+ip prefix-list Static-to-OSPF100 seq 1750 permit 111.221.112.0/21 
+ip prefix-list Static-to-OSPF100 seq 1755 permit 13.107.18.10/31 
+ip prefix-list Static-to-OSPF100 seq 1760 permit 13.107.19.10/31 
+ip prefix-list Static-to-OSPF100 seq 1765 permit 13.107.6.150/31 
+ip prefix-list Static-to-OSPF100 seq 1770 permit 13.107.6.152/31 
+ip prefix-list Static-to-OSPF100 seq 1775 permit 13.107.6.168/32 
+ip prefix-list Static-to-OSPF100 seq 1780 permit 13.107.9.150/31 
+ip prefix-list Static-to-OSPF100 seq 1785 permit 13.107.9.152/31 
+ip prefix-list Static-to-OSPF100 seq 1790 permit 13.107.9.168/32 
+ip prefix-list Static-to-OSPF100 seq 1795 permit 131.253.33.215/32 
+ip prefix-list Static-to-OSPF100 seq 1800 permit 132.245.0.0/16 
+ip prefix-list Static-to-OSPF100 seq 1805 permit 134.170.200.0/21 
+ip prefix-list Static-to-OSPF100 seq 1810 permit 134.170.208.0/21 
+ip prefix-list Static-to-OSPF100 seq 1815 permit 134.170.68.0/23 
+ip prefix-list Static-to-OSPF100 seq 1820 permit 157.56.106.128/28 
+ip prefix-list Static-to-OSPF100 seq 1825 permit 157.56.232.0/21 
+ip prefix-list Static-to-OSPF100 seq 1830 permit 157.56.240.0/20 
+ip prefix-list Static-to-OSPF100 seq 1835 permit 157.56.96.16/28 
+ip prefix-list Static-to-OSPF100 seq 1840 permit 157.56.96.224/28 
+ip prefix-list Static-to-OSPF100 seq 1845 permit 191.232.0.0/23 
+ip prefix-list Static-to-OSPF100 seq 1850 permit 191.232.96.0/19 
+ip prefix-list Static-to-OSPF100 seq 1855 permit 191.234.128.0/21 
+ip prefix-list Static-to-OSPF100 seq 1860 permit 191.234.140.0/22 
+ip prefix-list Static-to-OSPF100 seq 1865 permit 191.234.224.0/22 
+ip prefix-list Static-to-OSPF100 seq 1870 permit 191.234.6.152/32 
+ip prefix-list Static-to-OSPF100 seq 1875 permit 191.235.0.0/20 
+ip prefix-list Static-to-OSPF100 seq 1880 permit 204.79.197.215/32 
+ip prefix-list Static-to-OSPF100 seq 1885 permit 206.191.224.0/19 
+ip prefix-list Static-to-OSPF100 seq 1890 permit 207.46.150.128/25 
+ip prefix-list Static-to-OSPF100 seq 1895 permit 207.46.203.128/26 
+ip prefix-list Static-to-OSPF100 seq 1900 permit 23.103.160.0/20 
+ip prefix-list Static-to-OSPF100 seq 1905 permit 23.103.224.0/19 
+ip prefix-list Static-to-OSPF100 seq 1910 permit 40.104.0.0/15 
+ip prefix-list Static-to-OSPF100 seq 1915 permit 40.108.0.0/19 
+ip prefix-list Static-to-OSPF100 seq 1920 permit 40.108.128.0/17 
+ip prefix-list Static-to-OSPF100 seq 1925 permit 40.96.0.0/13 
+ip prefix-list Static-to-OSPF100 seq 1930 permit 52.104.0.0/14 
+ip prefix-list Static-to-OSPF100 seq 1935 permit 70.37.151.128/25 
+ip prefix-list Static-to-OSPF100 seq 1940 permit 200.75.0.4/32 
+ip prefix-list Static-to-OSPF100 seq 1945 permit 200.75.0.5/32 
+ip prefix-list Static-to-OSPF100 seq 1950 permit 4.2.2.2/32 
+ip prefix-list Static-to-OSPF100 seq 1955 permit 4.2.2.1/32 
+ip prefix-list Static-to-OSPF100 seq 1960 permit 8.8.8.8/32 
+ip prefix-list Static-to-OSPF100 seq 1965 permit 8.8.4.4/32 
+ip prefix-list Static-to-OSPF100 seq 1970 permit 46.16.252.17/32 
+ip prefix-list Static-to-OSPF100 seq 1975 permit 200.3.241.41/32 
+ip prefix-list Static-to-OSPF100 seq 1980 permit 158.69.175.68/32 
+ip prefix-list Static-to-OSPF100 seq 1985 permit 190.7.56.251/32 
+ip prefix-list Static-to-OSPF100 seq 1990 permit 200.189.182.235/32 
+ip prefix-list Static-to-OSPF100 seq 1995 permit 216.58.202.236/32 
+ip prefix-list Static-to-OSPF100 seq 2000 permit 184.73.199.118/32 
+ip prefix-list Static-to-OSPF100 seq 2005 permit 98.200.26.168/29 
+ip prefix-list Static-to-OSPF100 seq 2010 permit 98.200.28.0/26 
+ip prefix-list Static-to-OSPF100 seq 2015 permit 209.18.119.153/32 
+ip prefix-list Static-to-OSPF100 seq 2020 permit 152.101.130.231/32 
+ip prefix-list Static-to-OSPF100 seq 2025 permit 210.5.29.242/32 
+ip prefix-list Static-to-OSPF100 seq 2030 permit 152.101.94.202/32 
+ip prefix-list Static-to-OSPF100 seq 2035 permit 192.250.22.96/32 
+ip prefix-list Static-to-OSPF100 seq 2040 permit 192.250.23.164/32 
+ip prefix-list Static-to-OSPF100 seq 2045 permit 64.76.142.99/32 
+ip prefix-list Static-to-OSPF100 seq 2050 permit 208.81.246.15/32 
+ip prefix-list Static-to-OSPF100 seq 2055 permit 200.75.13.103/32 
+ip prefix-list Static-to-OSPF100 seq 2060 permit 200.72.242.99/32 
+ip prefix-list Static-to-OSPF100 seq 2065 permit 45.56.124.184/32 
+ip prefix-list Static-to-OSPF100 seq 2070 permit 200.1.143.71/32 
+ip prefix-list Static-to-OSPF100 seq 2075 permit 190.210.170.132/32 
+ip prefix-list Static-to-OSPF100 seq 2080 permit 200.48.96.129/32 
+ip prefix-list Static-to-OSPF100 seq 2085 permit 200.48.11.216/32 
+ip prefix-list Static-to-OSPF100 seq 2090 permit 200.10.12.163/32 
+ip prefix-list Static-to-OSPF100 seq 2095 permit 68.232.203.67/32 
+ip prefix-list Static-to-OSPF100 seq 2100 permit 129.80.161.35/32 
+ip prefix-list Static-to-OSPF100 seq 2105 permit 190.81.33.140/32 
+ip prefix-list Static-to-OSPF100 seq 2110 permit 128.1.128.83/32 
+ip prefix-list Static-to-OSPF100 seq 2115 permit 190.96.69.86/32 
+ip prefix-list Static-to-OSPF100 seq 2125 permit 200.10.251.126/32 
+ip prefix-list Static-to-OSPF100 seq 2130 permit 199.102.162.0/27 
+ip prefix-list Static-to-OSPF100 seq 2135 permit 199.119.124.128/27 
+ip prefix-list Static-to-OSPF100 seq 2140 permit 200.14.111.29/32 
+ip prefix-list Static-to-OSPF100 seq 2145 permit 206.48.139.39/32 
+ip prefix-list Static-to-OSPF100 seq 2150 permit 206.48.139.70/32 
+ip prefix-list Static-to-OSPF100 seq 2155 permit 200.14.111.51/32 
+ip prefix-list Static-to-OSPF100 seq 2160 permit 190.153.179.31/32 
+ip prefix-list Static-to-OSPF100 seq 2165 permit 200.54.233.31/32 
+ip prefix-list Static-to-OSPF100 seq 2170 permit 200.10.158.31/32 
+ip prefix-list Static-to-OSPF100 seq 2175 permit 200.14.111.31/32 
+ip prefix-list Static-to-OSPF100 seq 2180 permit 200.14.111.128/25 
+ip prefix-list Static-to-OSPF100 seq 2185 permit 201.238.239.102/32 
+ip prefix-list Static-to-OSPF100 seq 2190 permit 200.10.12.33/32 
+ip prefix-list Static-to-OSPF100 seq 2195 permit 185.35.201.0/24 
+ip prefix-list Static-to-OSPF100 seq 2200 permit 98.200.0.200/29 
+ip prefix-list Static-to-OSPF100 seq 2205 permit 98.200.27.8/29 
+ip prefix-list Static-to-OSPF100 seq 2210 permit 190.153.222.186/32 
+ip prefix-list Static-to-OSPF100 seq 2215 permit 98.200.0.216/29 
+ip prefix-list Static-to-OSPF100 seq 2220 permit 200.54.27.97/32 
+ip prefix-list Static-to-OSPF100 seq 2225 permit 13.107.6.0/24 
+ip prefix-list Static-to-OSPF100 seq 2230 permit 13.107.7.0/24 
+ip prefix-list Static-to-OSPF100 seq 2235 permit 98.200.0.184/29 
+ip prefix-list Static-to-OSPF100 seq 2240 permit 10.170.21.15/32 
+ip prefix-list Static-to-OSPF100 seq 2245 permit 129.80.161.69/32 
+ip prefix-list Static-to-OSPF100 seq 2250 permit 200.10.10.171/32 
+ip prefix-list Static-to-OSPF100 seq 2255 permit 200.10.10.170/32 
+ip prefix-list Static-to-OSPF100 seq 2260 permit 200.10.10.169/32 
+ip prefix-list Static-to-OSPF100 seq 2265 permit 200.10.10.168/32 
+ip prefix-list Static-to-OSPF100 seq 2270 permit 163.250.249.9/32 
+ip prefix-list Static-to-OSPF100 seq 2275 permit 10.98.7.56/29 
+ip prefix-list Static-to-OSPF100 seq 2280 permit 200.10.169.128/26 
+ip prefix-list Static-to-OSPF100 seq 2285 permit 10.249.0.0/22 
+ip prefix-list Static-to-OSPF100 seq 2290 permit 10.249.4.0/22 
+ip prefix-list Static-to-OSPF100 seq 2295 permit 172.16.0.16/28 
+ip prefix-list Static-to-OSPF100 seq 2300 permit 10.140.64.32/28 
+ip prefix-list Static-to-OSPF100 seq 2305 permit 10.140.64.96/28 
+ip prefix-list Static-to-OSPF100 seq 2310 permit 10.140.64.160/28 
+ip prefix-list Static-to-OSPF100 seq 2315 permit 10.1.69.0/24 
+ip prefix-list Static-to-OSPF100 seq 2320 permit 10.244.0.0/16 
+ip prefix-list VLAN-VRRP seq 10 permit 108.0.1.0/24 
+ip prefix-list VLAN-VRRP seq 20 permit 10.108.0.0/28 
+ip prefix-list VLAN-VRRP seq 30 permit 98.253.1.0/24 
+ip prefix-list VLAN-VRRP seq 40 permit 108.10.0.0/24 
+ip prefix-list VLAN-VRRP seq 50 permit 10.251.4.0/24 
+ip prefix-list VLAN-VRRP seq 60 permit 10.201.26.8/29 
+ip prefix-list VLAN-VRRP seq 65 permit 10.200.18.216/29 
+route-map Connected-to-OSPF permit 10
+  match ip address prefix-list VLAN-VRRP 
+  set metric 1 
+route-map DEFAULT permit 10
+  set metric 1 
+  set metric-type type-1
+route-map Direct_2_OSPF10 permit 10
+  set metric 1 
+  set metric-type type-1
+route-map Direct_2_OSPF100 permit 10
+  set tag 1000 
+  set metric 1 
+  set metric-type type-1
+route-map OSPF100_2_OSPF10 permit 10
+  match ip address prefix-list OSPF100-to-OSPF10 
+  set metric 1 
+  set metric-type type-1
+route-map Static_2_OSPF10 permit 10
+  match ip address prefix-list Static-to-OSPF10 
+  set metric 1 
+  set metric-type type-1
+route-map Static_2_OSPF100 permit 10
+  match ip address prefix-list Static-to-OSPF100 
+  set tag 1000 
+  set metric 1 
+  set metric-type type-1
+route-map Static_2_OSPF100 permit 40
+  match ip address prefix-list Cluster-FWNokia Sala_Rosas Servidores_Rosas 
+  set metric 5 
+  set metric-type type-1
+udld aggressive
+vrf context INTERNET
+  description VRF INTERNET ACI FABRIC
+  address-family ipv4 unicast
+vrf context Keepalive
+vrf context PDI
+  description PDI-DCC
+  address-family ipv4 unicast
+vrf context Respaldos-DCC
+  description Respaldos-DCC
+  address-family ipv4 unicast
+vrf context management
+  ip name-server 10.108.1.1
+  ip route 0.0.0.0/0 10.249.0.1
+vpc domain 10
+  peer-switch
+  role priority 10
+  peer-keepalive destination 10.200.1.74 source 10.200.1.73 vrf Keepalive
+  peer-gateway exclude-vlan 34,89,305
+
+
+interface mgmt0
+  vrf member management
+  ip address 10.249.0.155/22
+
+interface Vlan1
+  no ip redirects
+
+interface Vlan11
+  description SVI VLAN Cluster-FWNokia
+  no shutdown
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  no ip redirects
+  ip address 10.108.0.2/28
+  vrrp 11
+    priority 120
+    address 10.108.0.4 
+    no shutdown
+    exit
+
+interface Vlan34
+  description *** Link L3 N7K_2-AGG-DCC ***
+  no shutdown
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.201.20.49/29
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip router ospf 100 area 0.0.0.0
+  ip pim sparse-mode
+  ip igmp version 3
+
+interface Vlan89
+  description Itx-Border-FW
+  no shutdown
+  no ip redirects
+  ip address 10.201.25.162/29
+  hsrp 89 
+    preempt 
+    priority 120
+    ip 10.201.25.164
+
+interface Vlan99
+  description SVI VLAN Ser_balanceados2
+  no ip redirects
+  ip address 98.253.1.210/24
+  vrrp 99
+    priority 120
+    address 98.253.1.1 
+    no shutdown
+    exit
+
+interface Vlan100
+  description SVI VLAN Servidores_Rosas
+  no shutdown
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  no ip redirects
+  ip address 108.10.0.168/24
+  vrrp 5
+    priority 150
+    address 108.10.0.1 
+    no shutdown
+    exit
+
+interface Vlan106
+  description Local_servers_Cientec
+  no shutdown
+  no ip redirects
+  ip address 10.1.8.4/22
+  ip router ospf 100 area 0.0.0.0
+  vrrp 22
+    priority 140
+    address 10.1.8.1 
+    no shutdown
+    exit
+
+interface Vlan108
+  description SVI VLAN Sala_Rosas
+  no shutdown
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  no ip redirects
+  ip address 108.0.1.207/24
+  vrrp 2
+    priority 120
+    address 108.0.1.22 
+    no shutdown
+    exit
+
+interface Vlan160
+  description GW_A7_BF_PE
+  no shutdown
+  no ip redirects
+  ip address 10.1.112.6/24
+  ip ospf cost 30
+  ip ospf passive-interface
+  ip router ospf 100 area 0.0.0.0
+  vrrp 60
+    priority 60
+    address 10.1.112.1 
+    no shutdown
+    exit
+
+interface Vlan161
+  description GW_A7_CMR-CL
+  no shutdown
+  no ip redirects
+  ip address 10.1.113.6/25
+  ip ospf cost 30
+  ip ospf passive-interface
+  ip router ospf 100 area 0.0.0.0
+  vrrp 60
+    priority 60
+    address 10.1.113.1 
+    no shutdown
+    exit
+
+interface Vlan305
+  description FW_VPN_BANCO
+  no shutdown
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.9.228/29
+  ip router ospf 100 area 0.0.0.0
+  vrrp 200
+    priority 160
+    address 10.200.9.225 
+    no shutdown
+    exit
+
+interface Vlan1649
+  no ip redirects
+
+interface Vlan1857
+  no shutdown
+  no ip redirects
+
+interface Vlan1858
+  no shutdown
+  no ip redirects
+
+interface Vlan1891
+  description FW_FORTINET_PROXY-NAVEGACION
+  no shutdown
+  no ip redirects
+  ip address 10.201.26.11/29
+  vrrp 34
+    priority 120
+    address 10.201.26.10 
+    no shutdown
+    exit
+
+interface port-channel10
+  description link to DCC-AGG2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,11,70,77,90,92-93,95-96,98-102
+  switchport trunk allowed vlan add 104,106-108,110,118,130,140-141
+  switchport trunk allowed vlan add 145,160-161,180-181,201-203,255
+  switchport trunk allowed vlan add 305,451,500,600,780-781,830-831
+  switchport trunk allowed vlan add 1168-1169,1631-1633,1636,1638,1640-1641
+  switchport trunk allowed vlan add 1646,1648,1668-1676,1680-1681,1684-1690
+  switchport trunk allowed vlan add 1732,1734,1744,1805-1807,1814-1815
+  switchport trunk allowed vlan add 1822-1838,1857-1858,1863,2098,2238-2239
+  switchport trunk allowed vlan add 2402-2403,2502-2503,2602-2603,2702-2703
+  switchport trunk allowed vlan add 3402-3403,3406-3407,3502-3503,3542
+  spanning-tree port type normal
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  vpc 10
+
+interface port-channel15
+  description LINK_TO_N7K-1_CORE-1
+  mtu 9216
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.20.34/29
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip router ospf 100 area 0.0.0.0
+  ip policy route-map PBR-APP-Control
+
+interface port-channel15.651
+  description Hacia N7K1-Core_GLB_SERVICIO_ACI
+  mtu 9216
+  encapsulation dot1q 651
+  ip address 10.249.201.2/30
+  ip ospf cost 5
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.11
+  no shutdown
+
+interface port-channel15.652
+  description N7K1-Core_GLB_SERVICIO_ACI_INTERNET
+  mtu 9216
+  encapsulation dot1q 652
+  vrf member INTERNET
+  ip address 10.249.200.2/30
+  ip ospf cost 5
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.12
+  no shutdown
+
+interface port-channel15.674
+  description N7K1-Core_SERVICIO_ACI_PDI
+  mtu 9216
+  encapsulation dot1q 674
+  vrf member PDI
+  ip address 10.200.24.154/29
+  ip ospf cost 5
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.14
+  no shutdown
+
+interface port-channel15.1709
+  description N7K1-Core_SERVICIO_ACI_Respaldo-DCC
+  mtu 9216
+  encapsulation dot1q 1709
+  vrf member Respaldos-DCC
+  ip address 10.200.25.106/29
+  ip ospf cost 5
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.17
+  no shutdown
+
+interface port-channel17
+  description *** vPC Peer-Link to N7K_2-AGG-DCC *** 
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,10-11,70,77,89-96,98-102,104,106-108
+  switchport trunk allowed vlan add 110,112,118,130,134,137,140-141
+  switchport trunk allowed vlan add 145,160-161,180-181,201-203,255
+  switchport trunk allowed vlan add 305,334-336,338,401-402,451,500-501
+  switchport trunk allowed vlan add 600,615-616,621,721,780-782,830-831
+  switchport trunk allowed vlan add 1041,1047-1050,1052,1113,1123,1168-1169
+  switchport trunk allowed vlan add 1199,1631-1634,1636-1642,1646-1650
+  switchport trunk allowed vlan add 1655,1657,1668-1676,1680-1681,1684-1690
+  switchport trunk allowed vlan add 1732,1734,1744,1801-1802,1805-1807
+  switchport trunk allowed vlan add 1814-1815,1822-1838,1855-1858,1863
+  switchport trunk allowed vlan add 1890-1892,2098,2238-2239,2402-2403
+  switchport trunk allowed vlan add 2502-2503,2602-2603,2702-2703,3402-3403
+  switchport trunk allowed vlan add 3406-3407,3502-3503,3542
+  spanning-tree port type network
+  vpc peer-link
+
+interface port-channel18
+  description *** vPC KeepAlive N7K_2-AGG-DCC ***
+  vrf member Keepalive
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.1.73/29
+
+interface port-channel22
+  description vPC-vFW-Cloud-Outside-ae2
+  shutdown
+  switchport
+  switchport access vlan 89
+  vpc 22
+
+interface port-channel24
+  description *** Link L3 N7K_2-AGG-DCC ***
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 34
+  mtu 9216
+
+interface port-channel33
+  description Enlace-Sodimac-Entel
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 104,451,1890
+  spanning-tree port type normal
+  vpc 33
+
+interface port-channel101
+  description link to FORTINET-PROXY (FG-2500E)
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 1891
+  spanning-tree port type edge trunk
+  speed 10000
+  vpc 101
+
+interface port-channel102
+  description link to N93180YC (DMZ-DST)
+  shutdown
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 77,203,1636,1684,1806
+  spanning-tree port type normal
+  vpc 102
+
+interface port-channel1000
+  description *** VPC-L2Out-ACI ***
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,10-11,70,77,90-94,98-102,104,106
+  switchport trunk allowed vlan add 108,110,112,134,137,140-141,160-161
+  switchport trunk allowed vlan add 180-181,201-203,255,334-336,338
+  switchport trunk allowed vlan add 401-402,451,500-501,615-616,621
+  switchport trunk allowed vlan add 721,780-782,830-831,1041,1047-1050
+  switchport trunk allowed vlan add 1052,1113,1168-1169,1199,1631-1634
+  switchport trunk allowed vlan add 1636-1642,1646-1647,1655,1657,1668-1676
+  switchport trunk allowed vlan add 1680-1681,1684-1690,1732,1734,1744
+  switchport trunk allowed vlan add 1801-1802,1805,1822-1838,1863,2402-2403
+  switchport trunk allowed vlan add 2502-2503,2602-2603,2702-2703,3402-3403
+  switchport trunk allowed vlan add 3406-3407,3502-3503,3542
+  spanning-tree port type normal
+  mtu 9216
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  vpc 1000
+
+interface Ethernet1/17
+  description *** vPC Peer-Link to N7K_2-AGG-DCC [Eth1/17] ***
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,10-11,70,77,89-96,98-102,104,106-108
+  switchport trunk allowed vlan add 110,112,118,130,134,137,140-141
+  switchport trunk allowed vlan add 145,160-161,180-181,201-203,255
+  switchport trunk allowed vlan add 305,334-336,338,401-402,451,500-501
+  switchport trunk allowed vlan add 600,615-616,621,721,780-782,830-831
+  switchport trunk allowed vlan add 1041,1047-1050,1052,1113,1123,1168-1169
+  switchport trunk allowed vlan add 1199,1631-1634,1636-1642,1646-1650
+  switchport trunk allowed vlan add 1655,1657,1668-1676,1680-1681,1684-1690
+  switchport trunk allowed vlan add 1732,1734,1744,1801-1802,1805-1807
+  switchport trunk allowed vlan add 1814-1815,1822-1838,1855-1858,1863
+  switchport trunk allowed vlan add 1890-1892,2098,2238-2239,2402-2403
+  switchport trunk allowed vlan add 2502-2503,2602-2603,2702-2703,3402-3403
+  switchport trunk allowed vlan add 3406-3407,3502-3503,3542
+  channel-group 17 mode active
+  no shutdown
+
+interface Ethernet1/18
+  description *** vPC KeepAlive to N7K_2-AGG-DCC [Eth1/18] ***
+  vrf member Keepalive
+  channel-group 18 mode active
+  no shutdown
+
+interface Ethernet1/19
+  description Conexion L2Out a BL-138-e1/45
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,10-11,70,77,90-94,98-102,104,106
+  switchport trunk allowed vlan add 108,110,112,134,137,140-141,160-161
+  switchport trunk allowed vlan add 180-181,201-203,255,334-336,338
+  switchport trunk allowed vlan add 401-402,451,500-501,615-616,621
+  switchport trunk allowed vlan add 721,780-782,830-831,1041,1047-1050
+  switchport trunk allowed vlan add 1052,1113,1168-1169,1199,1631-1634
+  switchport trunk allowed vlan add 1636-1642,1646-1647,1655,1657,1668-1676
+  switchport trunk allowed vlan add 1680-1681,1684-1690,1732,1734,1744
+  switchport trunk allowed vlan add 1801-1802,1805,1822-1838,1863,2402-2403
+  switchport trunk allowed vlan add 2502-2503,2602-2603,2702-2703,3402-3403
+  switchport trunk allowed vlan add 3406-3407,3502-3503,3542
+  mtu 9216
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  channel-group 1000 mode active
+  no shutdown
+
+interface Ethernet1/20
+  description Hacia ACI_Leaf_38-E1/43
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  no shutdown
+
+interface Ethernet1/20.1717
+  description Hacia ACI_Leaf_38-E1/43-CONEXION-BACKBONE
+  encapsulation dot1q 1717
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.20.89/29
+  ip ospf cost 600
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.11
+  no shutdown
+
+interface Ethernet1/20.1718
+  description Hacia ACI_Leaf_38-E1/43-CONEXION-PDI
+  encapsulation dot1q 1718
+  vrf member PDI
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.20.97/29
+  ip ospf cost 600
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.14
+  no shutdown
+
+interface Ethernet1/20.1719
+  description Hacia ACI_Leaf_38-E1/43-CONEXION-Respaldos-DCC
+  encapsulation dot1q 1719
+  vrf member Respaldos-DCC
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.20.105/29
+  ip ospf cost 600
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.17
+  no shutdown
+
+interface Ethernet1/21
+  description CheckPointBlackHole01-E1-02_Videoconferencia
+  switchport
+  switchport access vlan 721
+  spanning-tree port type edge
+  spanning-tree bpduguard enable
+
+interface Ethernet1/22
+  description vPC-vFW-Cloud-Outside-ae2
+  switchport
+  switchport access vlan 89
+  channel-group 22 mode active
+
+interface Ethernet1/23
+  description *** Temporal a N7K1-DCI ***
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,10-11,70,77,90-94,98-100,102,104
+  switchport trunk allowed vlan add 108,110,112,134,137,140-141,160-161
+  switchport trunk allowed vlan add 180-181,201-203,255,305,334-336
+  switchport trunk allowed vlan add 338,401-402,451,500-501,615-616
+  switchport trunk allowed vlan add 621,721,1041,1047-1050,1052,1123
+  switchport trunk allowed vlan add 1631-1634,1636-1650,1655,1657,1668-1676
+  switchport trunk allowed vlan add 1680-1681,1684-1690,1801-1802,1805-1807
+  switchport trunk allowed vlan add 1814-1815,1822-1838,1857-1858,1863
+  no shutdown
+
+interface Ethernet1/24
+  description *** Link L3 N7K_2-AGG-DCC ***
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 34
+  mtu 9216
+  channel-group 24 mode active
+  no shutdown
+
+interface Ethernet1/33
+  description description Enlace-Sodimac-Entel via EN_R28_VOYAGER1 Port9
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 104,451,1890
+  spanning-tree port type normal
+  channel-group 33 mode active
+
+interface Ethernet1/34
+  description FW-SUCURSALES ETH 1/3
+  switchport
+  switchport access vlan 305
+  spanning-tree port type edge
+  spanning-tree bpduguard enable
+  no shutdown
+
+interface Ethernet1/35
+  description link to DCC-AG07-AGG2-01 [Eth1/3]
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,11,70,77,90,92-93,95-96,98-102
+  switchport trunk allowed vlan add 104,106-108,110,118,130,140-141
+  switchport trunk allowed vlan add 145,160-161,180-181,201-203,255
+  switchport trunk allowed vlan add 305,451,500,600,780-781,830-831
+  switchport trunk allowed vlan add 1168-1169,1631-1633,1636,1638,1640-1641
+  switchport trunk allowed vlan add 1646,1648,1668-1676,1680-1681,1684-1690
+  switchport trunk allowed vlan add 1732,1734,1744,1805-1807,1814-1815
+  switchport trunk allowed vlan add 1822-1838,1857-1858,1863,2098,2238-2239
+  switchport trunk allowed vlan add 2402-2403,2502-2503,2602-2603,2702-2703
+  switchport trunk allowed vlan add 3402-3403,3406-3407,3502-3503,3542
+  spanning-tree port type normal
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  channel-group 10 mode active
+  no shutdown
+
+interface Ethernet1/36
+  speed 10000
+  duplex full
+
+interface Ethernet1/37
+  description to the FW - FwPaises_Cluster 
+  switchport
+  switchport access vlan 11
+  speed 1000
+  duplex full
+  no shutdown
+
+interface Ethernet1/38
+  description DISPONIBLE
+
+interface Ethernet1/39
+  description Reservada-ChasisPaloAlto-Activo
+
+interface Ethernet1/40
+  description DISPONIBLE
+
+interface Ethernet2/17
+  description *** vPC Peer-Link to N7K_2-AGG-DCC [Eth2/17] ***
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,10-11,70,77,89-96,98-102,104,106-108
+  switchport trunk allowed vlan add 110,112,118,130,134,137,140-141
+  switchport trunk allowed vlan add 145,160-161,180-181,201-203,255
+  switchport trunk allowed vlan add 305,334-336,338,401-402,451,500-501
+  switchport trunk allowed vlan add 600,615-616,621,721,780-782,830-831
+  switchport trunk allowed vlan add 1041,1047-1050,1052,1113,1123,1168-1169
+  switchport trunk allowed vlan add 1199,1631-1634,1636-1642,1646-1650
+  switchport trunk allowed vlan add 1655,1657,1668-1676,1680-1681,1684-1690
+  switchport trunk allowed vlan add 1732,1734,1744,1801-1802,1805-1807
+  switchport trunk allowed vlan add 1814-1815,1822-1838,1855-1858,1863
+  switchport trunk allowed vlan add 1890-1892,2098,2238-2239,2402-2403
+  switchport trunk allowed vlan add 2502-2503,2602-2603,2702-2703,3402-3403
+  switchport trunk allowed vlan add 3406-3407,3502-3503,3542
+  channel-group 17 mode active
+  no shutdown
+
+interface Ethernet2/18
+  description *** vPC KeepAlive to N7K_2-AGG-DCC [Eth2/18] ***
+  vrf member Keepalive
+  channel-group 18 mode active
+  no shutdown
+
+interface Ethernet2/19
+  description Conexion L2Out a BL-137-e1/45
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,10-11,70,77,90-94,98-102,104,106
+  switchport trunk allowed vlan add 108,110,112,134,137,140-141,160-161
+  switchport trunk allowed vlan add 180-181,201-203,255,334-336,338
+  switchport trunk allowed vlan add 401-402,451,500-501,615-616,621
+  switchport trunk allowed vlan add 721,780-782,830-831,1041,1047-1050
+  switchport trunk allowed vlan add 1052,1113,1168-1169,1199,1631-1634
+  switchport trunk allowed vlan add 1636-1642,1646-1647,1655,1657,1668-1676
+  switchport trunk allowed vlan add 1680-1681,1684-1690,1732,1734,1744
+  switchport trunk allowed vlan add 1801-1802,1805,1822-1838,1863,2402-2403
+  switchport trunk allowed vlan add 2502-2503,2602-2603,2702-2703,3402-3403
+  switchport trunk allowed vlan add 3406-3407,3502-3503,3542
+  mtu 9216
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  channel-group 1000 mode active
+  no shutdown
+
+interface Ethernet2/20
+  description Hacia ACI_Leaf_37-E1/43
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  no shutdown
+
+interface Ethernet2/20.1717
+  description Hacia ACI_Leaf_37-E1/43-CONEXION-BACKBONE
+  encapsulation dot1q 1717
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.20.65/29
+  ip ospf cost 600
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.11
+  no shutdown
+
+interface Ethernet2/20.1718
+  description Hacia ACI_Leaf_37-E1/43-CONEXION-PDI
+  encapsulation dot1q 1718
+  vrf member PDI
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.20.73/29
+  ip ospf cost 600
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.14
+  no shutdown
+
+interface Ethernet2/20.1719
+  description Hacia ACI_Leaf_37-E1/43-CONEXION-Respaldos-DCC
+  encapsulation dot1q 1719
+  vrf member Respaldos-DCC
+  ip flow monitor SolarWindsFTC input sampler SolarWinds
+  ip address 10.200.20.81/29
+  ip ospf cost 600
+  ip ospf network point-to-point
+  no ip ospf passive-interface
+  ip ospf mtu-ignore
+  ip router ospf 100 area 0.0.0.17
+  no shutdown
+
+interface Ethernet2/21
+  description reservada CheckPointBlackHole01-E1-04
+  switchport
+  switchport access vlan 1641
+  spanning-tree port type edge
+  spanning-tree bpduguard enable
+
+interface Ethernet2/22
+  description to-Checkpoint-Blackhole01-Eth03-01
+  speed 10000
+  duplex full
+  ip address 10.200.18.217/29
+  no ip ospf passive-interface
+  ip router ospf 10 area 0.0.0.0
+
+interface Ethernet2/23
+  description RESERVADA-FW-PAISES
+
+interface Ethernet2/24
+  description *** Temporal a N7K1-CORE ***
+  mtu 9216
+  channel-group 15 mode active
+  no shutdown
+
+interface Ethernet2/33
+  description ENLACE GTD:10000427858 - CI_R03C_DMZW_01(10.170.1.254) P25
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 10,70,134,140,782,1717
+  spanning-tree port type normal
+  speed 10000
+  duplex full
+  no shutdown
+
+interface Ethernet2/34
+  description DISPONIBLE
+  speed 10000
+  duplex full
+  no ip ospf passive-interface
+
+interface Ethernet2/35
+  description link to DCC-BJ06-AGG2-02 [Eth1/3]
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,11,70,77,90,92-93,95-96,98-102
+  switchport trunk allowed vlan add 104,106-108,110,118,130,140-141
+  switchport trunk allowed vlan add 145,160-161,180-181,201-203,255
+  switchport trunk allowed vlan add 305,451,500,600,780-781,830-831
+  switchport trunk allowed vlan add 1168-1169,1631-1633,1636,1638,1640-1641
+  switchport trunk allowed vlan add 1646,1648,1668-1676,1680-1681,1684-1690
+  switchport trunk allowed vlan add 1732,1734,1744,1805-1807,1814-1815
+  switchport trunk allowed vlan add 1822-1838,1857-1858,1863,2098,2238-2239
+  switchport trunk allowed vlan add 2402-2403,2502-2503,2602-2603,2702-2703
+  switchport trunk allowed vlan add 3402-3403,3406-3407,3502-3503,3542
+  spanning-tree port type normal
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  channel-group 10 mode active
+  no shutdown
+
+interface Ethernet2/36
+  description to the FW - FwPaises_HA1-B
+  switchport
+  switchport access vlan 1857
+  speed 1000
+  duplex full
+  no shutdown
+
+interface Ethernet2/37
+  description to the FW - FwPaises_HA2-B
+  switchport
+  switchport access vlan 1858
+  speed 1000
+  duplex full
+  no shutdown
+
+interface Ethernet2/38
+  description Reservado FW VPNSSL Regularizacion
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 77,203,1636,1684,1806
+  spanning-tree port type normal
+  channel-group 102 mode active
+
+interface Ethernet2/39
+  description *** Conexion a DCP_TELECO1_INTER_01 PTO 15 *** 
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,11,77,95-96,98-102,104,106-108
+  switchport trunk allowed vlan add 110,112,118,130,141,145,160-161
+  switchport trunk allowed vlan add 180-181,201-203,305,451,500,600
+  switchport trunk allowed vlan add 671-672,721,780-781,1041,1047-1050
+  switchport trunk allowed vlan add 1052,1636,1648,1655,1822,1857-1858
+  switchport trunk allowed vlan add 2098,2238-2239
+  storm-control broadcast level 10.00
+  storm-control multicast level 10.00
+  no shutdown
+
+interface Ethernet2/40
+  description FORTINET-PROXY (FG-2500E) [Port35]
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 1891
+  spanning-tree port type edge trunk
+  speed 10000
+  channel-group 101 mode active
+  no shutdown
+
+interface loopback0
+  description *** Router ID ***
+  ip address 10.108.3.110/32
+  ip router ospf 100 area 0.0.0.0
+
+interface loopback1
+  description Router ID VRF INTERNET
+  vrf member INTERNET
+  ip address 10.200.24.161/32
+  ip router ospf 100 area 0.0.0.12
+
+interface loopback2
+  description Router ID VRF PDI
+  vrf member PDI
+  ip address 10.200.24.162/32
+  ip router ospf 100 area 0.0.0.14
+
+interface loopback3
+  description Router ID Respaldos-DCC
+  vrf member Respaldos-DCC
+  ip address 10.200.24.163/32
+  ip router ospf 100 area 0.0.0.17
+logging server 10.247.4.251 5 use-vrf management
+logging server 10.145.160.106 5 use-vrf management
+logging server observium-dc.falabella.cl 4 use-vrf management
+cli alias name wr copy running-config startup-config
+line vty
+router ospf 10
+  router-id 10.108.3.110
+  redistribute ospf 100 route-map OSPF100_2_OSPF10
+  redistribute direct route-map Connected-to-OSPF
+  redistribute static route-map Static_2_OSPF10
+  log-adjacency-changes
+  passive-interface default
+router ospf 100
+  router-id 10.108.3.110
+  area 0.0.0.11 nssa no-redistribution
+  default-information originate route-map DEFAULT
+  redistribute direct route-map Connected-to-OSPF
+  redistribute static route-map Static_2_OSPF100
+  timers throttle spf 5 50 5000
+  timers lsa-arrival 40
+  timers throttle lsa 5 50 5000
+  passive-interface default
+  vrf INTERNET
+    router-id 10.200.24.161
+    area 0.0.0.12 nssa
+    timers throttle spf 5 50 5000
+    timers lsa-arrival 40
+    timers throttle lsa 5 50 5000
+  vrf PDI
+    router-id 10.200.24.162
+    area 0.0.0.14 nssa
+    timers throttle spf 5 50 5000
+    timers lsa-arrival 40
+    timers throttle lsa 5 50 5000
+  vrf Respaldos-DCC
+    router-id 10.200.24.163
+    area 0.0.0.17 nssa
+    timers throttle spf 5 50 5000
+    timers lsa-arrival 40
+    timers throttle lsa 5 50 5000
+ip tcp path-mtu-discovery
+ip sla 10
+  icmp-echo 10.200.29.186 source-ip 10.1.121.59
+    vrf Capa-Front-A7
+ip sla schedule 10 life forever start-time now
+ip sla 200
+  icmp-echo 10.200.6.234 source-ip 108.0.1.22
+ip sla schedule 200 life forever start-time now
+ip sla 210
+  icmp-echo 10.172.9.18 source-ip 108.0.1.22
+ip sla schedule 210 life forever start-time now
+ip sla 220
+  icmp-echo 10.172.8.82 source-ip 108.0.1.22
+ip sla schedule 220 life forever start-time now
+
+scheduler logfile size 500
+
+
+scheduler job name backup-N7K-config
+copy running-config tftp://10.1.2.12/N7K/AG06_N7K_1-AGG-1-$(TIMESTAMP)
+ 
+end-job
+
+scheduler schedule name weekly
+  job name backup-N7K-config
+  time weekly 05:23:00
+
+
+
+AG06_N7K_1-AGG-1# 

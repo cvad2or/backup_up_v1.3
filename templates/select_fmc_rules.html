@@ -1,0 +1,202 @@
+{% extends "bootstrap_html.html" %}
+
+{% block head %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        {% block styles %}
+        <link href="../static/css/loader.css" rel="stylesheet" />
+            <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+            <script src="../static/js/jquery.min.js"></script>
+
+
+            <script src="../static/js/tokenize2.min.js"></script>
+            <link href="../static/css/tokenize2.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="../static/css/styles.css">
+            <link href="../static/css/css_grid.css" rel="stylesheet" />
+            <link rel="shortcut icon" href="../static/img/favicon.ico">
+
+
+
+
+        {% endblock %}
+{% endblock %}
+
+{% block content %}
+<div id='cssmenu'>
+    <ul>
+       <li><a href='/'>Home</a></li>
+       <li class='active'><a href='#'>BACKUP</a>
+          <ul>
+             <li><a href='#' id="Configuracion">Configuration</a>
+                <ul>
+                   <li><a href='../full_backup'>Manual</a></li>
+                   <li><a href='../respaldo_full_programado'>Programmed</a></li>
+                </ul>
+             </li>
+           <li><a href='#' id="respaldo_state">State</a>
+            <ul>
+               <li><a href='../stateBackup'>Manual</a></li>
+               <li><a href='#'>Programmed</a></li>
+            </ul>
+         </li>
+          </ul>
+       </li>
+       <li class='active'><a href='#'>FMC</a>
+        <ul>
+          <li><a href='../fmc_start_page' id="fmc_chage_policy">Change Policy</a>
+          </li>
+        </ul>
+    </ul>
+    </div>
+    <br>
+    <br>
+        <form method="POST" action="/fmc_change_policy" id="policy_form" class="form_select">
+            <div class="wrapper">
+                    <div class="policy_select" style="width: 200px;">
+                        <select id="mySelect" name ="mySelect" required onchange="refreshRules()" style="width: 300px;">
+                            <option label="Selecciona Access Policy a aplicar" value=""></option>
+                        </select>
+                    </div>
+
+                    <div class="ips_select">
+                        <select id="ips_select" name="ips_select" style="width: 300px;">
+                            <option label="Selecciona Intrusion Policy a aplicar " value=""></option>
+                        </select>
+                    </div>
+
+                    <div class="rule_select" >
+                        <select id="rules_select" name="rules_select"  class="tokenize-demo" multiple style="width: 300px;">
+                        </select>
+                    </div>
+
+                    <div class="file_select">
+                        <select id="files_select" name="files_select" style="width: 300px;">
+                            <option label="Selecciona File Policy a aplicar " value=""> </option>
+                        </select>
+                    </div>
+
+                    <div class="var_select">
+                        <select id="var_select" name="var_select" style="width: 300px;">
+                            <option label="Selecciona Variable Set a aplicar " value=""> </option>
+                        </select>
+                    </div>
+
+                    <div class="logBegin_select" hidden>
+                        <select id="logBegin_select" name="logBegin_select" >
+                            <option label="Enable logBegin " value="">  </option>
+                        </select>
+                    </div>
+
+                    <div class="logEnd_select" hidden>
+                        <select id="logEnd_select" name="logEnd_select">
+                            <option label="Enable logEnd " value="">  </option>
+                        </select>
+                    </div>
+
+                    <div class="boton">
+                        <button type="submit" id="Apply_Policy">Aplicar Politicas</button>
+                    </div>
+
+
+            </div>
+        </form>
+
+
+        <div id="loader" class="center"></div>
+
+        <script>
+
+            $(window).load(function() {
+                $('#loader').hide();
+              });
+
+
+            var respuesta_policy = JSON.parse({{lista_de_politicas | tojson}});
+            for (resp in respuesta_policy){
+                $('#mySelect').append('<option value='+'"'+resp+'"'+'>'+resp+'</option>');
+            }
+            var respuesta_ips = JSON.parse({{lista_de_ips | tojson}});
+            for (resp in respuesta_ips){
+                ///console.log(respuesta_ips[resp]);
+                $('#ips_select').append('<option value='+'"'+resp+'"'+'>'+resp+'</option>');
+            }
+            var respuesta_files = JSON.parse({{lista_de_files | tojson}});
+            for (resp in respuesta_files){
+                //console.log(respuesta_files[resp]);
+                $('#files_select').append('<option value='+'"'+resp+'"'+'>'+resp+'</option>');
+            }
+            var respuesta_variables = JSON.parse({{lista_de_variables | tojson}});
+            for (resp in respuesta_variables){
+                //console.log(respuesta_files[resp]);
+                $('#var_select').append('<option value='+'"'+resp+'"'+'>'+resp+'</option>');
+            }
+
+
+
+            $('.tokenize-demo').tokenize2({
+            placeholder: 'Selecciona Reglas a aplicar......',
+            sortable: true,
+            dataSource: 'select'
+            });
+
+
+            function refreshRules(){
+                var respuesta_policy = JSON.parse({{lista_de_rules | tojson}});
+                var policy_select = document.getElementById("mySelect").value
+                $(".tokenize-demo").empty();
+                for (policy_name in respuesta_policy){
+                    if (policy_select==policy_name){
+                        var veremos = respuesta_policy[policy_name].length
+                        for (i = 0; i < veremos; i++) {
+                            $('.tokenize-demo').append('<option value='+'"'+respuesta_policy[policy_name][i][1]+'"'+'>'+respuesta_policy[policy_name][i][1]+'</option>');
+                        }
+                    }
+                }
+            };
+
+            $("#policy_form").submit(function(){
+                ips = document.getElementById("ips_select").value
+                files = document.getElementById("files_select").value
+                logBegin = document.getElementById("logBegin_select").value
+                logEnd = document.getElementById("logEnd_select").value
+                var_set = document.getElementById("var_select").value
+                var conf = confirm("Confirma por favor los cambios a realiar!");
+                if (conf==false){
+
+                    return false;
+                }
+                if (ips == "" && var_set !=""){
+                    alert("No se puede habilitar Variable Set sin IPS Policy");
+                    return false;
+                }
+                if (ips == "" && files =="" && logBegin =="" && logEnd ==""){
+                    alert("Todos parametros no pueden estar vacios. Seleccione alguno!");
+                    return false;
+                }
+                return true;
+            });
+            $(document).ready(function() {
+                var seleccion = $('#mySelect').multiselect({
+                    enableClickableOptGroups: true
+                });
+                var seleccion = $('#ips_select').multiselect({
+                    enableClickableOptGroups: true
+                });
+                var seleccion = $('#files_select').multiselect({
+                    enableClickableOptGroups: true
+                });
+                var seleccion = $('#var_select').multiselect({
+                    enableClickableOptGroups: true
+                });
+                var seleccion = $('#logEnd_select').multiselect({
+                    enableClickableOptGroups: true
+                });
+                var seleccion = $('#logBegin_select').multiselect({
+                    enableClickableOptGroups: true
+                });
+            });
+        </script>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,84 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="../static/css/styles.css">
+      <link rel="shortcut icon" href="../static/img/favicon.ico">
+    </head>
+    <body>
+      <div id='cssmenu'>
+         <ul>
+            <li><a href='/'>Home</a></li>
+            <li class='active'><a href='#'>BACKUP</a>
+               <ul>
+                  <li><a href='#' id="Configuracion">Configuration</a>
+                     <ul>
+                        <li><a href='../full_backup'>Manual</a></li>
+                        <li><a href='../respaldo_full_programado'>Programmed</a></li>
+                     </ul>
+                  </li>
+                <li><a href='#' id="respaldo_state">State</a>
+                 <ul>
+                    <li><a href='../stateBackup'>Manual</a></li>
+                    <li><a href='#'>Programmed</a></li>
+                 </ul>
+              </li>
+               </ul>
+            </li>
+            <li class='active'><a href='#'>FMC</a>
+             <ul>
+               <li><a href='../fmc_start_page' id="fmc_chage_policy">Change Policy</a>
+               </li>
+             </ul>
+         </ul>
+         </div>
+        <br>
+        <form action="/full_program_Backup" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <input type="file" name="file" required="true">
+            <label for="quantity">Execute every...</label>
+            <input type="number" style="width: 50;" id="quantity" name="quantity" min="1" max="30" required="true">
+            <select name="frecuencia" id="frecuencia">
+                <option value="minuto">Minutes</option>
+                <option value="hora">Hours</option>
+                <option value="dia">Days</option>
+              </select>
+            <input type="submit" value="Create Backup">
+        </form>
+
+        <div class="message_holder">
+          <table class="t1">
+            <tr>
+              <th colspan="3" style="width: 800px;"><h3>Active backups</h3></th>
+           </tr>
+             <tr>
+                <th style="width: 250px;">ID</th>
+                <th style="width: 450px;">Description</th>
+                <th>Delete</th>
+             </tr>
+             {% for mensaje in respuesta%}
+             <tr>
+                <td>{{mensaje.id}}</td>
+                <td>Every {{ mensaje.trigger.interval}}</td>
+                <td><input type="checkbox" id={{mensaje.id}} onclick="EliminarTrabajo(id)"></td>
+             </tr>
+             {% endfor %}
+          </table>
+            
+         
+        </div>
+
+       <script>
+         function EliminarTrabajo(trabajo){
+          if (confirm("Eliminar trabajo con ID "+trabajo)){
+            //window.location.href = "/trabajo/"+trabajo;
+            window.location.replace("/trabajo/"+trabajo);
+          }
+          else {
+            document.getElementById(trabajo).checked = false;
+            window.location.reload();
+          } 
+         }
+       </script>
+  
+    </body>
+</html>
+
+

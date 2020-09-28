@@ -1,0 +1,28 @@
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: 150px 150px 10px 150px 150px 10px 200px;
+            grid-template-rows: auto 10px auto 10px auto 10px auto 10px auto;
+            grid-template-areas:
+            "policy_select . . ips_select ips_select . boton"
+            " . . . . . . ."
+            "rule_select rule_select . file_select file_select . ."
+            ". . . . . . ."
+            ". . . var_select var_select . ."
+            ". . . . . . ."
+            ". . . logBegin_select logBegin_select . ."
+            ". . . . . . ."
+            ". . . logEnd_select logEnd_select . ."
+            }
+
+
+            .policy_select { grid-area: policy_select;width: 200px; }
+            .rule_select { grid-area: rule_select;}
+            .ips_select { grid-area: ips_select; }
+            .var_select { grid-area: file_select; }
+            .file_select { grid-area: var_select; }
+            .boton { grid-area: boton; }
+            .logBegin_select { grid-area: logBegin_select;}
+            .logEnd_select { grid-area: logEnd_select; }
+
+

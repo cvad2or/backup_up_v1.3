@@ -1,0 +1,2671 @@
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+swc624_21(config)#exit
+swc624_21#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES NVRAM  administratively down down    
+Vlan2                  10.136.1.2      YES manual up                    up      
+Vlan4                  10.136.4.2      YES manual up                    up      
+Vlan5                  unassigned      YES unset  up                    up      
+Vlan6                  10.136.6.2      YES manual up                    up      
+Vlan7                  10.136.7.2      YES manual up                    up      
+Vlan11                 10.136.11.2     YES manual up                    up      
+Vlan12                 10.136.12.2     YES manual up                    up      
+Vlan13                 10.136.13.2     YES manual up                    up      
+Vlan14                 10.136.14.2     YES manual up                    up      
+Vlan16                 10.171.116.2    YES manual up                    up      
+Vlan17                 10.171.117.2    YES manual up                    up      
+Vlan19                 10.136.29.2     YES manual up                    up      
+Vlan22                 10.136.15.2     YES manual up                    up      
+Vlan24                 10.171.24.2     YES manual up                    up      
+Vlan25                 10.171.25.2     YES manual up                    up      
+Vlan31                 10.136.31.2     YES manual up                    up      
+Vlan40                 172.22.7.5      YES NVRAM  administratively down down    
+Vlan50                 10.136.0.67     YES manual up                    up      
+Vlan65                 100.61.5.5      YES manual up                    up      
+Vlan77                 10.171.77.2     YES manual up                    up      
+Vlan80                 10.171.76.3     YES manual up                    up      
+Vlan100                10.136.0.18     YES manual up                    up      
+Vlan103                10.136.0.34     YES manual up                    up      
+Vlan113                10.171.113.2    YES manual up                    up      
+Vlan114                10.136.0.115    YES manual up                    up      
+Vlan115                10.171.115.2    YES manual up                    up      
+Vlan120                10.171.104.2    YES manual up                    up      
+Vlan122                10.171.105.2    YES manual up                    up      
+Vlan130                130.145.0.254   YES manual up                    up      
+Vlan171                10.171.74.2     YES manual up                    up      
+Vlan172                10.171.75.2     YES manual up                    up      
+Vlan200                10.136.8.200    YES manual up                    up      
+Vlan210                10.170.210.17   YES NVRAM  administratively down down    
+Vlan222                172.22.3.2      YES NVRAM  up                    up      
+Vlan251                10.171.81.4     YES NVRAM  administratively down down    
+Vlan254                10.171.69.11    YES NVRAM  administratively down down    
+Vlan258                172.22.6.2      YES NVRAM  administratively down down    
+Vlan260                10.171.73.26    YES NVRAM  up                    up      
+Vlan261                10.10.10.2      YES manual up                    up      
+Vlan278                172.22.80.1     YES NVRAM  up                    up      
+Vlan441                4.4.4.2         YES manual up                    up      
+Vlan666                10.171.108.2    YES manual up                    up      
+Vlan1000               172.22.1.5      YES NVRAM  administratively down down    
+Vlan1001               10.171.66.5     YES NVRAM  administratively down down    
+Vlan1032               10.171.70.4     YES manual up                    up      
+Vlan1061               10.171.12.2     YES manual up                    up      
+Vlan1062               10.171.73.12    YES manual up                    up      
+Vlan1063               10.171.73.20    YES manual up                    up      
+GigabitEthernet0/0     unassigned      YES NVRAM  administratively down down    
+TwentyFiveGigE1/0/1    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/2    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/3    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/4    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/5    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/6    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/7    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/8    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/9    unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/10   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/11   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/12   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/13   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/14   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/15   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/16   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/17   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/18   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/19   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/20   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/21   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/22   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/23   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/24   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/25   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/26   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/27   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/28   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/29   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/30   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/31   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/32   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/33   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/34   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/35   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/36   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/37   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/38   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/39   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/40   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/41   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/42   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/43   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/44   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/45   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/46   unassigned      YES unset  up                    up      
+TwentyFiveGigE1/0/47   unassigned      YES unset  down                  down    
+TwentyFiveGigE1/0/48   unassigned      YES unset  up                    up      
+HundredGigE1/0/49      unassigned      YES unset  down                  down    
+HundredGigE1/0/50      unassigned      YES unset  down                  down    
+HundredGigE1/0/51      unassigned      YES unset  down                  down    
+HundredGigE1/0/52      unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/1    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/2    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/3    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/4    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/5    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/6    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/7    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/8    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/9    unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/10   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/11   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/12   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/13   unassigned      YES unset  administratively down down    
+TwentyFiveGigE2/0/14   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/15   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/16   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/17   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/18   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/19   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/20   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/21   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/22   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/23   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/24   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/25   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/26   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/27   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/28   unassigned      YES unset  up                    up      
+TwentyFiveGigE2/0/29   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/30   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/31   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/32   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/33   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/34   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/35   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/36   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/37   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/38   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/39   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/40   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/41   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/42   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/43   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/44   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/45   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/46   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/47   unassigned      YES unset  down                  down    
+TwentyFiveGigE2/0/48   unassigned      YES unset  up                    up      
+HundredGigE2/0/49      unassigned      YES unset  down                  down    
+HundredGigE2/0/50      unassigned      YES unset  down                  down    
+HundredGigE2/0/51      unassigned      YES unset  down                  down    
+HundredGigE2/0/52      unassigned      YES unset  down                  down    
+Port-channel1          unassigned      YES unset  up                    up      
+Port-channel4          unassigned      YES unset  up                    up      
+Port-channel7          unassigned      YES unset  up                    up      
+Port-channel11         unassigned      YES unset  up                    up      
+Port-channel12         unassigned      YES unset  up                    up      
+Port-channel13         unassigned      YES unset  up                    up      
+Port-channel14         unassigned      YES unset  up                    up      
+Port-channel99         unassigned      YES unset  up                    up      
+swc624_21#show running
+Building configuration...
+
+Current configuration : 77317 bytes
+!
+! Last configuration change at 21:56:31 CHL Fri Sep 11 2020 by ganavalon
+! NVRAM config last updated at 21:45:51 CHL Fri Sep 11 2020 by ganavalon
+!
+version 16.12
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+service compress-config
+service call-home
+no platform punt-keepalive disable-kernel-core
+!
+hostname swc624_21
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 49250
+enable secret 9 $14$LdFt$s0e4gRVXIg8x.E$FKte9Yani9JO0OQgc7Mj1CVXJQghWjHjedIA6J.xRB6
+!
+aaa new-model
+!
+!
+aaa group server tacacs+ TACACS-METLIFE
+ server 10.49.80.11
+ server 10.50.110.11
+ server-private 10.49.80.11 key 7 020A0D550A141B2345421F100B1B1305
+ server-private 10.50.110.11 key 7 141B1B050D163E292D24253C2C1F0618
+ ip tacacs source-interface Vlan80
+!
+aaa authentication login default group TACACS-METLIFE local
+aaa authentication login METSCHEME group TACACS-METLIFE local
+aaa authentication enable default group TACACS-METLIFE enable
+aaa authorization config-commands
+aaa authorization exec default group TACACS-METLIFE local if-authenticated 
+aaa authorization commands 1 default group TACACS-METLIFE if-authenticated 
+aaa authorization commands 15 default group TACACS-METLIFE local if-authenticated 
+aaa accounting exec default start-stop group TACACS-METLIFE
+aaa accounting commands 0 default start-stop group TACACS-METLIFE
+aaa accounting commands 1 default start-stop group TACACS-METLIFE
+aaa accounting commands 15 default start-stop group TACACS-METLIFE
+aaa accounting connection default start-stop group TACACS-METLIFE
+aaa accounting system default start-stop group TACACS-METLIFE
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone UTC -4 0
+clock summer-time CHL recurring 2 Sun Aug 0:00 2 Sun May 0:00
+switch 1 provision c9500-48y4c
+switch 2 provision c9500-48y4c
+boot system bootflash:packages.conf
+boot system bootflash:cat9k_iosxe.16.12.03a.SPA.bin
+stackwise-virtual
+ domain 10
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+  no destination transport-method email
+!
+ip vrf mgmtVrf
+!
+ip vrf prove-MET
+ rd 16874:254
+ route-target export 16874:254
+ route-target import 16874:254
+!
+ip name-server 10.171.70.66 10.170.71.236
+ip domain name metnet.net
+ip dhcp excluded-address 10.136.11.1 10.136.11.50
+ip dhcp excluded-address 10.136.11.230 10.136.11.254
+ip dhcp excluded-address 10.136.4.1 10.136.4.50
+ip dhcp excluded-address 10.136.4.200 10.136.4.254
+ip dhcp excluded-address 10.136.1.230 10.136.1.254
+ip dhcp excluded-address 10.136.15.1 10.136.15.50
+ip dhcp excluded-address 10.136.15.200 10.136.15.254
+ip dhcp excluded-address 192.168.56.1 192.168.56.100
+ip dhcp excluded-address 192.168.56.103 192.168.56.254
+ip dhcp excluded-address 10.136.19.1 10.136.19.2
+ip dhcp excluded-address 10.136.19.65 10.136.19.66
+ip dhcp excluded-address 10.136.19.62 10.136.19.64
+ip dhcp excluded-address 10.136.19.94 10.136.19.96
+ip dhcp excluded-address 10.136.19.30 10.136.19.34
+ip dhcp excluded-address 10.136.19.97 10.136.19.98
+ip dhcp excluded-address 10.136.19.126 10.136.19.130
+ip dhcp excluded-address 10.136.19.158 10.136.19.162
+ip dhcp excluded-address 10.136.19.190 10.136.19.194
+ip dhcp excluded-address 10.136.19.222 10.136.19.226
+ip dhcp excluded-address 10.136.19.253 10.136.19.255
+ip dhcp excluded-address 10.136.19.124
+ip dhcp excluded-address 10.136.4.212
+ip dhcp excluded-address 10.136.1.14
+ip dhcp excluded-address 10.136.1.25
+ip dhcp excluded-address 10.136.1.1 10.136.1.12
+ip dhcp excluded-address 10.136.1.35 10.136.1.50
+ip dhcp excluded-address 10.171.70.1 10.171.70.89
+ip dhcp excluded-address 10.171.70.95 10.171.70.254
+ip dhcp excluded-address 10.171.105.1 10.171.105.10
+ip dhcp excluded-address 10.171.105.230 10.171.105.255
+ip dhcp excluded-address 10.136.4.55 10.136.4.74
+ip dhcp excluded-address 10.136.15.248
+ip dhcp excluded-address 10.136.15.235
+ip dhcp excluded-address 10.136.15.247
+ip dhcp excluded-address 10.136.12.32
+ip dhcp excluded-address 10.136.4.230
+ip dhcp excluded-address 10.136.4.238
+ip dhcp excluded-address 10.136.11.240
+ip dhcp excluded-address 10.171.117.1 10.171.117.3
+ip dhcp excluded-address 10.136.1.249 10.136.1.250
+ip dhcp excluded-address 10.136.4.127
+ip dhcp excluded-address 10.136.1.181
+ip dhcp excluded-address 10.136.1.183
+ip dhcp excluded-address 10.136.1.118
+ip dhcp excluded-address 10.136.11.140
+ip dhcp excluded-address 10.171.12.1 10.171.12.10
+ip dhcp excluded-address 10.136.1.83
+ip dhcp excluded-address 10.136.1.84
+ip dhcp excluded-address 10.136.1.85
+ip dhcp excluded-address 10.136.1.86
+ip dhcp excluded-address 10.136.1.87
+ip dhcp excluded-address 10.171.12.1
+ip dhcp excluded-address 10.171.12.2
+ip dhcp excluded-address 10.171.12.3
+ip dhcp excluded-address 10.136.14.230 10.136.14.254
+ip dhcp excluded-address 10.136.14.1 10.136.14.50
+ip dhcp excluded-address 10.136.1.192 10.136.1.195
+ip dhcp excluded-address 10.136.1.158 10.136.1.159
+!
+ip dhcp pool RANCAGUA
+ network 10.136.19.64 255.255.255.224
+ default-router 10.136.19.65 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool ANTOFAGASTA
+ network 10.136.19.0 255.255.255.224
+ default-router 10.136.19.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool CALAMA
+ network 10.136.19.96 255.255.255.224
+ default-router 10.136.19.97 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool LOS_ANGELES
+ network 10.136.20.0 255.255.255.224
+ default-router 10.136.20.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool SAN_FELIPE
+ network 10.136.19.160 255.255.255.224
+ default-router 10.136.19.161 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PUERTO_MONTT
+ network 10.136.20.32 255.255.255.224
+ default-router 10.136.20.33 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-14_IGALAZ
+ host 10.136.14.172 255.255.255.0
+ client-identifier 0100.2713.5401.cc
+ client-name 14_IGALAZ
+ default-router 10.136.14.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.200 10.136.8.12 
+!
+ip dhcp pool PISO-1_52
+ client-identifier 0100.016c.4d20.55
+ client-name 1-233
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-1_62
+ client-identifier 0100.1641.2c58.de
+ client-name 1-233
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-1_104
+ client-identifier 0100.096b.23a9.55
+ client-name 1-233
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-1_117
+ client-identifier 0100.016c.4d20.c3
+ client-name 1-233
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+ip dhcp pool PISO-4_210
+ host 10.136.4.210 255.255.255.0
+ client-identifier 0100.1e90.9dfa.67
+ client-name 4-210
+ default-router 10.136.4.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool PISO-4_211
+ host 10.136.4.211 255.255.255.0
+ client-identifier 001e.90a3.2ac7
+ client-name 4-211
+ default-router 10.136.4.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool PISO-5
+ network 10.136.31.0 255.255.255.0
+ default-router 10.136.31.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool Piso_5_IMPRESORA
+ host 10.136.31.244 255.255.255.0
+ client-identifier 0100.00aa.c702.e0
+ client-name IMPRESORA
+ default-router 10.136.31.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool PISO-6_JSOBARZO
+ host 10.136.6.75 255.255.255.0
+ client-name JSOBARZO
+ default-router 10.136.6.1 
+ domain-name metlife.cl
+ dns-server 10.171.70.154 10.218.30.124 
+!
+ip dhcp pool PISO-1-211-impre
+ host 10.136.1.211 255.255.255.0
+ hardware-address 24be.0520.009d
+ client-name 1-211
+ default-router 10.136.1.1 
+ domain-name metlife.cl
+ dns-server 10.136.8.7 10.136.8.12 
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+vtp domain SONDA-INTERAMERICANA
+vtp mode transparent
+no device-tracking logging theft
+!
+table-map AutoQos-4.0-Trust-Dscp-Table
+ default copy
+table-map AutoQos-4.0-Trust-Cos-Table
+ default copy
+!
+!
+crypto pki trustpoint TP-self-signed-3661210606
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3661210606
+ revocation-check none
+ rsakeypair TP-self-signed-3661210606
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment terminal
+ revocation-check crl
+!
+!
+crypto pki certificate chain TP-self-signed-3661210606
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33363631 32313036 3036301E 170D3230 30363132 32333239 
+  34305A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 36363132 
+  31303630 36308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100B070 C067AC25 6A33C3A1 B5EB01BA 03219076 AC723F1D AF4A8B57 
+  C4A74242 BB402302 8455C16B 98D19B06 76806D10 75EFB5A4 310816A6 8D356250 
+  9C52173A 3FF1E462 F7794F26 C40B3317 17951726 4EA18F5F CBFFD14E 5402C5EA 
+  EB326A6B 0FADB5AC 43C98EB3 BF82DAA9 8831A9A2 48D9100A 4C4C63AC 681B0A30 
+  5C343CDC 01C78128 D53A34D8 5F270A30 70A9A44C B861C423 0044F306 B1B40DBA 
+  7CB76318 EBADB622 FEA5502C 24A7768F F8CF1E2F 515C79DB 54AB9776 0C479546 
+  3CA7B73A F199EDD7 F083020F B15E79BA 84D8347E FE55C67A D6A29F1E 559F4653 
+  E947B813 E67A2B9E 1F69B789 CCBE212B 391BC9FC 9A01C70A A1E40AEF 31E067E7 
+  C4AFB0C6 074F0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 1451B8B7 7EF47BD9 51BEB798 692B8B5C C675AB89 
+  F1301D06 03551D0E 04160414 51B8B77E F47BD951 BEB79869 2B8B5CC6 75AB89F1 
+  300D0609 2A864886 F70D0101 05050003 82010100 A6A823C1 C9C11D2C C95CCD15 
+  3129D337 A5EC1834 58931842 9FDD6E77 09835473 6E0924C4 8A9B6322 9461E9F4 
+  80E1A783 39507AE3 706D553C 7BE06D4E 83495677 BF16DCC6 4C3E591B F7401014 
+  E06E67D2 97098C79 BA03F39A 1A2A3B1D A4768B87 86E343E1 FCC08EC8 BAF67361 
+  38632AD8 9ABF4793 7BFAABBB 8FA9A188 FC032E8C E69D755D 97CB7100 0A1FCE87 
+  C19646FF 0A29B443 31AC6A31 C1B79788 18889B0B 352F9D11 A7806590 E8455595 
+  43B95A89 3F50D90C E174F0BB 2EE0B9A4 4768ADD4 61925148 FD274A17 51C53585 
+  B23C0F5C 15CB4E8E C0C05157 6E2EEB66 A305B782 78E03679 166D413A 7BDF6603 
+  56B630AF 206FC38B C8DF037A 1DD8E45A 763A2C80
+  	quit
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+!
+!
+license boot level network-advantage addon dna-advantage
+license smart transport callhome
+!
+!
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+spanning-tree vlan 2,4-7,11-14,20,22,50,80,100,103,115,130,171 priority 16384
+spanning-tree vlan 200,998,1040,4080 priority 16384
+spanning-tree vlan 16-17,65,71-73,75,77,102,105,111-113,161-164 priority 24576
+spanning-tree vlan 166-167,172,222,260-261,441,3071 priority 24576
+spanning-tree vlan 470-471 priority 4096
+spanning-tree vlan 666 priority 28672
+spanning-tree vlan 1061 priority 12288
+archive
+ log config
+  logging enable
+  logging size 200
+  notify syslog contenttype plaintext
+  hidekeys
+memory free low-watermark processor 186785
+!
+username alex privilege 15 password 7 13041B1713
+username Didata7 privilege 7 secret 9 $14$k1Dh$KhBXjW40yKBNdU$AJ4gvom0nWOd8v5neoSucyYjfLy//3T0Eru2vnTGjbI
+username Didata14 privilege 15 secret 9 $14$1tN.$v2Icrb8Co2LZdk$Q0AxyhzkSji6RjCr3p5JHVqU2LXDDL4mjsDqcu7SeMw
+username NTT15 privilege 15 secret 9 $14$lK7w$jEZJu6wzdb9NM.$bXHuNag9Mkgoq4g4SQWc6t2kBvZ9gfJ.0NLwQx6kd/A
+username mlfadmin privilege 15 secret 9 $9$WXd.//13PEIpiU$UAG4CKJq2Kq33ZZ7idT3lUEOig/yaZF0SVLdBU5ITI.
+!
+redundancy
+ mode sso
+!
+!
+!
+!
+!
+transceiver type all
+ monitoring
+!
+vlan 2
+ name DATOS_PISO-1_EP
+!
+vlan 4
+ name DATOS_PISO-4
+!
+vlan 5
+ name Piso5
+!
+vlan 6
+ name DATOS_PISO-6
+!
+vlan 7
+ name DATOS_PISO-7
+!
+vlan 11
+ name DATOS_PISO-11
+!
+vlan 12
+ name DATOS_PISO-12
+!
+vlan 13
+ name DATOS_PISO-13
+!
+vlan 14
+ name DATOS_PISO-14
+!
+vlan 16
+ name PISO-16
+!
+vlan 17
+ name Piso_17
+!
+vlan 19
+ name DATOS_PISO-19
+!
+vlan 20
+ name NATIVE
+!
+vlan 22
+ name DATOS_PISO-22
+!
+vlan 24
+ name PISO-24
+!
+vlan 25
+ name PISO-25
+!
+vlan 26
+ name secure_infra
+!
+vlan 31
+ name Vlan31-prueba
+!
+vlan 40
+ name Regiones-MET
+!
+vlan 50
+ name INTER-RED_ENLACES
+!
+vlan 63
+ name SIP
+!
+vlan 65
+ name INTER-RED_VOIP
+!
+vlan 71
+ name VOIP_PISO-ENTREPISO
+!
+vlan 72
+ name VOIP_PISO-1
+!
+vlan 73
+ name VOIP_PISO-4_y_6
+!
+vlan 74
+ name TOIP_PISO6
+!
+vlan 75
+ name VOIP_PISO-7
+!
+vlan 77
+ name PROD-PMC
+!
+vlan 80
+ name INTER-METLIFE
+!
+vlan 90
+ name dr_users
+!
+vlan 100
+ name RED-FW_BACK-END
+!
+vlan 102
+ name METLIFE-PRINTER
+!
+vlan 103
+ name RED_FW_EXTRANET
+!
+vlan 104
+ name wifi
+!
+vlan 105
+ name SOMA
+!
+vlan 106
+ name guest
+!
+vlan 110 
+!
+vlan 111
+ name METLIFE_BLOMBERG
+!
+vlan 112
+ name La_Bolsa_Prov
+!
+vlan 113
+ name PISO-3
+!
+vlan 114
+ name SERVER-DHCP
+!
+vlan 115
+ name LAS_HIEDRAS
+!
+vlan 119
+ name morgado_net
+!
+vlan 120
+ name datos_piso_20
+!
+vlan 122
+ name datos_piso_22
+!
+vlan 130
+ name DATOS_SERVER-RED-130
+!
+vlan 161
+ name VOIP_PISO-11
+!
+vlan 162
+ name VOIP_PISO-12
+!
+vlan 163
+ name VOIP_PISO-13
+!
+vlan 164
+ name VOIP_PISO-14
+!
+vlan 166
+ name VOIP_PISO-22
+!
+vlan 167
+ name VOIP_PISO-19
+!
+vlan 171
+ name DATOS-METLIFE
+!
+vlan 172
+ name WLC-METLIFE
+!
+vlan 200
+ name DATOS_SERVER-RED-200
+!
+vlan 210
+ name EIGRP->210
+!
+vlan 222
+ name RED-ASTERISK
+!
+vlan 235
+ name Metlife_Piso3
+!
+vlan 251
+ name VL1003_Vcenter
+!
+vlan 254
+ name MET_FW_PROVEEDORES
+!
+vlan 258
+ name CORE-FW_MET-INTER
+!
+vlan 260
+ name ANIDA-Probe
+!
+vlan 261
+ name rstp_edge_no_borrar
+!
+vlan 278
+ name DimensionData_test
+!
+vlan 305
+ name lared3
+!
+vlan 315
+ name Bucarest-Agustinas
+!
+vlan 441
+ name leds_torre
+!
+vlan 470
+ name METLIFE_MESA-DINERO
+!
+vlan 471
+ name BOLSA
+!
+vlan 534
+ name pa850-net
+!
+vlan 666
+ name ironmountain
+!
+vlan 998
+ name servidores_3
+!
+vlan 999
+ name libres
+!
+vlan 1000
+ name servidores
+!
+vlan 1001
+ name Servers
+!
+vlan 1011
+ name prod_servers
+!
+vlan 1012
+ name test_servers
+!
+vlan 1013
+ name desa_servers
+!
+vlan 1032
+ name MET_SERVERS
+!
+vlan 1040
+ name int_wlan
+!
+vlan 1060
+ name VOIP-SERVER
+!
+vlan 1061
+ name VOIP-PHONE
+!
+vlan 1062
+ name INTER-RED-STACK
+!
+vlan 1063
+ name INTER-RED2-STACK
+!
+vlan 1505
+ name INTER-NET_CORE
+!
+vlan 3071
+ name vtc-cambio
+!
+vlan 4045
+ name internet-Paloalto
+!
+vlan 4080
+ name VTC
+!
+vlan 4081
+ name MILA-MET
+!
+vlan 4083
+ name ibm_agustinas
+lldp run
+!
+!
+class-map match-any system-cpp-police-ewlc-control
+  description EWLC Control 
+class-map match-any AutoQos-4.0-Output-Multimedia-Conf-Queue
+ match dscp af41  af42  af43 
+ match cos  4 
+class-map match-any system-cpp-police-topology-control
+  description Topology control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, L2 LVX data packets, LOGGING, Transit Traffic
+class-map match-any AutoQos-4.0-Output-Bulk-Data-Queue
+ match dscp af11  af12  af13 
+ match cos  1 
+class-map match-any system-cpp-default
+  description EWLC Data, Inter FED Traffic 
+class-map match-any system-cpp-police-sys-data
+  description Openflow, Exception, EGR Exception, NFL Sampled Data, RPF Failed
+class-map match-any AutoQos-4.0-Output-Priority-Queue
+ match dscp cs4  cs5  ef 
+ match cos  5 
+class-map match-any system-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any AutoQos-4.0-Output-Multimedia-Strm-Queue
+ match dscp af31  af32  af33 
+class-map match-any system-cpp-police-l2lvx-control
+  description L2 LVX control packets
+class-map match-any system-cpp-police-forus
+  description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+class-map match-any system-cpp-police-high-rate-app
+  description High Rate Applications 
+class-map match-any system-cpp-police-multicast
+  description MCAST Data
+class-map match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map match-any system-cpp-police-data
+  description ICMP redirect, ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-stackwise-virt-control
+  description Stackwise Virtual OOB
+class-map match-any non-client-nrt-class
+class-map match-any system-cpp-police-routing-control
+  description Routing control and Low Latency
+class-map match-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+class-map match-any AutoQos-4.0-Output-Trans-Data-Queue
+ match dscp af21  af22  af23 
+ match cos  2 
+class-map match-any system-cpp-police-dhcp-snooping
+  description DHCP snooping
+class-map match-any system-cpp-police-ios-routing
+  description L2 control, Topology control, Routing control, Low Latency
+class-map match-any system-cpp-police-system-critical
+  description System Critical and Gold Pkt
+class-map match-any AutoQos-4.0-Output-Scavenger-Queue
+ match dscp cs1 
+class-map match-any system-cpp-police-ios-feature
+  description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed
+class-map match-any AutoQos-4.0-Output-Control-Mgmt-Queue
+ match dscp cs2  cs3  cs6  cs7 
+ match cos  3 
+!
+policy-map DSCP-DEF
+ class class-default
+  set dscp default
+policy-map AutoQos-4.0-Output-Policy
+ class AutoQos-4.0-Output-Priority-Queue
+  priority level 1 percent 30
+ class AutoQos-4.0-Output-Control-Mgmt-Queue
+  bandwidth remaining percent 10 
+  queue-limit dscp cs2 percent 80
+  queue-limit dscp cs3 percent 90
+  queue-limit dscp cs6 percent 100
+  queue-limit dscp cs7 percent 100
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Multimedia-Conf-Queue
+  bandwidth remaining percent 10 
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Trans-Data-Queue
+  bandwidth remaining percent 10 
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Bulk-Data-Queue
+  bandwidth remaining percent 4 
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Scavenger-Queue
+  bandwidth remaining percent 1 
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Multimedia-Strm-Queue
+  bandwidth remaining percent 10 
+  queue-buffers ratio 10
+ class class-default
+  bandwidth remaining percent 25 
+  queue-buffers ratio 25
+policy-map AutoQos-4.0-Trust-Cos-Input-Policy
+ class class-default
+  set cos cos table AutoQos-4.0-Trust-Cos-Table
+policy-map system-cpp-policy
+policy-map AutoQos-4.0-Trust-Dscp-Input-Policy
+ class class-default
+  set dscp dscp table AutoQos-4.0-Trust-Dscp-Table
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ description LINK_TO_ENTREPISO_swc101_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 2,6,71,72,115,172,222,260,441,765,1061
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+!
+interface Port-channel4
+ description LINK_TO_PISO_4_swc104_01
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,7,73,113,172,441,1061,3071
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+!
+interface Port-channel7
+ description LINK_TO_PISO_7_swc107_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 2,7,75,172,441,1061
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+!
+interface Port-channel11
+ description LINK_TO_PISO_11_swc111_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 11-13,90,161,172,441,1061
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+!
+interface Port-channel12
+ description LINK_TO_PISO_12_swc112_31
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,6,7,11-14,16,17,19,22,90,111,115,120,162,172
+ switchport trunk allowed vlan add 278,441,998,1040,1061,3071,4080
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action trap
+!
+interface Port-channel13
+ description LINK_TO_PISO_13_swc113_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 13,102,111,163,172,441,1061
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+!
+interface Port-channel14
+ description LINK_TO_PISO_14_swc114_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 14,164,172,441,1061,3071
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+!
+interface Port-channel99
+ description LINK_TO_STACK_9300
+ switchport trunk allowed vlan 1-1060,1062-4093
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface TwentyFiveGigE1/0/1
+ description LINK_TO_PISO_1_swc1-2_01
+ switchport trunk native vlan 20
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/2
+ description LINK_TO_ENTREPISO_swc101_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 2,6,71,72,115,172,222,260,441,765,1061
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ channel-group 1 mode active
+!
+interface TwentyFiveGigE1/0/3
+ description LINK_TO_PISO_4_swc104_01
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,7,73,113,172,441,1061,3071
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 4 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/4
+ description LINK_TO_PISO_7_swc107_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 2,7,75,172,441,1061
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 7 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/5
+ description LINK_TO_PISO_11_swc111_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 11-13,90,161,172,441,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 11 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/6
+ description LINK_TO_PISO_12_swc112_31
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,6,7,11-14,16,17,19,22,90,111,115,120,162,172
+ switchport trunk allowed vlan add 278,441,998,1040,1061,3071,4080
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 12 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/7
+ description LINK_TO_PISO_13_swc113_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 13,102,111,163,172,441,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 13 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/8
+ description LINK_TO_PISO_14_swc114_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 14,164,172,441,1061,3071
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 14 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/9
+ description LINK_TO_PISO_22_swc122_02
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 12,22,122,166,171,172,1061,3071,4080
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/10
+ description LINK_TO_TELEFONIA_IP_AVAYA
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 65,71-75,161-164,166,167
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/11
+ description LINK_TO_PISO_6_swc106_34
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 6,12,73,166,172,260,441,1061,3071
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust cos
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/12
+ description LINK_TO_PISO_16_swc116_01
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,16,73,172,441,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust cos
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/13
+ description LINK_TO_STACK_CISCO_1/0/15
+ switchport trunk native vlan 261
+ switchport mode trunk
+ storm-control broadcast level 50.00
+ storm-control action shutdown
+ storm-control action trap
+!
+interface TwentyFiveGigE1/0/14
+!
+interface TwentyFiveGigE1/0/15
+ description LINK_TO_PISO_18_swc118_01
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,11,22,63,105,111,112,166,172,222,441,470,471
+ switchport trunk allowed vlan add 1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action trap
+ auto qos trust cos
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/16
+ description LINK_TO_PISO_19_swc119_02
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 19,22,73,111,120,167,172,441,471,1061,3071,4080
+ switchport trunk allowed vlan add 4081
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 5.00
+ storm-control action trap
+ auto qos trust cos
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/17
+ description LINK_TO_PISO_24_swc124_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,24,172,441,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust cos
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/18
+ description LINK_TO_PISO_20_swc120_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 12,120,161,172,441,1061,3071
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust cos
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/19
+ description LINK_TO_PISO_25_swc125_01
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 25,172,441,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust cos
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE1/0/20
+!
+interface TwentyFiveGigE1/0/21
+!
+interface TwentyFiveGigE1/0/22
+!
+interface TwentyFiveGigE1/0/23
+ stackwise-virtual dual-active-detection
+ description ### DUAL-ACTIVE-DETECTION ###
+!
+interface TwentyFiveGigE1/0/24
+ stackwise-virtual dual-active-detection
+ description ### DUAL-ACTIVE-DETECTION ###
+!
+interface TwentyFiveGigE1/0/25
+ stackwise-virtual link 1
+ description ### LINK_STACKWISE ###
+!
+interface TwentyFiveGigE1/0/26
+ stackwise-virtual link 1
+ description ### LINK_STACKWISE ###
+!
+interface TwentyFiveGigE1/0/27
+ stackwise-virtual link 1
+ description ### LINK_STACKWISE ###
+!
+interface TwentyFiveGigE1/0/28
+ stackwise-virtual link 1
+ description ### LINK_STACKWISE ###
+!
+interface TwentyFiveGigE1/0/29
+!
+interface TwentyFiveGigE1/0/30
+!
+interface TwentyFiveGigE1/0/31
+!
+interface TwentyFiveGigE1/0/32
+!
+interface TwentyFiveGigE1/0/33
+!
+interface TwentyFiveGigE1/0/34
+!
+interface TwentyFiveGigE1/0/35
+!
+interface TwentyFiveGigE1/0/36
+!
+interface TwentyFiveGigE1/0/37
+!
+interface TwentyFiveGigE1/0/38
+!
+interface TwentyFiveGigE1/0/39
+!
+interface TwentyFiveGigE1/0/40
+!
+interface TwentyFiveGigE1/0/41
+!
+interface TwentyFiveGigE1/0/42
+!
+interface TwentyFiveGigE1/0/43
+!
+interface TwentyFiveGigE1/0/44
+!
+interface TwentyFiveGigE1/0/45
+ description LINK_TO_FIREWALL_EXTRANET
+ switchport access vlan 103
+ switchport mode access
+ speed 100
+ duplex full
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+ service-policy input DSCP-DEF
+!
+interface TwentyFiveGigE1/0/46
+ description LINK_TO_STACK_VOIP_EXTREME_Stack_Telefonia
+ switchport access vlan 1062
+ spanning-tree portfast edge
+!
+interface TwentyFiveGigE1/0/47
+!
+interface TwentyFiveGigE1/0/48
+ description LINK_TO_STACK_9300
+ switchport trunk allowed vlan 1-1060,1062-4093
+ switchport mode trunk
+ switchport nonegotiate
+ channel-group 99 mode active
+!
+interface HundredGigE1/0/49
+ no switchport
+ no ip address
+!
+interface HundredGigE1/0/50
+ no switchport
+ no ip address
+!
+interface HundredGigE1/0/51
+ no switchport
+ no ip address
+!
+interface HundredGigE1/0/52
+ no switchport
+ no ip address
+!
+interface TwentyFiveGigE2/0/1
+ description LINK_TO_PISO_1_swc1-2_01
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 2,6,13,72,115,172,666,765,1040,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action trap
+ auto qos trust dscp
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/2
+ description LINK_TO_ENTREPISO_swc101_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 2,6,71,72,115,172,222,260,441,765,1061
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ channel-group 1 mode active
+!
+interface TwentyFiveGigE2/0/3
+ description LINK_TO_PISO_4_swc104_01
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,7,73,113,172,441,1061,3071
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 4 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/4
+ description LINK_TO_PISO_7_swc107_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 2,7,75,172,441,1061
+ switchport mode trunk
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 7 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/5
+ description LINK_TO_PISO_11_swc111_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 11-13,90,161,172,441,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 11 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/6
+ description LINK_TO_PISO_12_swc112_31
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 4,6,7,11-14,16,17,19,22,90,111,115,120,162,172
+ switchport trunk allowed vlan add 278,441,998,1040,1061,3071,4080
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 12 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/7
+ description LINK_TO_PISO_13_swc113_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 13,102,111,163,172,441,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 13 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/8
+ description LINK_TO_PISO_14_swc114_21
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 14,164,172,441,1061,3071
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ channel-group 14 mode active
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/9
+ description LINK_TO_PISO_22
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 22,122,166,171,172,3071
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/10
+ description TELEFONIA IP AVAYA-01
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 65,71-75,161-164,166,167
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust dscp
+ service-policy input AutoQos-4.0-Trust-Dscp-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/11
+!
+interface TwentyFiveGigE2/0/12
+ description LINK_TO_PISO_17_STACK
+ switchport mode trunk
+ udld port aggressive
+!
+interface TwentyFiveGigE2/0/13
+ description LINK_TO_MET_SW_EXTREME_PORT_7
+ switchport access vlan 250
+ switchport mode access
+ shutdown
+ service-policy input DSCP-DEF
+!
+interface TwentyFiveGigE2/0/14
+ description LINK_TO_STACK_VOIP_EXTREME
+ switchport access vlan 1063
+ spanning-tree portfast edge
+!
+interface TwentyFiveGigE2/0/15
+ description LINK_TO_PISO_18_swc118_02
+ switchport trunk native vlan 20
+ switchport trunk allowed vlan 11,22,105,111,112,120,161,166,172,222,470,1061
+ switchport mode trunk
+ udld port aggressive
+ storm-control broadcast level 10.00
+ storm-control action shutdown
+ storm-control action trap
+ auto qos trust cos
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+!
+interface TwentyFiveGigE2/0/16
+!
+interface TwentyFiveGigE2/0/17
+!
+interface TwentyFiveGigE2/0/18
+!
+interface TwentyFiveGigE2/0/19
+!
+interface TwentyFiveGigE2/0/20
+!
+interface TwentyFiveGigE2/0/21
+!
+interface TwentyFiveGigE2/0/22
+!
+interface TwentyFiveGigE2/0/23
+ stackwise-virtual dual-active-detection
+ description ### DUAL-ACTIVE-DETECTION ###
+!
+interface TwentyFiveGigE2/0/24
+ stackwise-virtual dual-active-detection
+ description ### DUAL-ACTIVE-DETECTION ###
+!
+interface TwentyFiveGigE2/0/25
+ stackwise-virtual link 1
+ description ### LINK_STACKWISE ###
+!
+interface TwentyFiveGigE2/0/26
+ stackwise-virtual link 1
+ description ### LINK_STACKWISE ###
+!
+interface TwentyFiveGigE2/0/27
+ stackwise-virtual link 1
+ description ### LINK_STACKWISE ###
+!
+interface TwentyFiveGigE2/0/28
+ stackwise-virtual link 1
+ description ### LINK_STACKWISE ###
+!
+interface TwentyFiveGigE2/0/29
+!
+interface TwentyFiveGigE2/0/30
+!
+interface TwentyFiveGigE2/0/31
+!
+interface TwentyFiveGigE2/0/32
+!
+interface TwentyFiveGigE2/0/33
+!
+interface TwentyFiveGigE2/0/34
+!
+interface TwentyFiveGigE2/0/35
+!
+interface TwentyFiveGigE2/0/36
+!
+interface TwentyFiveGigE2/0/37
+!
+interface TwentyFiveGigE2/0/38
+!
+interface TwentyFiveGigE2/0/39
+!
+interface TwentyFiveGigE2/0/40
+!
+interface TwentyFiveGigE2/0/41
+!
+interface TwentyFiveGigE2/0/42
+!
+interface TwentyFiveGigE2/0/43
+!
+interface TwentyFiveGigE2/0/44
+!
+interface TwentyFiveGigE2/0/45
+!
+interface TwentyFiveGigE2/0/46
+!
+interface TwentyFiveGigE2/0/47
+!
+interface TwentyFiveGigE2/0/48
+ description LINK_TO_STACK_9300
+ switchport trunk allowed vlan 1-1060,1062-4093
+ switchport mode trunk
+ switchport nonegotiate
+ channel-group 99 mode active
+!
+interface HundredGigE2/0/49
+!
+interface HundredGigE2/0/50
+!
+interface HundredGigE2/0/51
+!
+interface HundredGigE2/0/52
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan2
+ description DATOS_PISO-1_ENTREPISO
+ ip address 10.136.1.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 2 ip 10.136.1.1
+ standby 2 timers 1 3
+ standby 2 preempt delay minimum 180
+!
+interface Vlan4
+ description DATOS_PISO-4
+ ip address 10.136.4.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ standby 4 ip 10.136.4.1
+ standby 4 timers 1 3
+ standby 4 preempt
+!
+interface Vlan5
+ no ip address
+!
+interface Vlan6
+ description DATOS_PISO-6
+ ip address 10.136.6.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ standby 6 ip 10.136.6.1
+ standby 6 timers 1 3
+ standby 6 preempt delay minimum 180
+ standby 66 preempt
+!
+interface Vlan7
+ description DATOS_PISO-7
+ ip address 192.168.7.1 255.255.255.0 secondary
+ ip address 10.136.7.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 7 ip 10.136.7.1
+ standby 7 timers 1 3
+ standby 7 preempt delay minimum 180
+ standby 77 preempt
+!
+interface Vlan11
+ description DATOS_PISO-11
+ ip address 10.136.11.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 11 ip 10.136.11.1
+ standby 11 timers 1 3
+ standby 11 preempt delay minimum 180
+ standby 111 preempt
+!
+interface Vlan12
+ description DATOS_PISO-12
+ ip address 10.136.12.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 12 ip 10.136.12.1
+ standby 12 timers 1 3
+ standby 12 preempt delay minimum 180
+!
+interface Vlan13
+ description DATOS_PISO-13
+ ip address 10.136.13.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 13 ip 10.136.13.1
+ standby 13 timers 1 3
+ standby 13 preempt delay minimum 180
+ standby 133 preempt
+!
+interface Vlan14
+ description DATOS_PISO-14
+ ip address 10.136.14.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 14 ip 10.136.14.1
+ standby 14 timers 1 3
+ standby 14 preempt delay minimum 180
+!
+interface Vlan16
+ description DATOS_PISO-16
+ ip address 10.171.116.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ standby 16 ip 10.171.116.1
+ standby 16 timers 1 3
+ standby 16 priority 150
+ standby 16 preempt
+!
+interface Vlan17
+ description DATOS_PISO-17
+ ip address 10.171.117.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ standby 0 priority 150
+ standby 17 ip 10.171.117.1
+ standby 17 timers 1 3
+ standby 17 preempt
+!
+interface Vlan19
+ description DATOS_PISO-19
+ ip address 10.136.29.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 29 ip 10.136.29.1
+ standby 29 timers 1 3
+ standby 29 preempt delay minimum 180
+!
+interface Vlan22
+ description DATOS_PISO-22
+ ip address 10.136.15.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 22 ip 10.136.15.1
+ standby 22 timers 1 3
+ standby 22 preempt delay minimum 180
+ standby 212 preempt
+!
+interface Vlan24
+ description DATOS_PISO-24
+ ip address 10.171.24.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 24 ip 10.171.24.1
+ standby 24 timers 1 3
+ standby 24 preempt
+!
+interface Vlan25
+ description DATOS_PISO-25
+ ip address 10.171.25.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 25 ip 10.171.25.1
+ standby 25 timers 1 3
+ standby 25 preempt delay minimum 180
+!
+interface Vlan31
+ description prueba-vlan31
+ ip address 10.136.31.2 255.255.255.0
+ standby 31 ip 10.136.31.1
+ standby 31 timers 1 3
+ standby 31 preempt delay minimum 180
+!
+interface Vlan40
+ description inter-red Regiones-MET
+ ip address 172.22.7.5 255.255.255.0
+ standby 40 ip 172.22.7.1
+ standby 40 timers 1 3
+ standby 40 preempt
+ shutdown
+!
+interface Vlan50
+ description DATOS_INTER-RED_ENLACES
+ ip address 10.136.0.67 255.255.255.240
+ standby 50 ip 10.136.0.66
+ standby 50 timers 1 3
+ standby 50 preempt delay minimum 180
+!
+interface Vlan65
+ description DATOS_INTER-RED_VOIP
+ ip address 100.61.5.5 255.255.255.0
+ standby 65 ip 100.61.5.4
+ standby 65 timers 1 3
+ standby 65 preempt delay minimum 180
+!
+interface Vlan77
+ description PROD-PMC
+ ip address 10.171.77.2 255.255.255.0
+ no ip redirects
+ standby 77 ip 10.171.77.1
+ standby 77 timers 1 3
+ standby 77 preempt delay minimum 180
+!
+interface Vlan80
+ description INTER-METLIFE
+ ip address 10.171.76.3 255.255.255.248
+ no ip redirects
+ standby 80 ip 10.171.76.2
+ standby 80 timers 1 3
+ standby 80 preempt delay minimum 180
+!
+interface Vlan100
+ description DATOS_INTER-RED_FW_BACK-END
+ ip address 10.136.0.18 255.255.255.240
+ standby 100 ip 10.136.0.17
+ standby 100 timers 1 3
+ standby 100 preempt delay minimum 180
+!
+interface Vlan103
+ description DATOS_INTER-RED_FW_EXTRANET
+ ip address 10.136.0.34 255.255.255.240
+ no ip redirects
+ standby 251 ip 10.136.0.33
+ standby 251 timers 1 3
+ standby 251 preempt delay minimum 180
+!
+interface Vlan113
+ description DATOS_PISO-3
+ ip address 10.171.113.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ standby 13 ip 10.171.113.1
+ standby 13 timers 1 3
+ standby 13 priority 150
+ standby 13 preempt
+!
+interface Vlan114
+ description DHCP
+ ip address 10.136.0.115 255.255.255.240
+ no ip redirects
+ standby 114 ip 10.136.0.113
+ standby 114 timers 1 3
+ standby 114 preempt delay minimum 180
+!
+interface Vlan115
+ description DATOS_LAS_HIERDAS
+ ip address 10.171.115.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 115 ip 10.171.115.1
+ standby 115 timers 1 3
+ standby 115 preempt delay minimum 180
+!
+interface Vlan120
+ description DATOS_PISO_20
+ ip address 10.171.104.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 120 ip 10.171.104.1
+ standby 120 timers 1 3
+ standby 120 preempt delay minimum 180
+!
+interface Vlan122
+ description DATOS_PISO_22
+ ip address 10.171.105.2 255.255.255.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ no ip redirects
+ standby 122 ip 10.171.105.1
+ standby 122 timers 1 3
+ standby 122 preempt delay minimum 180
+!
+interface Vlan130
+ description DATOS_SERVER-RED-130
+ ip address 130.145.0.254 255.255.255.0
+ standby 130 ip 130.145.0.49
+ standby 130 timers 1 3
+ standby 130 preempt delay minimum 180
+!
+interface Vlan171
+ description DATOS-METLIFE
+ ip address 10.171.74.2 255.255.255.0
+ ip helper-address 172.22.1.10
+ standby 171 ip 10.171.74.1
+ standby 171 timers 1 3
+ standby 171 preempt delay minimum 180
+!
+interface Vlan172
+ description DATOS-METLIFE_WLC
+ ip address 10.171.75.2 255.255.255.128
+ ip helper-address 10.171.70.10
+ standby 172 ip 10.171.75.1
+ standby 172 timers 1 3
+ standby 172 preempt delay minimum 180
+!
+interface Vlan200
+ description DATOS_SERVER-RED-200
+ ip address 10.136.8.200 255.255.255.0
+ no ip redirects
+ standby 200 ip 10.136.8.1
+ standby 200 timers 1 3
+ standby 200 preempt delay minimum 180
+ standby 201 preempt
+ ip policy route-map proxy_prueba
+!
+interface Vlan210
+ description Sw-4500PPAL-->SW6500
+ ip address 10.170.210.17 255.255.255.240
+ shutdown
+!
+interface Vlan222
+ ip address 172.22.3.2 255.255.255.0
+!
+interface Vlan251
+ description Vcenter
+ ip address 10.171.81.4 255.255.255.0
+ standby 203 ip 10.171.81.3
+ standby 203 timers 1 3
+ standby 203 preempt
+ shutdown
+!
+interface Vlan254
+ description MET-FE-Proveedores
+ ip address 10.171.69.11 255.255.255.248
+ standby 254 ip 10.171.69.9
+ standby 254 timers 1 3
+ standby 254 priority 95
+ standby 254 preempt delay minimum 180
+ shutdown
+!
+interface Vlan258
+ description CORE-FW_MET-INTER
+ ip address 172.22.6.2 255.255.255.0
+ standby 238 ip 172.22.6.1
+ standby 238 timers 1 3
+ standby 238 preempt delay minimum 180
+ shutdown
+!
+interface Vlan260
+ description Anida
+ ip address 10.171.73.26 255.255.255.252
+!
+interface Vlan261
+ description test HA edge
+ ip address 10.10.10.2 255.255.255.248
+ standby 161 ip 10.10.10.1
+ standby 161 preempt
+!
+interface Vlan278
+ ip address 172.22.80.1 255.255.255.0
+!
+interface Vlan441
+ description leds_torre
+ ip address 4.4.4.2 255.255.255.192
+ no ip redirects
+ standby 41 ip 4.4.4.1
+ standby 41 timers 1 3
+ standby 41 priority 150
+ standby 41 preempt
+!
+interface Vlan666
+ ip address 10.171.108.2 255.255.255.248
+ standby 66 ip 10.171.108.1
+ standby 66 timers 1 3
+ standby 66 preempt delay minimum 180
+!
+interface Vlan1000
+ description Servers
+ ip address 172.22.1.5 255.255.255.0
+ standby 202 ip 172.22.1.4
+ standby 202 timers 1 3
+ standby 202 preempt
+ shutdown
+!
+interface Vlan1001
+ description Servers
+ ip address 10.171.66.5 255.255.255.0
+ standby 201 ip 10.171.66.4
+ standby 201 timers 1 3
+ standby 201 preempt
+ shutdown
+!
+interface Vlan1032
+ description Met_Servers_BlueCoat
+ ip address 10.171.70.4 255.255.255.0
+ standby 0 priority 50
+ standby 203 ip 10.171.70.3
+ standby 203 timers 1 3
+ standby 203 priority 50
+ standby 203 preempt
+!
+interface Vlan1061
+ description VOIP-PHONE
+ ip address 10.171.12.2 255.255.252.0
+ ip helper-address 10.171.70.66
+ ip helper-address 10.184.5.20
+ standby 61 ip 10.171.12.1
+ standby 61 timers 1 3
+ standby 61 preempt delay minimum 180
+!
+interface Vlan1062
+ description INTER-RED-STACK
+ ip address 10.171.73.12 255.255.255.248
+ standby 62 ip 10.171.73.11
+ standby 62 timers 1 3
+ standby 62 preempt delay minimum 180
+!
+interface Vlan1063
+ description INTER-RED-STACK
+ ip address 10.171.73.20 255.255.255.248
+ standby 63 ip 10.171.73.19
+ standby 63 timers 1 3
+ standby 63 preempt delay minimum 180
+!
+router ospf 10
+ redistribute connected route-map CONNECTED_2_OSPF
+ network 10.171.70.4 0.0.0.0 area 1
+!
+router rip
+ version 2
+ passive-interface default
+ no passive-interface Vlan1062
+ no passive-interface Vlan1063
+ network 10.0.0.0
+ default-information originate
+ no auto-summary
+!
+ip forward-protocol nd
+ip forward-protocol udp bootpc
+ip forward-protocol udp bootps
+no ip http server
+ip http authentication local
+ip http secure-server
+ip http client source-interface Vlan80
+ip route 1.1.1.10 255.255.255.255 10.170.210.20
+ip route 7.7.0.0 255.255.255.0 10.171.76.1
+ip route 10.9.30.42 255.255.255.255 10.171.76.1
+ip route 10.9.46.26 255.255.255.255 10.171.76.1
+ip route 10.9.53.40 255.255.255.255 10.171.76.1
+ip route 10.9.116.67 255.255.255.255 10.171.76.1
+ip route 10.9.128.16 255.255.255.255 10.171.76.1
+ip route 10.9.153.84 255.255.255.255 10.171.76.1
+ip route 10.9.165.41 255.255.255.255 10.171.76.1
+ip route 10.9.189.5 255.255.255.255 10.171.76.1
+ip route 10.9.201.0 255.255.255.0 10.171.76.1
+ip route 10.10.25.11 255.255.255.255 10.171.76.1
+ip route 10.10.53.38 255.255.255.255 10.171.76.1
+ip route 10.10.128.0 255.255.255.0 10.171.76.1
+ip route 10.77.160.0 255.255.255.0 10.171.0.65
+ip route 10.77.224.0 255.255.255.0 10.171.0.65
+ip route 10.91.0.0 255.255.0.0 192.168.251.2
+ip route 10.92.0.0 255.255.0.0 192.168.251.2
+ip route 10.95.0.0 255.255.0.0 192.168.251.2
+ip route 10.111.0.0 255.255.0.0 10.136.0.36
+ip route 10.136.0.0 255.255.255.240 10.136.0.20
+ip route 10.136.0.128 255.255.255.240 10.136.0.36
+ip route 10.136.0.144 255.255.255.240 10.136.0.36
+ip route 10.136.0.160 255.255.255.240 10.136.0.36
+ip route 10.136.9.0 255.255.255.0 10.171.76.1
+ip route 10.136.10.0 255.255.255.240 10.136.0.36
+ip route 10.136.10.16 255.255.255.240 10.171.76.1
+ip route 10.136.10.64 255.255.255.240 10.171.76.1
+ip route 10.136.10.80 255.255.255.240 10.136.0.36
+ip route 10.136.10.96 255.255.255.240 10.171.76.1
+ip route 10.136.16.0 255.255.255.0 10.171.76.1
+ip route 10.136.17.0 255.255.255.0 10.171.76.1
+ip route 10.136.18.0 255.255.255.0 10.171.76.1
+ip route 10.136.19.0 255.255.255.224 10.171.76.1
+ip route 10.136.19.32 255.255.255.224 10.171.76.1
+ip route 10.136.19.64 255.255.255.224 10.171.76.1
+ip route 10.136.19.96 255.255.255.224 10.171.76.1
+ip route 10.136.19.128 255.255.255.224 10.171.76.1
+ip route 10.136.19.129 255.255.255.255 10.136.0.65
+ip route 10.136.19.158 255.255.255.255 10.136.0.65
+ip route 10.136.19.160 255.255.255.224 10.136.0.65
+ip route 10.136.19.192 255.255.255.224 10.171.76.1
+ip route 10.136.19.224 255.255.255.224 10.171.76.1
+ip route 10.136.20.0 255.255.255.224 10.171.76.1
+ip route 10.136.20.1 255.255.255.255 10.136.0.65
+ip route 10.136.20.32 255.255.255.224 10.171.76.1
+ip route 10.136.21.0 255.255.255.0 10.171.76.1
+ip route 10.136.22.0 255.255.255.0 10.171.76.1
+ip route 10.136.23.0 255.255.255.0 10.171.76.1
+ip route 10.136.24.0 255.255.255.0 10.171.76.1
+ip route 10.136.25.0 255.255.255.0 10.171.76.1
+ip route 10.136.26.0 255.255.255.0 10.171.76.1
+ip route 10.136.27.0 255.255.255.0 10.171.76.1
+ip route 10.136.28.0 255.255.255.0 10.171.76.1
+ip route 10.136.30.0 255.255.255.0 10.171.76.1
+ip route 10.136.30.0 255.255.255.192 10.171.76.1
+ip route 10.136.30.64 255.255.255.192 10.171.76.1
+ip route 10.136.30.128 255.255.255.192 10.171.76.1
+ip route 10.136.30.192 255.255.255.240 10.171.76.1
+ip route 10.136.40.0 255.255.255.0 10.171.76.1
+ip route 10.140.132.0 255.255.255.0 100.61.5.1
+ip route 10.140.133.0 255.255.255.0 100.61.5.1
+ip route 10.143.0.0 255.255.0.0 10.136.0.36
+ip route 10.161.236.0 255.255.255.0 10.171.76.1
+ip route 10.163.0.46 255.255.255.255 10.171.76.1
+ip route 10.163.0.175 255.255.255.255 10.171.76.1
+ip route 10.170.43.24 255.255.255.255 10.171.76.1
+ip route 10.170.47.80 255.255.255.255 10.171.76.1
+ip route 10.170.61.76 255.255.255.255 10.171.76.1
+ip route 10.170.62.0 255.255.255.0 10.171.76.1
+ip route 10.170.63.0 255.255.255.0 10.171.76.1
+ip route 10.170.95.0 255.255.255.0 10.171.76.1
+ip route 10.170.96.0 255.255.255.0 10.171.76.1
+ip route 10.171.4.0 255.255.255.0 10.171.76.1
+ip route 10.171.5.0 255.255.255.0 10.171.76.1
+ip route 10.171.6.0 255.255.255.0 10.171.76.1
+ip route 10.171.7.0 255.255.255.0 10.171.76.1
+ip route 10.171.8.0 255.255.255.0 10.171.76.1
+ip route 10.171.9.0 255.255.255.0 10.171.76.1
+ip route 10.171.10.0 255.255.255.0 10.171.76.1
+ip route 10.171.11.0 255.255.255.0 10.171.76.1
+ip route 10.171.60.0 255.255.255.0 10.171.76.1
+ip route 10.171.66.0 255.255.255.0 10.171.76.1
+ip route 10.171.67.0 255.255.255.0 10.171.76.1
+ip route 10.171.69.10 255.255.255.255 10.171.76.1
+ip route 10.171.70.0 255.255.255.0 10.171.76.1
+ip route 10.171.71.0 255.255.255.0 10.171.76.1
+ip route 10.171.72.0 255.255.255.0 10.171.76.1
+ip route 10.171.73.25 255.255.255.255 10.171.76.1
+ip route 10.171.73.40 255.255.255.248 10.171.76.1
+ip route 10.171.73.48 255.255.255.248 10.171.76.1
+ip route 10.171.73.56 255.255.255.248 10.171.76.1
+ip route 10.171.73.72 255.255.255.248 10.171.76.1
+ip route 10.171.73.80 255.255.255.248 10.171.76.1
+ip route 10.171.73.96 255.255.255.248 10.171.76.1
+ip route 10.171.73.104 255.255.255.248 10.171.76.1
+ip route 10.171.73.112 255.255.255.248 10.171.76.1
+ip route 10.171.73.136 255.255.255.248 10.171.76.1
+ip route 10.171.73.144 255.255.255.248 10.171.76.1
+ip route 10.171.81.0 255.255.255.0 10.171.76.1
+ip route 10.171.83.0 255.255.255.0 10.171.76.1
+ip route 10.171.84.0 255.255.255.0 10.171.76.1
+ip route 10.171.85.0 255.255.255.0 10.171.76.1
+ip route 10.171.86.0 255.255.255.0 10.171.76.1
+ip route 10.171.89.0 255.255.255.0 10.171.76.1
+ip route 10.171.93.0 255.255.255.0 10.171.76.1
+ip route 10.171.95.0 255.255.255.0 10.171.76.1
+ip route 10.171.98.0 255.255.255.0 10.171.76.1
+ip route 10.171.99.0 255.255.255.0 10.171.76.1
+ip route 10.171.108.8 255.255.255.252 10.171.108.4
+ip route 10.171.240.0 255.255.255.0 10.171.76.1
+ip route 10.200.0.138 255.255.255.255 10.171.76.1
+ip route 10.218.72.136 255.255.255.255 10.171.76.1
+ip route 10.218.112.0 255.255.254.0 10.171.0.65
+ip route 10.218.120.2 255.255.255.255 10.171.76.1
+ip route 64.76.152.1 255.255.255.255 10.171.76.1
+ip route 64.76.152.2 255.255.255.255 10.171.76.1
+ip route 64.158.56.49 255.255.255.255 10.136.0.36
+ip route 64.238.220.89 255.255.255.255 10.171.76.1
+ip route 64.238.220.90 255.255.255.255 10.171.76.1
+ip route 65.213.127.210 255.255.255.255 10.136.0.36
+ip route 65.214.53.23 255.255.255.255 10.136.0.36
+ip route 66.179.201.84 255.255.255.255 10.171.76.1
+ip route 67.135.105.0 255.255.255.0 10.171.76.1
+ip route 67.202.202.208 255.255.255.248 10.171.76.1
+ip route 72.46.241.102 255.255.255.255 10.171.76.1
+ip route 100.61.1.0 255.255.255.0 100.61.5.1
+ip route 100.61.2.0 255.255.255.0 100.61.5.1
+ip route 100.61.3.0 255.255.255.0 100.61.5.1
+ip route 100.61.4.0 255.255.255.0 100.61.5.1
+ip route 100.61.8.0 255.255.255.0 100.61.5.1
+ip route 100.61.9.0 255.255.255.0 100.61.5.1
+ip route 100.71.1.0 255.255.255.0 100.61.5.1
+ip route 100.71.2.0 255.255.255.0 100.61.5.1
+ip route 100.71.3.0 255.255.255.0 100.61.5.1
+ip route 100.71.4.0 255.255.255.0 100.61.5.1
+ip route 100.71.5.0 255.255.255.0 100.61.5.1
+ip route 100.71.7.0 255.255.255.0 100.61.5.1
+ip route 100.161.1.0 255.255.255.0 100.61.5.1
+ip route 100.161.2.0 255.255.255.0 100.61.5.1
+ip route 100.161.3.0 255.255.255.0 100.61.5.1
+ip route 100.161.4.0 255.255.255.0 100.61.5.1
+ip route 100.161.6.0 255.255.255.0 100.61.5.1
+ip route 100.161.7.0 255.255.255.0 100.61.5.1
+ip route 100.161.8.0 255.255.255.0 100.61.5.1
+ip route 100.161.9.0 255.255.255.0 100.61.5.1
+ip route 100.171.2.0 255.255.255.0 100.61.5.1
+ip route 100.171.3.0 255.255.255.0 100.61.5.1
+ip route 100.171.4.0 255.255.255.0 100.61.5.1
+ip route 100.171.5.0 255.255.255.0 100.61.5.1
+ip route 100.171.6.0 255.255.255.0 100.61.5.1
+ip route 161.25.178.52 255.255.255.255 10.171.76.1
+ip route 167.230.20.25 255.255.255.255 10.136.0.20
+ip route 167.230.22.122 255.255.255.255 10.136.0.20
+ip route 167.230.22.123 255.255.255.255 10.136.0.20
+ip route 167.230.23.171 255.255.255.255 10.136.0.20
+ip route 167.230.23.183 255.255.255.255 10.136.0.20
+ip route 167.230.106.81 255.255.255.255 10.136.0.20
+ip route 167.230.106.114 255.255.255.255 10.136.0.20
+ip route 167.230.106.115 255.255.255.255 10.136.0.20
+ip route 172.16.1.101 255.255.255.255 10.171.76.1
+ip route 172.16.1.128 255.255.255.255 10.171.76.1
+ip route 172.16.1.130 255.255.255.255 10.171.76.1
+ip route 172.16.2.222 255.255.255.255 10.171.76.1
+ip route 172.16.100.0 255.255.255.0 10.171.76.1
+ip route 172.18.10.0 255.255.255.0 10.171.76.1
+ip route 172.22.0.0 255.255.0.0 10.171.76.1
+ip route 172.22.6.12 255.255.255.255 10.171.76.1
+ip route 172.22.203.0 255.255.255.0 10.171.76.1
+ip route 172.24.134.166 255.255.255.255 10.171.76.1
+ip route 172.24.180.79 255.255.255.255 10.171.76.1
+ip route 172.30.10.53 255.255.255.255 10.136.0.36
+ip route 184.28.0.253 255.255.255.255 10.171.76.1
+ip route 190.54.58.4 255.255.255.255 10.171.76.1
+ip route 190.82.83.84 255.255.255.255 10.171.76.1
+ip route 190.82.83.88 255.255.255.255 10.171.76.1
+ip route 190.208.24.76 255.255.255.255 10.171.76.1
+ip route 192.168.10.0 255.255.255.0 192.168.8.2
+ip route 192.168.31.0 255.255.255.0 10.136.0.65
+ip route 192.168.32.0 255.255.255.0 10.136.0.65
+ip route 192.168.33.0 255.255.255.0 10.136.0.65
+ip route 192.168.34.0 255.255.255.0 10.136.0.65
+ip route 192.168.35.0 255.255.255.0 10.136.0.65
+ip route 192.168.36.0 255.255.255.0 10.136.0.65
+ip route 192.168.37.0 255.255.255.0 10.136.0.65
+ip route 192.168.38.0 255.255.255.0 10.136.0.65
+ip route 192.168.40.0 255.255.255.0 10.136.0.36
+ip route 192.168.51.0 255.255.255.0 192.168.50.151
+ip route 192.168.52.0 255.255.255.0 10.136.0.65
+ip route 192.168.53.0 255.255.255.0 10.136.0.65
+ip route 192.168.54.0 255.255.255.0 10.136.0.65
+ip route 192.168.55.0 255.255.255.0 10.136.0.65
+ip route 192.168.56.0 255.255.255.0 10.136.0.65
+ip route 192.168.57.0 255.255.255.0 10.136.0.65
+ip route 192.168.58.0 255.255.255.0 10.136.0.65
+ip route 192.168.59.0 255.255.255.0 10.136.0.65
+ip route 192.168.60.0 255.255.255.0 10.136.0.36
+ip route 192.168.61.0 255.255.255.0 192.168.50.155
+ip route 192.168.62.0 255.255.255.0 10.136.0.36
+ip route 192.168.63.0 255.255.255.0 10.136.0.36
+ip route 192.168.64.0 255.255.255.0 10.136.0.36
+ip route 192.168.65.0 255.255.255.0 10.136.0.36
+ip route 192.168.67.0 255.255.255.0 10.136.0.36
+ip route 192.168.68.0 255.255.255.0 10.136.0.36
+ip route 192.168.70.0 255.255.255.0 10.136.0.65
+ip route 192.168.71.0 255.255.255.0 10.136.0.65
+ip route 192.168.72.0 255.255.255.0 10.136.0.65
+ip route 192.168.73.0 255.255.255.0 10.136.0.65
+ip route 192.168.73.12 255.255.255.255 10.136.0.20
+ip route 192.168.74.0 255.255.255.0 10.136.0.65
+ip route 192.168.75.0 255.255.255.0 10.136.0.65
+ip route 192.168.76.0 255.255.255.0 10.136.0.65
+ip route 192.168.77.0 255.255.255.0 10.136.0.65
+ip route 192.168.91.0 255.255.255.0 10.136.0.36
+ip route 192.168.93.12 255.255.255.255 10.136.0.20
+ip route 192.168.102.0 255.255.255.0 10.136.0.20
+ip route 192.168.104.0 255.255.255.0 10.136.0.36
+ip route 192.168.108.0 255.255.255.0 10.136.0.36
+ip route 192.168.111.1 255.255.255.255 10.171.76.1
+ip route 192.168.111.126 255.255.255.255 10.171.76.1
+ip route 192.168.112.0 255.255.255.0 10.171.76.1
+ip route 192.168.113.5 255.255.255.255 10.171.76.1
+ip route 192.168.113.11 255.255.255.255 10.171.76.1
+ip route 192.168.113.102 255.255.255.255 10.171.76.1
+ip route 192.168.114.0 255.255.255.0 10.136.0.36
+ip route 192.168.115.0 255.255.255.0 10.136.0.36
+ip route 192.168.120.0 255.255.255.0 10.136.0.65
+ip route 192.168.130.0 255.255.255.0 10.136.0.65
+ip route 192.168.197.0 255.255.255.0 10.136.0.36
+ip route 192.168.198.0 255.255.255.248 10.136.0.36
+ip route 192.168.252.0 255.255.255.0 10.171.76.1
+ip route 200.2.91.34 255.255.255.255 10.171.76.1
+ip route 200.6.64.20 255.255.255.255 10.136.0.36
+ip route 200.6.64.34 255.255.255.255 10.136.0.36
+ip route 200.6.65.119 255.255.255.255 10.136.0.36
+ip route 200.9.196.101 255.255.255.255 10.171.76.1
+ip route 200.9.197.101 255.255.255.255 10.171.76.1
+ip route 200.10.236.232 255.255.255.255 10.171.76.1
+ip route 200.11.92.16 255.255.255.240 192.168.50.202
+ip route 200.27.106.115 255.255.255.255 10.171.76.1
+ip route 200.54.67.21 255.255.255.255 10.171.76.1
+ip route 200.54.154.238 255.255.255.255 10.171.76.1
+ip route 200.55.36.205 255.255.255.255 10.136.0.20
+ip route 200.55.213.0 255.255.255.0 10.171.108.4
+ip route 200.63.97.202 255.255.255.255 10.171.76.1
+ip route 200.68.43.228 255.255.255.255 10.136.0.36
+ip route 200.68.45.115 255.255.255.255 10.171.76.1
+ip route 200.91.16.36 255.255.255.255 10.171.76.1
+ip route 200.91.16.44 255.255.255.255 10.171.76.1
+ip route 200.123.194.0 255.255.255.0 10.171.76.1
+ip route 201.238.204.105 255.255.255.255 10.171.76.1
+ip route 201.238.242.238 255.255.255.255 10.171.76.1
+ip route 208.70.234.84 255.255.255.255 10.171.76.1
+ip route 209.164.192.0 255.255.255.0 10.171.76.1
+ip route 209.164.208.0 255.255.255.0 10.171.76.1
+ip route 216.163.248.217 255.255.255.255 10.171.76.1
+ip route vrf prove-MET 0.0.0.0 0.0.0.0 10.171.76.1
+ip ssh source-interface Vlan12
+ip ssh version 2
+!
+!
+ip access-list standard NMS-Solarwinds
+ 10 permit 10.218.255.0 0.0.0.255
+ 20 permit 10.90.255.0 0.0.0.255
+!
+!
+!
+ip prefix-list PL_Telefonia seq 5 permit 10.171.12.0/22
+!
+ip prefix-list REDES-INTERMERICANA seq 10 permit 192.168.1.0/24
+ip prefix-list REDES-INTERMERICANA seq 15 permit 192.168.4.0/24
+ip prefix-list REDES-INTERMERICANA seq 20 permit 192.168.6.0/24
+ip prefix-list REDES-INTERMERICANA seq 25 permit 192.168.7.0/24
+ip prefix-list REDES-INTERMERICANA seq 30 permit 192.168.11.0/24
+ip prefix-list REDES-INTERMERICANA seq 35 permit 192.168.12.0/24
+ip prefix-list REDES-INTERMERICANA seq 40 permit 192.168.13.0/24
+ip prefix-list REDES-INTERMERICANA seq 45 permit 192.168.14.0/24
+ip prefix-list REDES-INTERMERICANA seq 50 permit 192.168.22.0/24
+ip prefix-list REDES-INTERMERICANA seq 55 permit 192.168.50.0/24
+ip prefix-list REDES-INTERMERICANA seq 60 permit 192.168.100.0/29
+ip prefix-list REDES-INTERMERICANA seq 65 permit 192.168.200.0/24
+ip prefix-list REDES-INTERMERICANA seq 70 permit 130.145.0.0/24
+ip prefix-list REDES-INTERMERICANA seq 75 permit 100.61.5.0/24
+ip prefix-list REDES-INTERMERICANA seq 80 permit 192.168.251.0/29
+ip prefix-list REDES-INTERMERICANA seq 997 permit 10.170.210.32/28
+ip prefix-list REDES-INTERMERICANA seq 999 deny 0.0.0.0/0 le 32
+!
+ip prefix-list RUTAS-INTERMERICANA seq 10 permit 1.1.1.10/32
+ip prefix-list RUTAS-INTERMERICANA seq 15 permit 10.49.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 20 permit 10.88.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 25 permit 10.90.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 30 permit 10.91.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 35 permit 10.92.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 40 permit 10.95.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 45 permit 10.100.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 50 permit 10.101.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 55 permit 10.111.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 60 permit 10.112.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 65 permit 10.140.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 70 permit 10.143.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 75 permit 10.172.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 80 permit 10.175.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 85 permit 10.176.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 90 permit 10.235.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 95 permit 10.242.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 100 permit 10.249.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 105 permit 100.61.1.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 110 permit 100.61.2.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 115 permit 100.61.3.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 120 permit 100.61.4.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 125 permit 100.61.8.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 130 permit 100.61.9.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 135 permit 100.71.1.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 140 permit 100.71.2.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 145 permit 100.71.3.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 150 permit 100.71.4.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 155 permit 100.71.5.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 160 permit 100.71.7.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 165 permit 100.161.1.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 170 permit 100.161.2.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 175 permit 100.161.3.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 180 permit 100.161.4.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 185 permit 100.161.6.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 190 permit 100.161.7.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 195 permit 100.161.8.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 200 permit 100.161.9.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 205 permit 100.171.2.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 210 permit 100.171.3.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 215 permit 100.171.4.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 220 permit 100.171.5.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 225 permit 100.171.6.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 230 permit 167.230.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 235 permit 167.247.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 240 permit 172.20.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 245 permit 172.21.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 250 permit 172.22.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 255 permit 172.25.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 260 permit 172.27.0.0/16
+ip prefix-list RUTAS-INTERMERICANA seq 262 permit 172.27.44.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 265 permit 172.30.10.53/32
+ip prefix-list RUTAS-INTERMERICANA seq 270 permit 176.20.36.187/32
+ip prefix-list RUTAS-INTERMERICANA seq 275 permit 192.168.40.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 280 permit 192.168.52.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 285 permit 192.168.53.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 290 permit 192.168.54.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 295 permit 192.168.55.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 300 permit 192.168.56.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 305 permit 192.168.57.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 310 permit 192.168.58.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 315 permit 192.168.59.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 320 permit 192.168.60.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 325 permit 192.168.61.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 330 permit 192.168.62.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 335 permit 192.168.63.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 340 permit 192.168.64.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 345 permit 192.168.65.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 350 permit 192.168.67.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 355 permit 192.168.68.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 360 permit 192.168.70.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 365 permit 192.168.71.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 370 permit 192.168.72.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 375 permit 192.168.73.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 380 permit 192.168.74.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 385 permit 192.168.75.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 390 permit 192.168.76.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 395 permit 192.168.77.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 400 permit 192.168.91.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 405 permit 192.168.93.12/32
+ip prefix-list RUTAS-INTERMERICANA seq 410 permit 192.168.104.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 415 permit 192.168.108.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 420 permit 192.168.111.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 425 permit 192.168.112.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 430 permit 192.168.113.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 435 permit 192.168.114.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 440 permit 192.168.115.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 445 permit 192.168.130.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 450 permit 192.168.197.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 455 permit 192.168.198.0/29
+ip prefix-list RUTAS-INTERMERICANA seq 460 permit 192.168.252.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 470 permit 200.6.65.119/32
+ip prefix-list RUTAS-INTERMERICANA seq 475 permit 200.9.196.101/32
+ip prefix-list RUTAS-INTERMERICANA seq 480 permit 200.9.197.101/32
+ip prefix-list RUTAS-INTERMERICANA seq 485 permit 200.68.43.228/32
+ip prefix-list RUTAS-INTERMERICANA seq 490 permit 172.20.253.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 500 permit 10.140.132.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 505 permit 10.140.133.0/24
+ip prefix-list RUTAS-INTERMERICANA seq 510 permit 64.158.56.49/32
+ip prefix-list RUTAS-INTERMERICANA seq 995 permit 0.0.0.0/0
+ip prefix-list RUTAS-INTERMERICANA seq 999 deny 0.0.0.0/0 le 32
+logging history notifications
+logging trap debugging
+logging facility local6
+logging host 172.27.44.28
+ip access-list standard 3
+ 10 remark deny outbound
+ 10 deny   any
+ip access-list standard 71
+ 10 permit 10.171.74.0
+ 20 permit any
+ip access-list standard 90
+ 10 permit 10.14.5.1
+ 20 permit 192.168.112.30
+ 30 permit 192.168.121.1
+ 40 permit 10.136.6.146
+ 50 permit 130.145.0.10
+ 60 permit 192.168.112.4
+ 70 permit 152.110.252.38
+ 80 permit 152.110.252.39
+ 90 permit 152.110.252.37
+ 100 permit 10.136.12.198
+ 110 permit 192.168.200.249
+ 120 permit 192.168.6.30
+ 130 permit 192.168.252.5
+ 140 permit 172.22.1.41
+ 150 permit 172.22.3.37
+ 160 permit 10.136.12.16
+ 170 permit 172.26.30.3
+ 180 permit 192.168.200.100
+ 190 permit 10.171.70.41
+ 200 permit 10.136.6.80
+ 210 permit 10.136.6.90
+ 220 permit 10.136.12.106
+ 230 permit 10.171.70.1
+ 240 permit 10.171.76.5
+ 250 permit 10.171.76.1
+ 260 permit 10.136.12.96
+ 270 permit 135.89.220.253
+ 280 permit 10.136.6.0 0.0.0.255
+ 290 permit 10.136.12.0 0.0.0.255
+ 300 permit 152.110.252.0 0.0.0.63
+ip access-list extended 110
+ 10 permit ip 10.143.128.0 0.0.127.255 100.61.0.0 0.0.255.255
+ 20 permit ip 10.143.128.0 0.0.127.255 100.71.0.0 0.0.255.255
+ 30 permit ip 10.143.128.0 0.0.127.255 100.161.0.0 0.0.255.255
+ 40 permit ip 10.143.128.0 0.0.127.255 100.171.0.0 0.0.255.255
+ 50 permit ip 10.143.128.0 0.0.127.255 100.10.6.0 0.0.0.255
+ip access-list extended 115
+ 10 permit ip host 10.136.12.40 200.55.213.0 0.0.0.255
+ 20 permit ip host 10.136.12.65 200.55.213.0 0.0.0.255
+ip access-list extended 130
+ 10 deny   ip host 10.171.25.254 host 10.49.80.11
+ 20 deny   ip host 10.171.25.254 host 10.50.110.11
+ 30 permit ip any any
+ip access-list extended 131
+ 10 deny   ip host 10.136.12.249 host 10.49.80.11
+ 20 deny   ip host 10.136.12.249 host 10.50.110.11
+ 30 permit ip any any
+ip access-list extended 132
+ 10 deny   ip any host 10.49.80.11
+ 20 deny   ip any host 10.50.110.11
+ 30 permit ip any any
+ip access-list extended 171
+ 10 permit ip 10.171.74.0 0.0.0.255 10.136.8.0 0.0.0.255
+ 20 permit ip any any
+ip access-list extended 172
+ 10 permit ip 10.136.8.0 0.0.0.255 10.171.74.0 0.0.0.255
+ 20 permit ip any any
+ip access-list extended 180
+ 10 permit ip host 10.136.12.83 any
+ip access-list extended 181
+ 10 permit ip host 10.136.8.19 any
+ip access-list extended 182
+ 10 permit ip 10.171.69.8 0.0.0.7 any
+ip access-list extended 183
+ 10 permit ip 172.18.10.0 0.0.0.255 any
+!
+route-map proxy_prueba permit 20 
+ match ip address 181
+ set ip default next-hop 10.171.76.1
+!
+route-map Ironmountain permit 10 
+ match ip address 115
+ set ip next-hop 10.171.108.4
+!
+route-map Ironmountain permit 20 
+!
+route-map TTI_GROUP permit 10 
+ match ip address 182
+ set ip default next-hop 10.171.76.1
+!
+route-map TTI_GROUP permit 20 
+ match ip address 183
+ set ip default next-hop 10.171.76.1
+!
+route-map Proxy-Pino permit 10 
+ match ip address 180
+ set ip next-hop 10.171.76.1
+!
+route-map CONN->EIGRP210 permit 10 
+ match ip address prefix-list REDES-INTERMERICANA
+!
+route-map RUTA-METLIFE permit 71 
+ match ip address 71
+ set ip next-hop 10.136.0.36
+!
+route-map CONNECTED_2_OSPF permit 10 
+ match ip address prefix-list PL_Telefonia
+!
+route-map STATIC->EIGRP210 permit 10 
+ match ip address prefix-list RUTAS-INTERMERICANA
+!
+!
+snmp-server view MetSNMPv3View iso included
+snmp-server view MetSNMPv3View internet included
+snmp-server view MetSNMPv3View mib-2 included
+snmp-server view MetSNMPv3View system included
+snmp-server view MetSNMPv3View cisco included
+snmp-server community met1ife RO
+snmp-server community mes2tL1b0CV8zp57 RO NMS-Solarwinds
+snmp-server trap-source Vlan80
+snmp-server location Data Center Teatinos 550 Piso 1
+snmp-server contact Area Comunicaciones Anexo 5248
+snmp-server enable traps snmp linkdown linkup coldstart warmstart
+snmp-server enable traps vlandelete
+snmp-server enable traps cpu threshold
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps syslog
+snmp-server enable traps errdisable
+snmp-server host 10.171.23.30 version 2c met1ife 
+tacacs-server timeout 1
+!
+radius-server key 7 03175E08140A351E16504D
+!
+!
+control-plane
+ service-policy input system-cpp-policy
+!
+rmon event 10 log trap redsonda description "Uso de CPU > 50%" owner chenry
+rmon event 20 log trap redsonda description "Uso de CPU < 5%" owner chenry
+rmon alarm 10 lsystem.56.0 1200 absolute rising-threshold 50 10 falling-threshold 5 20 owner chenry
+privilege exec level 14 ping
+privilege exec level 14 show startup-config
+privilege exec level 14 show running-config
+privilege exec level 14 show
+banner motd ^CCC
+*********************************************************************
+                               ||        ||
+                               ||        ||
+                              ||||      ||||
+                          ..:||||||:..:||||||:..
+                         C i s c o  S y s t e m s
+                 SWITCH L3 9500 CORE PRINCIPAL METLIFE
+                          EDIFICIO TORRE METLIFE
+                         AGUSTINAS 640, SANTIAGO
+*********************************************************************
+                              CATALYST 9500
+^C
+alias exec si sh ip int brief
+alias exec sr sh runn
+alias exec sri sh runn int
+alias exec f sh runn | begin
+alias exec sir sh ip route
+alias exec sv sh vlan brief
+!
+line con 0
+ exec-timeout 15 0
+ privilege level 15
+ password 7 132812063809077F7B
+ logging synchronous
+ login authentication METSCHEME
+ transport output none
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 15 0
+ password 7 013E0310680E055A71
+ logging synchronous
+ login authentication METSCHEME
+ length 0
+ transport input ssh
+ transport output none
+line vty 5 15
+ exec-timeout 15 0
+ password 7 072224587D0C1A5047
+ logging synchronous
+ login authentication METSCHEME
+ length 0
+ transport input ssh
+ transport output none
+line vty 16 97
+ logging synchronous
+ transport input none
+ transport output none
+!
+ntp master 5
+ntp server 200.27.106.116
+ntp server 10.171.76.5
+!
+mac address-table static b4b5.2fd4.3e49 vlan 4 drop
+mac address-table static 24b6.fd1e.6dd8 vlan 4 drop
+mac address-table static 3c52.8233.aeba vlan 12 drop
+mac address-table static ace2.d354.9780 vlan 12 drop
+mac address-table static 74e6.e232.fed0 vlan 12 drop
+mac address-table static 0024.e842.054a vlan 12 drop
+mac address-table static 3ca8.2a88.3c55 vlan 12 drop
+mac address-table static d481.d7d1.2f43 vlan 12 drop
+mac address-table static d481.d763.901c vlan 12 drop
+mac address-table static 000c.29e7.9c37 vlan 12 drop
+mac address-table static 507b.9d54.d868 vlan 12 drop
+mac address-table static d481.d7d1.2f9b vlan 12 drop
+mac address-table static d017.c2b5.3b81 vlan 12 drop
+mac address-table static ecb1.d7bb.d91c vlan 12 drop
+mac address-table static d481.d7df.4088 vlan 12 drop
+mac address-table static d481.d7fe.dc06 vlan 12 drop
+mac address-table static 1c39.47eb.1ec3 vlan 12 drop
+!
+!
+!
+!
+!
+restconf
+end
+
+swc624_21#show platform
+Chassis type: C9500-48Y4C         
+
+Switch 1
+
+Slot      Type                State                 Insert time (ago) 
+--------- ------------------- --------------------- ----------------- 
+1         C9500-48Y4C         ok                    4w0d          
+ 1/0      C9500-48Y4C         ok                    4w0d          
+P0        C9K-PWR-650WAC-R    ok                    4w0d          
+P1        C9K-PWR-650WAC-R    ok                    4w0d          
+
+Slot      CPLD Version        Firmware Version                        
+--------- ------------------- --------------------------------------- 
+1         19070421            17.1.1[FC2]                         
+
+Switch 2
+
+Slot      Type                State                 Insert time (ago) 
+--------- ------------------- --------------------- ----------------- 
+1         C9500-48Y4C         ok                    4w0d          
+ 1/0      C9500-48Y4C         ok                    4w0d          
+P0        C9K-PWR-650WAC-R    ok                    4w0d          
+P1        C9K-PWR-650WAC-R    ok                    4w0d          
+
+Slot      CPLD Version        Firmware Version                        
+--------- ------------------- --------------------------------------- 
+1         19070421            17.1.1[FC2]                         
+
+swc624_21#show inventory

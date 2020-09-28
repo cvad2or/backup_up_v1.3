@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+        <link rel="stylesheet" href="../static/css/styles.css">
+        <link rel="stylesheet" href="../static/css/w3.css">
+        <link rel="shortcut icon" href="../static/img/favicon.ico">
+    </head>
+    <body>
+        <div id='cssmenu'>
+            <ul>
+               <li><a href='/'>Home</a></li>
+               <li class='active'><a href='#'>BACKUP</a>
+                  <ul>
+                     <li><a href='#' id="Configuracion">Configuration</a>
+                        <ul>
+                           <li><a href='../full_backup'>Manual</a></li>
+                           <li><a href='../respaldo_full_programado'>Programmed</a></li>
+                        </ul>
+                     </li>
+                   <li><a href='#' id="respaldo_state">State</a>
+                    <ul>
+                       <li><a href='../stateBackup'>Manual</a></li>
+                       <li><a href='#'>Programmed</a></li>
+                    </ul>
+                 </li>
+                  </ul>
+               </li>
+               <!--<li><a href='#'>About</a></li>
+               <li><a href='#'>Contact</a></li>-->
+            </ul>
+            </div>
+        <br>
+        <div>
+            {% for file in lista_archivos %}
+                {% if "user" not in file %} 
+                <a  href="/stateBackup/{{folder}}/{{file}}" onclick="showFile({{folder}},{{file}})">{{file}}</a><br>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+    </body>
+</html>

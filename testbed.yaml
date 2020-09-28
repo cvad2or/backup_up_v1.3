@@ -1,0 +1,29 @@
+devices:
+  swc624_21:
+    connections:
+      cli:
+        ip: 10.136.12.1
+        protocol: ssh
+    credentials:
+      default:
+        password: Ntt2020Pan
+        username: ganavalon
+      enable:
+        password: MetSec50
+    os: iosxe
+    platform: n9k
+    type: iosxe
+  swc624_22:
+    connections:
+      cli:
+        ip: 10.171.70.5
+        protocol: ssh
+    credentials:
+      default:
+        password: NTTM3t15!!
+        username: NTT15
+      enable:
+        password: MetSec50
+    os: iosxe
+    platform: n9k
+    type: iosxe

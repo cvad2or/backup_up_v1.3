@@ -1,0 +1,408 @@
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+swc624_22(config)#exit
+swc624_22#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES NVRAM  administratively down down    
+Vlan40                 172.22.7.1      YES manual up                    up      
+Vlan80                 unassigned      YES unset  up                    up      
+Vlan103                10.171.67.99    YES manual up                    up      
+Vlan315                10.171.72.1     YES manual up                    up      
+Vlan1032               10.171.70.5     YES manual up                    up      
+Vlan4083               10.171.73.129   YES manual up                    up      
+GigabitEthernet0/0     unassigned      YES NVRAM  administratively down down    
+GigabitEthernet1/0/1   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/2   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/3   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/4   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/5   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/6   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/7   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/8   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/9   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/10  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/11  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/12  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/13  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/14  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/15  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/16  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/17  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/18  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/19  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/20  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/21  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/22  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/23  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/24  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/25  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/26  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/27  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/28  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/29  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/30  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/31  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/32  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/33  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/34  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/35  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/36  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/37  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/38  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/39  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/40  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/41  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/42  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/43  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/44  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/45  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/46  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/47  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/48  unassigned      YES unset  down                  down    
+Te1/1/1                unassigned      YES unset  up                    up      
+Te1/1/2                unassigned      YES unset  down                  down    
+Te1/1/3                unassigned      YES unset  down                  down    
+Te1/1/4                unassigned      YES unset  down                  down    
+Ap1/0/1                unassigned      YES unset  up                    up      
+GigabitEthernet2/0/1   unassigned      YES unset  down                  down    
+GigabitEthernet2/0/2   unassigned      YES unset  down                  down    
+GigabitEthernet2/0/3   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/4   unassigned      YES unset  down                  down    
+GigabitEthernet2/0/5   unassigned      YES unset  down                  down    
+GigabitEthernet2/0/6   unassigned      YES unset  down                  down    
+GigabitEthernet2/0/7   unassigned      YES unset  down                  down    
+GigabitEthernet2/0/8   unassigned      YES unset  down                  down    
+GigabitEthernet2/0/9   unassigned      YES unset  down                  down    
+GigabitEthernet2/0/10  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/11  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/12  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/13  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/14  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/15  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/16  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/17  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/18  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/19  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/20  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/21  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/22  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/23  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/24  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/25  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/26  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/27  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/28  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/29  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/30  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/31  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/32  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/33  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/34  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/35  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/36  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/37  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/38  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/39  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/40  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/41  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/42  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/43  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/44  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/45  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/46  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/47  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/48  unassigned      YES unset  down                  down    
+Te2/1/1                unassigned      YES unset  up                    up      
+Te2/1/2                unassigned      YES unset  down                  down    
+Te2/1/3                unassigned      YES unset  down                  down    
+Te2/1/4                unassigned      YES unset  down                  down    
+Ap2/0/1                unassigned      YES unset  up                    up      
+Port-channel99         unassigned      YES unset  up                    up      
+swc624_22#show running
+Building configuration...
+
+Current configuration : 23243 bytes
+!
+! Last configuration change at 16:33:01 UTC-3 Fri Aug 28 2020 by NTT15
+! NVRAM config last updated at 18:35:28 UTC-3 Mon Aug 24 2020 by NTT15
+!
+version 16.12
+no service pad
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime
+service password-encryption
+service compress-config
+service call-home
+no platform punt-keepalive disable-kernel-core
+!
+hostname swc624_22
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 49250
+no logging console
+enable secret 9 $9$DQiWnYJZEBNX4U$R9nhBUa459aKCjj5qpvQ6.wMbcHvd2gNqNFTfAjdHKI
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization config-commands
+aaa authorization commands 15 default local 
+aaa accounting system default start-stop group TACACS-METLIFE
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock summer-time UTC-3 recurring 2 Sun Aug 0:00 2 Sun May 0:00
+switch 1 provision c9300l-48t-4x
+switch 2 provision c9300l-48t-4x
+!
+!
+!
+!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+  no destination transport-method email
+ip routing
+!
+!
+!
+!
+!
+ip name-server 10.171.70.66 10.170.71.236
+ip domain name metnet.net
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+vtp mode transparent
+no device-tracking logging theft
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment terminal
+ revocation-check crl
+!
+crypto pki trustpoint TP-self-signed-3450844626
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3450844626
+ revocation-check none
+ rsakeypair TP-self-signed-3450844626
+!
+!
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+crypto pki certificate chain TP-self-signed-3450844626
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33343530 38343436 3236301E 170D3230 30373234 32313135 
+  33385A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 34353038 
+  34343632 36308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 01009FF1 D4C4E342 C4B9B353 5E59CF6F 5493F572 98C614B8 3177DDFA 
+  8BAFA110 52737F44 61D2381E 370B556D 1A8D7502 F8BAA498 81FC4BF1 4DAECD04 
+  758E69C4 4C3D9142 0F068625 3ABAE8E1 43BCC4EF 0659B608 BCFA588D CA7EA57F 
+  B0865E6C 64C54F79 54A77774 DC8DBE68 0233C9DF DF3D75B0 85D41F95 0963F054 
+  39DD8052 D42AFE7D 5BBEC269 71854153 C62F9AA3 48069915 9A6CCBC5 A4B7E8C4 
+  B4FDACF3 BEC6C39C F0B7197C 2FC10169 18EEBD8C 3314CA81 9FFBCA38 9AA0F737 
+  5CE325BB 45547377 7B546AA7 3EBEEA56 DCFBDD79 D3776F67 7442D22B 6CC3511A 
+  C3F9E04B 80F3B46E 9E8EDA3C 19450FEA 0D18EEF2 68C3146E 4D0FE744 25B46592 
+  11280624 E5A10203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 140FD83E 1345CC7E D939BFBA 43B2DB4C DBA42EC5 
+  54301D06 03551D0E 04160414 0FD83E13 45CC7ED9 39BFBA43 B2DB4CDB A42EC554 
+  300D0609 2A864886 F70D0101 05050003 82010100 0926E296 8C1AFC99 7A734795 
+  CB241CCC 8DDE1027 E7AED0CA C62BEAF9 7C388D0D EC0689D5 1D50BBCC 8D85F78B 
+  F79B2060 28A11BE8 E174811F C3F5AEF7 11AF64CC 916A232B 7F7BE9BA DC2F17BE 
+  8C8383ED 95FDE193 71361817 EC316AC8 8B913C11 0EF84E43 F23CF9C2 8F959D26 
+  B7F0559B 995F4A42 1CC3FE81 22FC2005 EAF1C6BD 7BDB1374 3DECD079 178C3D2F 
+  654B22D6 55241C42 2B27710A AC16AB68 897DD8CD CB3D4932 96EDFB17 255E85BF 
+  92EF2CFA 593581EF A1709376 F13E981D 6E06F7BD F273D237 DFACFC7F 7ED7BC9A 
+  DF800245 35D3C8D4 8461B75C C5D2E79A 94A6A0CC CD3ADCAB E6359752 9020ABF8 
+  5C9241DA 82AEA85A 1251F3E6 B34F0A4E FB075459
+  	quit
+!
+crypto pki certificate pool
+ cabundle nvram:ios_core.p7b
+!
+!
+license boot level network-advantage addon dna-advantage
+!
+!
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+spanning-tree vlan 1-4094 priority 40960
+archive
+ log config
+  logging enable
+  logging size 200
+  notify syslog contenttype plaintext
+  hidekeys
+memory free low-watermark processor 134384
+!
+username alex privilege 15 secret 9 $9$leAhHsR3VzE5mE$nluJIOMOJhSzASzRmlGl1uszlcWV4YOusIBA2uzV5v.
+username Didata7 privilege 7 secret 9 $14$k1Dh$KhBXjW40yKBNdU$AJ4gvom0nWOd8v5neoSucyYjfLy//3T0Eru2vnTGjbI
+username Didata14 privilege 15 secret 9 $14$1tN.$v2Icrb8Co2LZdk$Q0AxyhzkSji6RjCr3p5JHVqU2LXDDL4mjsDqcu7SeMw
+username NTT15 privilege 15 secret 9 $14$lK7w$jEZJu6wzdb9NM.$bXHuNag9Mkgoq4g4SQWc6t2kBvZ9gfJ.0NLwQx6kd/A
+username mlfadmin privilege 15 secret 9 $9$WXd.//13PEIpiU$UAG4CKJq2Kq33ZZ7idT3lUEOig/yaZF0SVLdBU5ITI.
+username cggl privilege 15 secret 9 $9$uwqNeDroIwscuE$DOMcuyMXzwrrEL.aDG3poeuFbLxX.pJmgvRmnrvdgFY
+!
+redundancy
+ mode sso
+!
+!
+!
+!
+!
+transceiver type all
+ monitoring
+!
+vlan 2
+ name DATOS_PISO-1_EP
+!
+vlan 4
+ name DATOS_PISO-4
+!
+vlan 5
+ name Piso5
+!
+vlan 6
+ name DATOS_PISO-6
+!
+vlan 7
+ name DATOS_PISO-7
+!
+vlan 11
+ name DATOS_PISO-11
+!
+vlan 12
+ name DATOS_PISO-12
+!
+vlan 13
+ name DATOS_PISO-13
+!
+vlan 14
+ name DATOS_PISO-14
+!
+vlan 16
+ name PISO-16
+!
+vlan 17
+ name Piso_17
+!
+vlan 19
+ name DATOS_PISO-19
+!
+vlan 20
+ name NATIVE
+!
+vlan 22
+ name DATOS_PISO-22
+!
+vlan 24
+ name PISO-24
+!
+vlan 25
+ name PISO-25
+!
+vlan 26
+ name secure_infra
+!
+vlan 31
+ name Vlan31-prueba
+!
+vlan 40
+ name Regiones-MET
+!
+vlan 50
+ name INTER-RED_ENLACES
+!
+vlan 63
+ name SIP
+!
+vlan 65
+ name INTER-RED_VOIP
+!
+vlan 71
+ name VOIP_PISO-ENTREPISO
+!
+vlan 72
+ name VOIP_PISO-1
+!
+vlan 73
+ name VOIP_PISO-4_y_6
+!
+vlan 74
+ name TOIP_PISO6
+!
+vlan 75
+ name VOIP_PISO-7
+!
+vlan 77
+ name PROD-PMC
+!
+vlan 80
+ name MANAGEMENT
+!
+vlan 90
+ name dr_users
+!
+vlan 100
+ name RED-FW_BACK-END
+!
+vlan 102
+ name METLIFE-PRINTER
+!
+vlan 103
+ name RED_FW_E
