@@ -38,18 +38,18 @@ ip_fmc =""
 def handle_my_custom_event(text, methods=['GET', 'POST']):
     print('received my event: ' + text)
     socketio.emit("to_js","Se conecto al servidor.....")
-    
+
 def messageReceived(methods=['GET', 'POST']):
     print('message was received!!!')
 
 @app.route('/trabajo/<trabajo>', methods=["GET"])
-def schedule_to_delete(trabajo):  
+def schedule_to_delete(trabajo):
         scheduler.remove_job(trabajo)
         print("trabajo "+trabajo+" eliminado")
         all_jobs = scheduler.get_jobs()
         return redirect("/full_program_Backup")
 
-####
+
 @app.route('/')
 def start():
     return render_template("starting_page.html")
@@ -131,7 +131,7 @@ def fullBackup():
             return jsonify(resultado)
     else:
         return jsonify({"resultado":"equipo "+hostname+" Error!!!!"})
- 
+
 
 @app.route("/stateBackup",methods=["POST","GET"])
 def stateBackup():
@@ -237,7 +237,7 @@ def fmc_change_policy():
     global passwd_fmc
     global addr_fmc
 
-    
+
     if request.method == "POST":
         #print(request.form.getlist("mySelect"))
         #print(request.form.getlist("ips_select"))
