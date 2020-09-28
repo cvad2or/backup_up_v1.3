@@ -49,7 +49,7 @@ def schedule_to_delete(trabajo):
         all_jobs = scheduler.get_jobs()
         return redirect("/full_program_Backup")
 
-
+####
 @app.route('/')
 def start():
     return render_template("starting_page.html")
