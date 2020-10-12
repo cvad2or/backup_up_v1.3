@@ -114,8 +114,19 @@ def get_rules_assignment(addr_fmc,uuid_fmc,lista_de_policy, token_auth):
             "X-auth-access-token": token_auth
         }
         response = requests.get(url, headers=headers, verify=False)
-        for rule in json.loads(response.text)["items"]:
-            lista_de_rules[policy_id].append([rule["id"],rule["name"]])
+        if "next" in json.loads(response.text)["paging"]:
+            for rule in json.loads(response.text)["items"]:
+                lista_de_rules[policy_id].append([rule["id"],rule["name"]])
+            for fmc_url in json.loads(response.text)["paging"]["next"]:
+                response = requests.get(fmc_url, headers=headers, verify=False)
+                for rule in json.loads(response.text)["items"]:
+                    lista_de_rules[policy_id].append([rule["id"],rule["name"]])
+        else:
+            #print(json.loads(response.text)["paging"])
+            for rule in json.loads(response.text)["items"]:
+                lista_de_rules[policy_id].append([rule["id"],rule["name"]])
+    with open("new_1.json","a") as file:
+        file.write(json.dumps(lista_de_rules))
     #print(lista_de_rules)
     return(lista_de_rules)
 
@@ -130,8 +141,19 @@ def get_rules_with_names_assignment(addr_fmc,uuid_fmc,lista_de_policy_with_names
             "X-auth-access-token": token_auth
         }
         response = requests.get(url, headers=headers, verify=False)
-        for rule in json.loads(response.text)["items"]:
-            lista_de_rules[policy_id].append([rule["id"],rule["name"]])
+        if "next" in json.loads(response.text)["paging"]:
+            for rule in json.loads(response.text)["items"]:
+                lista_de_rules[policy_id].append([rule["id"],rule["name"]])
+            for fmc_url in json.loads(response.text)["paging"]["next"]:
+                response = requests.get(fmc_url, headers=headers, verify=False)
+                for rule in json.loads(response.text)["items"]:
+                    lista_de_rules[policy_id].append([rule["id"],rule["name"]])
+        else:
+            #print(json.loads(response.text)["paging"])
+            for rule in json.loads(response.text)["items"]:
+                lista_de_rules[policy_id].append([rule["id"],rule["name"]])
+    with open("new_1.json","a") as file:
+        file.write(json.dumps(lista_de_rules))
     return(lista_de_rules)
 
 def modify_all_rules(user_fmc,passwd_fmc,addr_fmc,uuid_fmc,lista_de_policy_with_names,lista_de_rules, lista_de_ips,lista_de_files,lista_de_variables, pol,ips_pol_name,file_pol_name, variable_set):
