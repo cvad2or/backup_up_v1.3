@@ -6,7 +6,7 @@ import urllib3
 from flask_bootstrap import Bootstrap
 urllib3.disable_warnings()
 
-
+#prueba fmc
 
 def fmc_login(user_fmc,passwd_fmc,addr_fmc):
     response_fmc = requests.post('https://'+addr_fmc+'//api/fmc_platform/v1/auth/generatetoken', verify=False, auth=HTTPBasicAuth(user_fmc, passwd_fmc))
