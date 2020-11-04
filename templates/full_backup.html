@@ -3,7 +3,6 @@
 <head>
     <title></title>
     <link rel="icon" href="..//static/img/icon.png">
-    <link rel="shortcut icon" href="../static/img/favicon.ico">
     <style type="text/css">
         body
         {
@@ -32,35 +31,32 @@
 
     <div id='cssmenu'>
         <ul>
-           <li><a href='/'>Home</a></li>
+           <li><a href='#'>Home</a></li>
            <li class='active'><a href='#'>BACKUP</a>
               <ul>
-                 <li><a href='#' id="Configuracion">Configuration</a>
-                    <ul>
-                       <li><a href='../full_backup'>Manual</a></li>
-                       <li><a href='../respaldo_full_programado'>Programmed</a></li>
-                    </ul>
+                 <li><a href='full_backup' id="Configuracion">Configuration</a>
+                    <!--<ul>
+                       <li><a href='#'>Sub Product</a></li>
+                       <li><a href='#'>Sub Product</a></li>
+                    </ul>-->
                  </li>
-               <li><a href='#' id="respaldo_state">State</a>
-                <ul>
-                   <li><a href='../stateBackup'>Manual</a></li>
-                   <li><a href='#'>Programmed</a></li>
-                </ul>
-             </li>
+                 <li><a href='respaldo_full_programado' id="Estado">Programmed</a>
+                  <!--<ul>
+                     <li><a href='#'>Sub Product</a></li>
+                     <li><a href='#'>Sub Product</a></li>
+                  </ul>-->
+               </li>
               </ul>
            </li>
-           <li class='active'><a href='#'>FMC</a>
-            <ul>
-              <li><a href='../fmc_start_page' id="fmc_chage_policy">Change Policy</a>
-              </li>
-            </ul>
+           <!--<li><a href='#'>About</a></li>
+           <li><a href='#'>Contact</a></li>-->
         </ul>
         </div>
     <br>
-    <div id="div_seleccionar_archivo" style="float: left;">
-    <input type="file" id="fileUpload" />
-    <input type="button" id="upload" value="Create Backup" onclick="Upload()" />
-    </div>
+    <form action="/fullBackup" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <input type="file" name="file" required="true">
+        <input type="submit" value="Create Backup">
+    </form>
     <br><br><br>
     <div id="div_mensajes">
         <div id="estado" style="width: 400px;">
@@ -76,70 +72,7 @@
     <link rel="stylesheet" href="../static/css/styles.css">
     <script type="application/javascript" src="../static/js/script.js"></script>
     <script type="application/javascript" src="../static/js/main.js"></script>
-    <script type="text/javascript">
 
-
-        function Upload() {
-            //Reference the FileUpload element.
-            var fileUpload = document.getElementById("fileUpload");
-
-            //Validate whether File is valid Excel file.
-            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
-            if (regex.test(fileUpload.value.toLowerCase())) {
-                if (typeof (FileReader) != "undefined") {
-                    var reader = new FileReader();
-
-                    //For Browsers other than IE.
-                    if (reader.readAsBinaryString) {
-                        reader.onload = function (e) {
-                            ConvertToJson(e.target.result);
-                        };
-                        reader.readAsBinaryString(fileUpload.files[0]);
-                    } else {
-                        //For IE Browser.
-                        reader.onload = function (e) {
-                            var data = "";
-                            var bytes = new Uint8Array(e.target.result);
-                            for (var i = 0; i < bytes.byteLength; i++) {
-                                data += String.fromCharCode(bytes[i]);
-                            }
-                            ConvertToJson(data);
-                        };
-                        reader.readAsArrayBuffer(fileUpload.files[0]);
-                    }
-                } else {
-                    alert("This browser does not support HTML5.");
-                }
-            } else {
-                alert("Please upload a valid Excel file.");
-            }
-        };
-
-        function ConvertToJson(data){
-            var workbook = XLSX.read(data, {
-                    type: 'binary'
-            });
-            var first_sheet_name = workbook.SheetNames[0];
-            var worksheet = workbook.Sheets[first_sheet_name];
-            var equipos = XLSX.utils.sheet_to_json(worksheet);
-            for (var key in equipos){
-                //console.log(equipos[key]);
-                //$("#estado").html("<p> Procesando equipo "+ equipos[key]["name"]+" con IP " + equipos[key]["ip"]+ "..... </p>");
-                //$("#estado").append("<p> Respaldando equipo "+ equipos[key]["name"]+" con IP " + equipos[key]["ip"]+ "..... </p>")
-                $.get("fullBackup", equipos[key], function(data) {
-                    //$("#estado").append("<p> Resultado: "+ data["resultado"]+"..... </p>")
-                    })
-                      .done(function() {
-                      })
-                      .fail(function() {
-                        //$("#estado").append("<p> Resultado: "+ equipos[key]["name"]+"</p>")
-                      })
-                      .always(function() {
-                      });
-              }
-            };
-           
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     <script type="text/javascript">
       var socket = io.connect('http://' + document.domain + ':' + location.port);

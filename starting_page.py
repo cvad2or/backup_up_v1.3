@@ -1,8 +1,7 @@
 from flask import Flask,render_template,jsonify,request,redirect,send_from_directory,url_for
 import json
-from respaldo_full_asa import connect_asa_ssh
-from respaldo_full_nxos import connect_nxos_ssh
-from respaldo_full_iosxe import connect_iosxe_ssh
+from respaldo_full_manual import respaldo_ssh_manual
+from respaldo_full_manual import respaldo_telnet_manual
 from werkzeug.utils import secure_filename
 from flask_socketio import SocketIO,emit
 import os
@@ -94,48 +93,39 @@ def full_program_Backup():
         return render_template("respaldo_full_programado.html",respuesta=all_jobs)
 
 
-@app.route('/fullBackup')
+@app.route('/fullBackup',methods=["GET","POST"])
 def fullBackup():
-    hostname=request.args.get("hostname")
-    ip = request.args.get("ip")
-    os = request.args.get("os")
-    protocol = request.args.get("protocol")
-    username= request.args.get("username")
-    password= request.args.get("password")
-    enable = request.args.get("enable_password")
-    platform = request.args.get("platform")
+    if request.method == "POST":
+        try:
+            f = request.files["file"]
+            f.save('manual_backup.xlsx')
+            excel_data_fragment = pandas.read_excel('manual_backup.xlsx', sheet_name='Sheet1')
+            json_str = excel_data_fragment.to_json()
+            parsed = json.loads(json_str)
+            for i in parsed["hostname"].keys():
+                hostname = parsed["hostname"][i]
+                ip = parsed["ip"][i]
+                cisco_os = parsed["os"][i]
+                protocol = parsed["protocol"][i]
+                username= parsed["username"][i]
+                password = parsed["password"][i]
+                enable_password = parsed["enable_password"][i]
 
-    if os == "nxos" and protocol == "ssh":
-        resultado = connect_nxos_ssh(hostname,ip,protocol,username,password,enable)
-        socketio.emit("to_js","Respaldando equipo "+hostname+" con IP "+ip+" <br>")
-        if "Error" in resultado:
-            socketio.emit("to_js","Respaldo de "+hostname+" con IP "+ip+" fallo</font>")
-            return jsonify(resultado)
-        else:
-            socketio.emit("to_js","Respaldo de "+hostname+" con IP "+ip+" se ejecuto!</font>")
-            return jsonify(resultado)
-        return jsonify(resultado)
-    elif os == "asa" and protocol == "ssh":
-        socketio.emit("to_js","Respaldando equipo "+hostname+" con IP "+ip)
-        resultado = connect_asa_ssh(hostname,ip,protocol,username,password,enable)
-        if "Error" in resultado:
-            socketio.emit("to_js","Respaldo de "+hostname+" con IP "+ip+" fallo</font>")
-            return jsonify({"resultado":"equipo "+hostname+" Error!!!! "+resultado})
-        else:
-            socketio.emit("to_js","Respaldo de "+hostname+" con IP "+ip+" se ejecuto!</font>")
-            return jsonify(resultado)
-    elif os == "iosxe" and protocol == "ssh":
-        socketio.emit("to_js","Respaldando equipo "+hostname+" con IP "+ip)
-        resultado = connect_iosxe_ssh(hostname,ip,protocol,username,password,enable)
-        if "Error" in resultado:
-            socketio.emit("to_js","Respaldo de "+hostname+" con IP "+ip+" fallo</font>")
-            return jsonify({"resultado":"equipo "+hostname+" Error!!!! "+resultado})
-        else:
-            socketio.emit("to_js","Respaldo de "+hostname+" con IP "+ip+" se ejecuto!</font>")
-            return jsonify(resultado)
-    else:
-        return jsonify({"resultado":"equipo "+hostname+" Error!!!!"})
 
+                if protocol == "ssh":
+                    print("........respaldando equipo  "+str(hostname))
+                    socketio.emit("to_js","Respaldando equipo "+str(hostname)+" con IP "+ip+" <br>")
+                    resultado = respaldo_ssh_manual(str(hostname),ip,cisco_os,username,password,enable_password)
+                    if "fallido" in resultado:
+                        socketio.emit("to_js","Respaldo de "+str(hostname)+" con IP "+ip+" fallo</font>")
+                    elif "realizado" in resultado:
+                        socketio.emit("to_js","Respaldo de "+str(hostname)+" con IP "+ip+" se ejecuto!</font>")
+                elif protocol == "telnet":
+                    respaldo_telnet_manual(str(hostname),ip,cisco_os,username,password,enable_password)
+        except Exception as e:
+            print("......error.....")
+            print(e)    
+    return("todo bene")
 
 @app.route("/stateBackup",methods=["POST","GET"])
 def stateBackup():

@@ -1,0 +1,10 @@
+flask
+flask_sqlalchemy
+pyats[full]
+jumpssh
+netmiko
+apscheduler
+flask_socketio
+pandas
+flask_bootstrap
+
