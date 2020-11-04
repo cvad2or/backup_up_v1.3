@@ -95,7 +95,7 @@ def respaldo_ssh_manual(hostname,ip,cisco_os,username,password,enable_password):
                     file.write(resultado)
 
     except Exception as e:
-            print("............excepcion.............")
+            print("............excepcion...............")
             print(e)
             return("fallido")
 
