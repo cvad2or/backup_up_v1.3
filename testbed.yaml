@@ -1,29 +1,43 @@
 devices:
-  swc624_21:
+  7200_IOS:
     connections:
       cli:
-        ip: 10.136.12.1
+        ip: 192.168.0.52
         protocol: ssh
     credentials:
       default:
-        password: Ntt2020Pan
-        username: ganavalon
+        password: admin
+        username: admin
       enable:
-        password: MetSec50
-    os: iosxe
-    platform: n9k
-    type: iosxe
-  swc624_22:
+        password: admin
+    os: ios
+    platform: ios
+    type: ios
+  ASAv:
     connections:
       cli:
-        ip: 10.171.70.5
+        ip: 192.168.0.51
         protocol: ssh
     credentials:
       default:
-        password: NTTM3t15!!
-        username: NTT15
+        password: alex
+        username: alex
       enable:
-        password: MetSec50
-    os: iosxe
-    platform: n9k
-    type: iosxe
+        password: alex
+    os: asa
+    platform: asa
+    type: asa
+  NXOSv:
+    connections:
+      cli:
+        ip: 192.168.0.53
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: admin
+    os: nxos
+    platform: nxos
+    type: nxos

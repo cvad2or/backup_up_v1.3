@@ -21,6 +21,12 @@ commands_nxos = [
     'show running',
     ]
 
+commands_ios = [
+    'exit',
+    'show ip interface brief',
+    'show running',
+    ]
+
 def respaldo_ssh():
     with open("devices.json") as file:
         device_json = json.load(file)
@@ -63,6 +69,19 @@ def respaldo_ssh():
                 hostname = device_json["hostname"][i]
                 commands = commands_nxos
                 conexion_netmiko(commands,equipo,hostname)
+            elif device_json["os"][i] == "ios":
+                equipo = {
+                'device_type': 'cisco_ios',
+                'ip':device_json["ip"][i],
+                'username': device_json["username"][i],
+                'password': device_json["password"][i],
+                'secret': device_json["enable_password"][i],
+                'verbose': True,
+                'global_delay_factor': 1,
+                }
+                hostname = str(device_json["hostname"][i])
+                commands = commands_ios
+                conexion_netmiko(commands,equipo,hostname)
             else:
                 print("otro equipo")
 
@@ -70,11 +89,11 @@ def conexion_netmiko(commands,equipo,hostname):
     try:
         ruta = os.getcwd()
         net_connect = ConnectHandler(**equipo)
-        print(equipo)  
-        if equipo["device_type"]!="cisco_asa":
+        #print(equipo)  
+        if equipo["device_type"]!="cisco_asa" or equipo["device_type"]!="cisco_ios":
             net_connect.enable()
         resultado = net_connect.send_config_set(commands)
-        print(resultado)
+        #print(resultado)
         with open(ruta+"/full backup scheduled/respaldo_"+hostname+"_"+datetime.now().strftime("%d%m%Y_%H%M"),"w") as file:
             file.write(resultado)
     except Exception as e:

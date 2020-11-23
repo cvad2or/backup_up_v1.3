@@ -93,11 +93,10 @@ def respaldo_ssh_manual(hostname,ip,cisco_os,username,password,enable_password):
                 for comando in commands_asa:
                     resultado = net_connect_asa.send_command(comando)
                     file.write(resultado)
+        return ({"resultado":"equipo "+hostname+" OK"})
 
     except Exception as e:
-            print("............excepcion...............")
-            print(e)
-            return("fallido")
+            return("Error "+str(e))
 
 
     return("realizado")

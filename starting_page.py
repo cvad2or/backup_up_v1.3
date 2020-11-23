@@ -116,16 +116,20 @@ def fullBackup():
                     print("........respaldando equipo  "+str(hostname))
                     socketio.emit("to_js","Respaldando equipo "+str(hostname)+" con IP "+ip+" <br>")
                     resultado = respaldo_ssh_manual(str(hostname),ip,cisco_os,username,password,enable_password)
-                    if "fallido" in resultado:
+                    if "Error" in resultado:
                         socketio.emit("to_js","Respaldo de "+str(hostname)+" con IP "+ip+" fallo</font>")
-                    elif "realizado" in resultado:
+                    else:
                         socketio.emit("to_js","Respaldo de "+str(hostname)+" con IP "+ip+" se ejecuto!</font>")
                 elif protocol == "telnet":
                     respaldo_telnet_manual(str(hostname),ip,cisco_os,username,password,enable_password)
+                    if "Error" in resultado:
+                        socketio.emit("to_js","Respaldo de "+str(hostname)+" con IP "+ip+" fallo</font>")
+                    else:
+                        socketio.emit("to_js","Respaldo de "+str(hostname)+" con IP "+ip+" se ejecuto!</font>")
         except Exception as e:
-            print("......error.....")
-            print(e)    
-    return("todo bene")
+            return jsonify({"resultado":"equipo "+str(hostname)+" Error!!!!"})   
+
+    return ("Respaldo se ejecuto exitosamente!!!!")
 
 @app.route("/stateBackup",methods=["POST","GET"])
 def stateBackup():
