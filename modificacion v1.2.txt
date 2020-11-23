@@ -1,1 +1,0 @@
-se modifica respaldo manual utilizando libreria jumpssh con jump host
